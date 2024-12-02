@@ -8,7 +8,7 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 - [ ] Criar o banco de dados no SGBD MariaDB a partir dos diagramas ER.
 
 ### Layout e Front-End
-- [ ] Desenvolver o layout da aplicação em Figma.
+- [X] Desenvolver o layout da aplicação em Figma.
 - [ ] Implementar o layout em HTML, CSS e JavaScript.
 
 ### Back-End e Integração
