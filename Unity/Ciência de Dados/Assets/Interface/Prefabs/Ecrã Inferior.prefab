@@ -200,14 +200,14 @@ RectTransform:
   m_GameObject: {fileID: 1009682035582566811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 469967530484825990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 0}
+  m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8380432717576604209
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.1932373, y: 0, z: -99.88013, w: 0}
+  m_margin: {x: -0.1932373, y: 0, z: -0.008544922, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9057b6f83c8a6e4a88e574702baea10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2579f359a7fde434e8ffdf568395d3d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -711,7 +711,7 @@ RectTransform:
   m_GameObject: {fileID: 8524941962305476761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 727110778422948883}
@@ -743,14 +743,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7411765, g: 0.121568635, b: 0.21568629, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd0198441b1c9904ebcbdbcd8932aa0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dca1d58f9d7293941b0da9612694fba3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -812,6 +812,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 861326535656922181}
     m_Modifications:
+    - target: {fileID: 1116441490329472095, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a2dc57f712da8a4185947f682815791, type: 3}
     - target: {fileID: 3772247684080150226, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
       propertyPath: m_Name
       value: "Bot\xE3o A\xE7\xE3o (1)"
