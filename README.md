@@ -9,7 +9,7 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 
 ### Layout e Front-End
 - [X] Desenvolver o layout da aplicação em Figma.
-- [ ] Implementar o layout em HTML, CSS e JavaScript.
+- [ ] Implementar o layout em ~HTML, CSS e JavaScript~ Unity.
 
 ### Back-End e Integração
 - [ ] Desenvolver a aplicação para integração entre banco de dados, front-end e back-end, seguindo os requisitos:
