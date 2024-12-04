@@ -12,15 +12,15 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 - [ ] Implementar o layout em ~HTML, CSS e JavaScript~ Unity.
 
 ### Back-End e Integração
-- [ ] Desenvolver a aplicação para integração entre banco de dados, front-end e back-end, seguindo os requisitos:
-  - **RQ1**: Inserir, atualizar e deletar dados de todas as entidades.
-  - **RQ2**: Listar dados de todas as entidades.
-  - **RQ3**: Realizar operações de soma, contagem, média, máximo e mínimo para todas as entidades.
-  - **RQ4**: Implementar consultas SQL utilizando junções para combinar dados de pelo menos duas tabelas relacionadas.
-  - **RQ5**: Implementar consultas que combinem funções de agregação com a cláusula `GROUP BY`.
-  - **RQ6**: Criar pelo menos duas visões (views) que consolidem informações úteis e frequentemente consultadas.
-  - **RQ7**: Possuir interface gráfica (livre escolha entre desktop, web ou mobile).
-  - **RQ8**: Não utilizar ORM (Object Relational Mapping).
+  - Desenvolver a aplicação para integração entre banco de dados, front-end e back-end, seguindo os requisitos:
+  - [ ] **RQ1**: Inserir, atualizar e deletar dados de todas as entidades.
+  - [ ] **RQ2**: Listar dados de todas as entidades.
+  - [ ] **RQ3**: Realizar operações de soma, contagem, média, máximo e mínimo para todas as entidades.
+  - [ ] **RQ4**: Implementar consultas SQL utilizando junções para combinar dados de pelo menos duas tabelas relacionadas.
+  - [ ] **RQ5**: Implementar consultas que combinem funções de agregação com a cláusula `GROUP BY`.
+  - [ ] **RQ6**: Criar pelo menos duas visões (views) que consolidem informações úteis e frequentemente consultadas.
+  - [ ] **RQ7**: Possuir interface gráfica (livre escolha entre desktop, web ou mobile).
+  - [ ] **RQ8**: Não utilizar ORM (Object Relational Mapping).
 
 ### Relatório
 - [ ] Escrever um relatório seguindo as normas da **MDT UFSM**, disponível em [MDT UFSM 2021](https://www.ufsm.br/app/uploads/sites/538/2021/12/MDT_UFSM_2021.pdf), com os seguintes capítulos:
