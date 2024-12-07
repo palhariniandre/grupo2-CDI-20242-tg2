@@ -292,229 +292,278 @@ INSERT INTO partidaUsuario (idUsuario, idPartida, kills, deaths, assists, idCamp
 (39, 7, 0, 7, 18, 40, 'Soraka', 'Support'), -- Jogador 4 de Beijing JDG Intel Esports
 (40, 7, 9, 4, 10, 222, 'Jinx', 'Marksman'); -- Jogador 5 de Beijing JDG Intel Esports
 
--- Itens Míticos (Mythic Items)
-INSERT INTO itens (nome, AP, penetMagica, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
-VALUES ('Eclipse', 0, 0, 150, 0, 0, 55, 0.0, 0, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Infinity Edge', 0, 0, 0, 0, 0, 0, 70, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, penetMagica, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
-VALUES ('Força do Vendaval', 0, 0, 0, 0, 0, 60, 0.2, 0, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Immortal Shieldbow', 0, 0, 0, 0, 0, 0, 50, 0.20, 250, 0);
 
-INSERT INTO itens (nome, AP, penetMagica, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
-VALUES ('Coração de Aço (Heartsteel)', 0, 0, 800, 40, 0, 0, 0.0, 0, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Galeforce', 0, 0, 0, 0, 0, 0, 55, 0.20, 0, 0);
 
-INSERT INTO itens (nome, AP, penetMagica, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
-VALUES ('Angústia de Liandry (Liandry’s Anguish)', 80, 10, 0, 0, 0, 0, 0.0, 0, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Kraken Slayer', 0, 0, 0, 0, 0, 0, 65, 0.25, 0, 0);
 
-INSERT INTO itens (nome, AP, penetMagica, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
-VALUES ('Virtude Radiante (Radiant Virtue)', 0, 0, 400, 30, 30, 0, 0.0, 0, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Prowler''s Claw', 0, 0, 0, 0, 0, 0, 60, 0.0, 0, 0);
 
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Eclipse', 0, 0, 0, 0, 0, 0, 55, 0.0, 0, 0);
 
--- Dano Físico e Crítico
-INSERT INTO itens (nome, AP, danAtaque, vida)
-VALUES ('Gume do Infinito (Infinity Edge)', 0, 70, 0);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Axiom Arc', 0, 0, 0, 0, 0, 0, 55, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, danAtaque)
-VALUES ('A Coletora (The Collector)', 0, 55);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Duskblade of Draktharr', 0, 0, 0, 0, 0, 0, 60, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, danAtaque, curaConcedida)
-VALUES ('Sedenta por Sangue (Bloodthirster)', 0, 55, 80);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Black Cleaver', 0, 0, 0, 300, 0, 0, 50, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, danAtaque, velocAtaque)
-VALUES ('Gume do Vento (Stormrazor)', 0, 40, 0.15);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Death''s Dance', 0, 0, 0, 0, 0, 0, 55, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, danAtaque, vida)
-VALUES ('Lança de Shojin (Spear of Shojin)', 0, 65, 250);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Bloodthirster', 0, 0, 0, 0, 0, 0, 55, 0.0, 0, 25);
 
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Blade of the Ruined King', 0, 0, 0, 0, 0, 0, 40, 0.25, 0, 0);
 
--- Poder de Habilidade (AP)
-INSERT INTO itens (nome, AP, armadura)
-VALUES ('Ampulheta de Zhonya (Zhonya’s Hourglass)', 65, 45);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Ravenous Hydra', 0, 0, 0, 0, 0, 0, 65, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, penetMagica)
-VALUES ('Cajado do Vazio (Void Staff)', 70, 40);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Titanic Hydra', 0, 0, 0, 500, 0, 0, 30, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP)
-VALUES ('Capuz da Morte de Rabadon (Rabadon’s Deathcap)', 120);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Guinsoo''s Rageblade', 30, 0, 0, 0, 0, 0, 30, 0.25, 0, 0);
 
-INSERT INTO itens (nome, AP, penetMagica)
-VALUES ('Morellonomicon', 80, 15);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Mortal Reminder', 0, 0, 0, 0, 0, 0, 25, 0.0, 0, 0);
 
-INSERT INTO itens (nome, AP, vida)
-VALUES ('Abraço Demoníaco (Demonic Embrace)', 60, 300);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Wit''s End', 0, 0, 0, 0, 0, 40, 0, 0.40, 0, 0);
 
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Stormrazor', 0, 0, 0, 0, 0, 0, 40, 0.15, 0, 0);
 
--- Itens de Tanque e Resistências
-INSERT INTO itens (nome, vida)
-VALUES ('Armadura de Warmog (Warmog’s Armor)', 800);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Rapid Firecannon', 0, 0, 0, 0, 0, 0, 0, 0.30, 0, 0);
 
-INSERT INTO itens (nome, vida, armadura)
-VALUES ('Presságio de Randuin (Randuin’s Omen)', 400, 60);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Phantom Dancer', 0, 0, 0, 0, 0, 0, 0, 0.30, 0, 0);
 
-INSERT INTO itens (nome, vida, resistMagica)
-VALUES ('Força da Natureza (Force of Nature)', 350, 70);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Luden''s Tempest', 80, 6, 0, 0, 0, 0, 0, 0.0, 0, 0);
 
-INSERT INTO itens (nome, vida, armadura)
-VALUES ('Armadura de Espinhos (Thornmail)', 250, 60);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Liandry''s Anguish', 80, 6, 0, 0, 0, 0, 0, 0.0, 0, 0);
 
-INSERT INTO itens (nome, vida, resistMagica, curaConcedida)
-VALUES ('Semblante Espiritual (Spirit Visage)', 450, 40, 20);
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Rabadon''s Deathcap', 120, 0, 0, 0, 0, 0, 0, 0.0, 0, 0);
 
-
--- Itens de Suporte e Utilidade
-INSERT INTO itens (nome, escudoConcedido)
-VALUES ('Medalhão dos Solari de Ferro (Locket of the Iron Solari)', 200);
-
-INSERT INTO itens (nome, curaConcedida)
-VALUES ('Redenção (Redemption)', 100);
-
-INSERT INTO itens (nome, AP, penetMagica)
-VALUES ('Putrificador Quimtec (Chemtech Putrifier)', 40, 10);
-
-INSERT INTO itens (nome, vida, armadura)
-VALUES ('Juramento do Cavaleiro (Knight’s Vow)', 250, 20);
-
-INSERT INTO itens (nome, AP, velocAtaque)
-VALUES ('Turíbulo Ardente (Ardent Censer)', 60, 0.1);
-
-
--- Itens de Velocidade de Ataque, On-Hit e ADC
-INSERT INTO itens (nome, velocAtaque)
-VALUES ('Furacão de Runaan (Runaan’s Hurricane)', 0.45);
-
-INSERT INTO itens (nome, danAtaque, velocAtaque)
-VALUES ('Espada do Rei Destruído (Blade of the Ruined King)', 40, 0.25);
-
-INSERT INTO itens (nome, danAtaque, velocAtaque)
-VALUES ('Lâmina da Fúria de Guinsoo (Guinsoo’s Rageblade)', 30, 0.25);
-
-INSERT INTO itens (nome, velocAtaque)
-VALUES ('Dançarina Fantasma (Phantom Dancer)', 0.45);
-
-INSERT INTO itens (nome, velocAtaque)
-VALUES ('Canhão Fumegante (Rapid Firecannon)', 0.35);
-
-
--- Itens de Início e Consumíveis
-INSERT INTO itens (nome, danAtaque, vida)
-VALUES ('Lâmina de Doran (Doran’s Blade)', 8, 80);
-
-INSERT INTO itens (nome, AP, regMana, vida)
-VALUES ('Anel de Doran (Doran’s Ring)', 15, 5, 70);
-
-INSERT INTO itens (nome, vida)
-VALUES ('Escudo de Doran (Doran’s Shield)', 80);
-
-INSERT INTO itens (nome, curaConcedida)
-VALUES ('Poção de Vida (Health Potion)', 150);
-
-INSERT INTO itens (nome, curaConcedida, AP)
-VALUES ('Poção Corrupta (Corrupting Potion)', 125, 10);
-
-
--- Itens de Jungler (Itens de Caçador)
-INSERT INTO itens (nome, vida)
-VALUES ('Lâmina do Rastreador (Tracker’s Knife)', 150);
-
-INSERT INTO itens (nome, danAtaque)
-VALUES ('Sabre do Escaramuçador (Skirmisher’s Sabre)', 20);
-
-INSERT INTO itens (nome, vida)
-VALUES ('Lâmina do Perseguidor (Stalker’s Blade)', 100);
-
-INSERT INTO itens (nome, danAtaque)
-VALUES ('Machete do Caçador (Hunter’s Machete)', 10);
-
-INSERT INTO itens (nome, regMana)
-VALUES ('Talismã do Caçador (Hunter’s Talisman)', 5);
-
+INSERT INTO itens (nome, AP, penetMagica, regMana, vida, armadura, resistMagica, danAtaque, velocAtaque, escudoConcedido, curaConcedida)
+VALUES ('Zhonya''s Hourglass', 65, 0, 0, 0, 45, 0, 0, 0.0, 0, 0);
 
 -- Jogadores da partida 1 (idPartidaUsuario de 1 a 10)
-INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
+INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) 
+VALUES
 (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),
-(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),
-(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),
-(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),
+(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),
+(3,13),(3,14),(3,15),(3,16),(3,17),(3,18),
+(4,19),(4,20),(4,21),(4,22),(4,23),(4,24),
 (5,1),(5,2),(5,3),(5,4),(5,5),(5,6),
-(6,1),(6,2),(6,3),(6,4),(6,5),(6,6),
-(7,1),(7,2),(7,3),(7,4),(7,5),(7,6),
-(8,1),(8,2),(8,3),(8,4),(8,5),(8,6),
+(6,7),(6,8),(6,9),(6,10),(6,11),(6,12),
+(7,13),(7,14),(7,15),(7,16),(7,17),(7,18),
+(8,19),(8,20),(8,21),(8,22),(8,23),(8,24),
 (9,1),(9,2),(9,3),(9,4),(9,5),(9,6),
-(10,1),(10,2),(10,3),(10,4),(10,5),(10,6);
+(10,7),(10,8),(10,9),(10,10),(10,11),(10,12);
+
 
 -- Jogadores da partida 2 (idPartidaUsuario de 11 a 20)
-INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(11,1),(11,2),(11,3),(11,4),(11,5),(11,6),
-(12,1),(12,2),(12,3),(12,4),(12,5),(12,6),
+INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) 
+VALUES
+(11,13),(11,14),(11,15),(11,16),(11,17),(11,18),
+(12,19),(12,20),(12,21),(12,22),(12,23),(12,24),
 (13,1),(13,2),(13,3),(13,4),(13,5),(13,6),
-(14,1),(14,2),(14,3),(14,4),(14,5),(14,6),
-(15,1),(15,2),(15,3),(15,4),(15,5),(15,6),
-(16,1),(16,2),(16,3),(16,4),(16,5),(16,6),
+(14,7),(14,8),(14,9),(14,10),(14,11),(14,12),
+(15,13),(15,14),(15,15),(15,16),(15,17),(15,18),
+(16,19),(16,20),(16,21),(16,22),(16,23),(16,24),
 (17,1),(17,2),(17,3),(17,4),(17,5),(17,6),
-(18,1),(18,2),(18,3),(18,4),(18,5),(18,6),
-(19,1),(19,2),(19,3),(19,4),(19,5),(19,6),
-(20,1),(20,2),(20,3),(20,4),(20,5),(20,6);
-
+(18,7),(18,8),(18,9),(18,10),(18,11),(18,12),
+(19,13),(19,14),(19,15),(19,16),(19,17),(19,18),
+(20,19),(20,20),(20,21),(20,22),(20,23),(20,24);
 
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(21,1),(21,2),(21,3),(21,4),(21,5),(21,6),
-(22,1),(22,2),(22,3),(22,4),(22,5),(22,6),
-(23,1),(23,2),(23,3),(23,4),(23,5),(23,6),
+(21,7),(21,8),(21,9),(21,10),(21,11),(21,12),
+(22,13),(22,14),(22,15),(22,16),(22,17),(22,18),
+(23,19),(23,20),(23,21),(23,22),(23,23),(23,24),
 (24,1),(24,2),(24,3),(24,4),(24,5),(24,6),
-(25,1),(25,2),(25,3),(25,4),(25,5),(25,6);
+(25,7),(25,8),(25,9),(25,10),(25,11),(25,12);
+
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(26,1),(26,2),(26,3),(26,4),(26,5),(26,6),
-(27,1),(27,2),(27,3),(27,4),(27,5),(27,6),
+(26,13),(26,14),(26,15),(26,16),(26,17),(26,18),
+(27,19),(27,20),(27,21),(27,22),(27,23),(27,24),
 (28,1),(28,2),(28,3),(28,4),(28,5),(28,6),
-(29,1),(29,2),(29,3),(29,4),(29,5),(29,6),
-(30,1),(30,2),(30,3),(30,4),(30,5),(30,6);
+(29,7),(29,8),(29,9),(29,10),(29,11),(29,12),
+(30,13),(30,14),(30,15),(30,16),(30,17),(30,18);
+
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(31,1),(31,2),(31,3),(31,4),(31,5),(31,6),
+(31,19),(31,20),(31,21),(31,22),(31,23),(31,24),
 (32,1),(32,2),(32,3),(32,4),(32,5),(32,6),
-(33,1),(33,2),(33,3),(33,4),(33,5),(33,6),
-(34,1),(34,2),(34,3),(34,4),(34,5),(34,6),
-(35,1),(35,2),(35,3),(35,4),(35,5),(35,6);
+(33,7),(33,8),(33,9),(33,10),(33,11),(33,12),
+(34,13),(34,14),(34,15),(34,16),(34,17),(34,18),
+(35,19),(35,20),(35,21),(35,22),(35,23),(35,24);
+
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
 (36,1),(36,2),(36,3),(36,4),(36,5),(36,6),
-(37,1),(37,2),(37,3),(37,4),(37,5),(37,6),
-(38,1),(38,2),(38,3),(38,4),(38,5),(38,6),
-(39,1),(39,2),(39,3),(39,4),(39,5),(39,6),
+(37,7),(37,8),(37,9),(37,10),(37,11),(37,12),
+(38,13),(38,14),(38,15),(38,16),(38,17),(38,18),
+(39,19),(39,20),(39,21),(39,22),(39,23),(39,24),
 (40,1),(40,2),(40,3),(40,4),(40,5),(40,6);
--- Jogadores da partida 5 (Gen.G e Hanwha Life Esports)
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(41,1),(41,2),(41,3),(41,4),(41,5),(41,6),
-(42,1),(42,2),(42,3),(42,4),(42,5),(42,6),
-(43,1),(43,2),(43,3),(43,4),(43,5),(43,6),
+(41,7),(41,8),(41,9),(41,10),(41,11),(41,12),
+(42,13),(42,14),(42,15),(42,16),(42,17),(42,18),
+(43,19),(43,20),(43,21),(43,22),(43,23),(43,24),
 (44,1),(44,2),(44,3),(44,4),(44,5),(44,6),
-(45,1),(45,2),(45,3),(45,4),(45,5),(45,6),
-(46,1),(46,2),(46,3),(46,4),(46,5),(46,6),
-(47,1),(47,2),(47,3),(47,4),(47,5),(47,6),
+(45,7),(45,8),(45,9),(45,10),(45,11),(45,12),
+(46,13),(46,14),(46,15),(46,16),(46,17),(46,18),
+(47,19),(47,20),(47,21),(47,22),(47,23),(47,24),
 (48,1),(48,2),(48,3),(48,4),(48,5),(48,6),
-(49,1),(49,2),(49,3),(49,4),(49,5),(49,6),
-(50,1),(50,2),(50,3),(50,4),(50,5),(50,6);
--- Jogadores da partida 6 (T1 e Beijing JDG Intel Esports)
+(49,7),(49,8),(49,9),(49,10),(49,11),(49,12),
+(50,13),(50,14),(50,15),(50,16),(50,17),(50,18);
+
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(51,1),(51,2),(51,3),(51,4),(51,5),(51,6),
+(51,19),(51,20),(51,21),(51,22),(51,23),(51,24),
 (52,1),(52,2),(52,3),(52,4),(52,5),(52,6),
-(53,1),(53,2),(53,3),(53,4),(53,5),(53,6),
-(54,1),(54,2),(54,3),(54,4),(54,5),(54,6),
-(55,1),(55,2),(55,3),(55,4),(55,5),(55,6),
+(53,7),(53,8),(53,9),(53,10),(53,11),(53,12),
+(54,13),(54,14),(54,15),(54,16),(54,17),(54,18),
+(55,19),(55,20),(55,21),(55,22),(55,23),(55,24),
 (56,1),(56,2),(56,3),(56,4),(56,5),(56,6),
-(57,1),(57,2),(57,3),(57,4),(57,5),(57,6),
-(58,1),(58,2),(58,3),(58,4),(58,5),(58,6),
-(59,1),(59,2),(59,3),(59,4),(59,5),(59,6),
+(57,7),(57,8),(57,9),(57,10),(57,11),(57,12),
+(58,13),(58,14),(58,15),(58,16),(58,17),(58,18),
+(59,19),(59,20),(59,21),(59,22),(59,23),(59,24),
 (60,1),(60,2),(60,3),(60,4),(60,5),(60,6);
--- Jogadores da Gen.G (idPartida=7, idPartidaUsuario=61 a 65)
+
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
 (61,1),(61,2),(61,3),(61,4),(61,5),(61,6),
-(62,1),(62,2),(62,3),(62,4),(62,5),(62,6),
-(63,1),(63,2),(63,3),(63,4),(63,5),(63,6),
-(64,1),(64,2),(64,3),(64,4),(64,5),(64,6),
+(62,7),(62,8),(62,9),(62,10),(62,11),(62,12),
+(63,13),(63,14),(63,15),(63,16),(63,17),(63,18),
+(64,19),(64,20),(64,21),(64,22),(64,23),(64,24),
 (65,1),(65,2),(65,3),(65,4),(65,5),(65,6);
 
--- Jogadores da Beijing JDG Intel Esports (idPartida=7, idPartidaUsuario=66 a 70)
 INSERT INTO itensPatUsuario (idPartidaUsuario, idItem) VALUES
-(66,1),(66,2),(66,3),(66,4),(66,5),(66,6),
-(67,1),(67,2),(67,3),(67,4),(67,5),(67,6),
-(68,1),(68,2),(68,3),(68,4),(68,5),(68,6),
+(66,7),(66,8),(66,9),(66,10),(66,11),(66,12),
+(67,13),(67,14),(67,15),(67,16),(67,17),(67,18),
+(68,19),(68,20),(68,21),(68,22),(68,23),(68,24),
 (69,1),(69,2),(69,3),(69,4),(69,5),(69,6),
-(70,1),(70,2),(70,3),(70,4),(70,5),(70,6);
+(70,7),(70,8),(70,9),(70,10),(70,11),(70,12);
+
+
+
+UPDATE partida SET duracao = '00:30:12' WHERE idPartida = 1;
+UPDATE partida SET duracao = '00:32:45' WHERE idPartida = 2;
+UPDATE partida SET duracao = '00:35:08' WHERE idPartida = 3;
+UPDATE partida SET duracao = '00:37:21' WHERE idPartida = 4;
+UPDATE partida SET duracao = '00:40:05' WHERE idPartida = 5;
+UPDATE partida SET duracao = '00:42:13' WHERE idPartida = 6;
+UPDATE partida SET duracao = '00:44:59' WHERE idPartida = 7;
+UPDATE partida SET duracao = '00:46:35' WHERE idPartida = 8;
+UPDATE partida SET duracao = '00:50:12' WHERE idPartida = 9;
+UPDATE partida SET duracao = '00:52:18' WHERE idPartida = 10;
+UPDATE partida SET duracao = '00:54:09' WHERE idPartida = 11;
+UPDATE partida SET duracao = '00:31:45' WHERE idPartida = 12;
+UPDATE partida SET duracao = '00:33:20' WHERE idPartida = 13;
+UPDATE partida SET duracao = '00:36:41' WHERE idPartida = 14;
+UPDATE partida SET duracao = '00:38:05' WHERE idPartida = 15;
+UPDATE partida SET duracao = '00:41:30' WHERE idPartida = 16;
+UPDATE partida SET duracao = '00:43:22' WHERE idPartida = 17;
+UPDATE partida SET duracao = '00:45:44' WHERE idPartida = 18;
+UPDATE partida SET duracao = '00:47:15' WHERE idPartida = 19;
+UPDATE partida SET duracao = '00:49:50' WHERE idPartida = 20;
+UPDATE partida SET duracao = '00:51:11' WHERE idPartida = 21;
+UPDATE partida SET duracao = '00:53:00' WHERE idPartida = 22;
+UPDATE partida SET duracao = '00:55:35' WHERE idPartida = 23;
+UPDATE partida SET duracao = '00:34:12' WHERE idPartida = 24;
+UPDATE partida SET duracao = '00:36:40' WHERE idPartida = 25;
+UPDATE partida SET duracao = '00:39:18' WHERE idPartida = 26;
+UPDATE partida SET duracao = '00:42:00' WHERE idPartida = 27;
+UPDATE partida SET duracao = '00:44:30' WHERE idPartida = 28;
+UPDATE partida SET duracao = '00:46:55' WHERE idPartida = 29;
+UPDATE partida SET duracao = '00:50:25' WHERE idPartida = 30;
+UPDATE partida SET duracao = '00:52:40' WHERE idPartida = 31;
+UPDATE partida SET duracao = '00:54:15' WHERE idPartida = 32;
+UPDATE partida SET duracao = '00:30:35' WHERE idPartida = 33;
+UPDATE partida SET duracao = '00:33:25' WHERE idPartida = 34;
+UPDATE partida SET duracao = '00:40:55' WHERE idPartida = 35;
+
+
+UPDATE partidaUsuario SET ouroAdquirido = 8792 WHERE idPartidaUsuario = 1;
+UPDATE partidaUsuario SET ouroAdquirido = 9392 WHERE idPartidaUsuario = 2;
+UPDATE partidaUsuario SET ouroAdquirido = 9361 WHERE idPartidaUsuario = 3;
+UPDATE partidaUsuario SET ouroAdquirido = 12190 WHERE idPartidaUsuario = 4;
+UPDATE partidaUsuario SET ouroAdquirido = 8744 WHERE idPartidaUsuario = 5;
+UPDATE partidaUsuario SET ouroAdquirido = 8963 WHERE idPartidaUsuario = 6;
+UPDATE partidaUsuario SET ouroAdquirido = 9993 WHERE idPartidaUsuario = 7;
+UPDATE partidaUsuario SET ouroAdquirido = 11850 WHERE idPartidaUsuario = 8;
+UPDATE partidaUsuario SET ouroAdquirido = 10884 WHERE idPartidaUsuario = 9;
+UPDATE partidaUsuario SET ouroAdquirido = 9511 WHERE idPartidaUsuario = 10;
+UPDATE partidaUsuario SET ouroAdquirido = 12808 WHERE idPartidaUsuario = 11;
+UPDATE partidaUsuario SET ouroAdquirido = 8733 WHERE idPartidaUsuario = 12;
+UPDATE partidaUsuario SET ouroAdquirido = 12053 WHERE idPartidaUsuario = 13;
+UPDATE partidaUsuario SET ouroAdquirido = 11224 WHERE idPartidaUsuario = 14;
+UPDATE partidaUsuario SET ouroAdquirido = 11223 WHERE idPartidaUsuario = 15;
+UPDATE partidaUsuario SET ouroAdquirido = 10707 WHERE idPartidaUsuario = 16;
+UPDATE partidaUsuario SET ouroAdquirido = 12035 WHERE idPartidaUsuario = 17;
+UPDATE partidaUsuario SET ouroAdquirido = 8089 WHERE idPartidaUsuario = 18;
+UPDATE partidaUsuario SET ouroAdquirido = 11331 WHERE idPartidaUsuario = 19;
+UPDATE partidaUsuario SET ouroAdquirido = 8238 WHERE idPartidaUsuario = 20;
+UPDATE partidaUsuario SET ouroAdquirido = 8582 WHERE idPartidaUsuario = 21;
+UPDATE partidaUsuario SET ouroAdquirido = 9724 WHERE idPartidaUsuario = 22;
+UPDATE partidaUsuario SET ouroAdquirido = 8970 WHERE idPartidaUsuario = 23;
+UPDATE partidaUsuario SET ouroAdquirido = 8968 WHERE idPartidaUsuario = 24;
+UPDATE partidaUsuario SET ouroAdquirido = 10426 WHERE idPartidaUsuario = 25;
+UPDATE partidaUsuario SET ouroAdquirido = 12201 WHERE idPartidaUsuario = 26;
+UPDATE partidaUsuario SET ouroAdquirido = 12430 WHERE idPartidaUsuario = 27;
+UPDATE partidaUsuario SET ouroAdquirido = 9198 WHERE idPartidaUsuario = 28;
+UPDATE partidaUsuario SET ouroAdquirido = 10344 WHERE idPartidaUsuario = 29;
+UPDATE partidaUsuario SET ouroAdquirido = 11968 WHERE idPartidaUsuario = 30;
+UPDATE partidaUsuario SET ouroAdquirido = 8033 WHERE idPartidaUsuario = 31;
+UPDATE partidaUsuario SET ouroAdquirido = 11828 WHERE idPartidaUsuario = 32;
+UPDATE partidaUsuario SET ouroAdquirido = 8230 WHERE idPartidaUsuario = 33;
+UPDATE partidaUsuario SET ouroAdquirido = 11675 WHERE idPartidaUsuario = 34;
+UPDATE partidaUsuario SET ouroAdquirido = 9359 WHERE idPartidaUsuario = 35;
+UPDATE partidaUsuario SET ouroAdquirido = 10530 WHERE idPartidaUsuario = 36;
+UPDATE partidaUsuario SET ouroAdquirido = 12224 WHERE idPartidaUsuario = 37;
+UPDATE partidaUsuario SET ouroAdquirido = 12620 WHERE idPartidaUsuario = 38;
+UPDATE partidaUsuario SET ouroAdquirido = 8211 WHERE idPartidaUsuario = 39;
+UPDATE partidaUsuario SET ouroAdquirido = 9503 WHERE idPartidaUsuario = 40;
+UPDATE partidaUsuario SET ouroAdquirido = 10847 WHERE idPartidaUsuario = 41;
+UPDATE partidaUsuario SET ouroAdquirido = 11027 WHERE idPartidaUsuario = 42;
+UPDATE partidaUsuario SET ouroAdquirido = 9180 WHERE idPartidaUsuario = 43;
+UPDATE partidaUsuario SET ouroAdquirido = 10061 WHERE idPartidaUsuario = 44;
+UPDATE partidaUsuario SET ouroAdquirido = 8271 WHERE idPartidaUsuario = 45;
+UPDATE partidaUsuario SET ouroAdquirido = 9502 WHERE idPartidaUsuario = 46;
+UPDATE partidaUsuario SET ouroAdquirido = 11414 WHERE idPartidaUsuario = 47;
+UPDATE partidaUsuario SET ouroAdquirido = 10442 WHERE idPartidaUsuario = 48;
+UPDATE partidaUsuario SET ouroAdquirido = 12154 WHERE idPartidaUsuario = 49;
+UPDATE partidaUsuario SET ouroAdquirido = 11390 WHERE idPartidaUsuario = 50;
+UPDATE partidaUsuario SET ouroAdquirido = 10835 WHERE idPartidaUsuario = 51;
+UPDATE partidaUsuario SET ouroAdquirido = 11305 WHERE idPartidaUsuario = 52;
+UPDATE partidaUsuario SET ouroAdquirido = 12217 WHERE idPartidaUsuario = 53;
+UPDATE partidaUsuario SET ouroAdquirido = 11043 WHERE idPartidaUsuario = 54;
+UPDATE partidaUsuario SET ouroAdquirido = 9156 WHERE idPartidaUsuario = 55;
+UPDATE partidaUsuario SET ouroAdquirido = 12955 WHERE idPartidaUsuario = 56;
+UPDATE partidaUsuario SET ouroAdquirido = 12971 WHERE idPartidaUsuario = 57;
+UPDATE partidaUsuario SET ouroAdquirido = 10866 WHERE idPartidaUsuario = 58;
+UPDATE partidaUsuario SET ouroAdquirido = 8097 WHERE idPartidaUsuario = 59;
+UPDATE partidaUsuario SET ouroAdquirido = 11492 WHERE idPartidaUsuario = 60;
+UPDATE partidaUsuario SET ouroAdquirido = 11330 WHERE idPartidaUsuario = 61;
+UPDATE partidaUsuario SET ouroAdquirido = 10568 WHERE idPartidaUsuario = 62;
+UPDATE partidaUsuario SET ouroAdquirido = 8751 WHERE idPartidaUsuario = 63;
+UPDATE partidaUsuario SET ouroAdquirido = 12364 WHERE idPartidaUsuario = 64;
+UPDATE partidaUsuario SET ouroAdquirido = 10429 WHERE idPartidaUsuario = 65;
+UPDATE partidaUsuario SET ouroAdquirido = 8465 WHERE idPartidaUsuario = 66;
+UPDATE partidaUsuario SET ouroAdquirido = 10654 WHERE idPartidaUsuario = 67;
+UPDATE partidaUsuario SET ouroAdquirido = 12757 WHERE idPartidaUsuario = 68;
+UPDATE partidaUsuario SET ouroAdquirido = 10162 WHERE idPartidaUsuario = 69;
+UPDATE partidaUsuario SET ouroAdquirido = 12209 WHERE idPartidaUsuario = 70;
