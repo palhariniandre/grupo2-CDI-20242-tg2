@@ -20,6 +20,7 @@ CREATE TABLE partida (
     data DATE NOT NULL,
     hora TIME NOT NULL,
     etapa VARCHAR(50) NOT NULL,
+    duracao TIME NOT NULL,
     idEquipeAzul INT NOT NULL,
     idEquipeVermelha INT NOT NULL,
     idCampeonato INT NOT NULL,
