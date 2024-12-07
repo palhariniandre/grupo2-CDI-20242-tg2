@@ -1,3 +1,4 @@
+USE lol;
 -- Tabela de Equipes
 CREATE TABLE equipe (
     idEquipe INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,3 +77,6 @@ CREATE TABLE itensPatUsuario (
     FOREIGN KEY (idPartidaUsuario) REFERENCES partidaUsuario(idPartidaUsuario),
     FOREIGN KEY (idItem) REFERENCES itens(idItem)
 );
+
+ALTER TABLE partidaUsuario
+ADD COLUMN ouroAdquirido INT DEFAULT 0;
