@@ -3,45 +3,33 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Prefabs na Cena")]
-    public GameObject prefab1;
-    public GameObject prefab2;
-    public GameObject prefab3;
+    public GameObject[] prefabs;
 
     [Header("Menu Inicial")]
-    public GameObject menuInicial;
+    public GameObject mainMenu;
+    public GameObject currentScreen;
 
     private void Start()
     {
-        // No início, desativa todos os prefabs
-        DesativarTodosPrefabs();
+        // No início, desativa todos os prefabs e inicia o menu principal
+        DeactiveAll();
+        mainMenu.SetActive(true);
+        currentScreen = mainMenu;
+    }
+    private void DeactiveAll()
+    {
+        foreach (GameObject prefab in prefabs)
+        {
+            prefab.SetActive(false);
+        }
     }
 
-    public void AtivarPrefab1()
+    // método para avançar/voltar uma tela
+    public void ChangeScreen(GameObject screen)
     {
-        DesativarTodosPrefabs();
-        prefab1.SetActive(true);
-        menuInicial.SetActive(false);
-    }
-
-    public void AtivarPrefab2()
-    {
-        DesativarTodosPrefabs();
-        prefab2.SetActive(true);
-        menuInicial.SetActive(false);
-    }
-
-    public void AtivarPrefab3()
-    {
-        DesativarTodosPrefabs();
-        prefab3.SetActive(true);
-        menuInicial.SetActive(false);
-    }
-
-    private void DesativarTodosPrefabs()
-    {
-        prefab1.SetActive(false);
-        prefab2.SetActive(false);
-        prefab3.SetActive(false);
+        currentScreen.SetActive(false);
+        screen.SetActive(true);
+        currentScreen = screen;
     }
 
     public void ExitGame()
