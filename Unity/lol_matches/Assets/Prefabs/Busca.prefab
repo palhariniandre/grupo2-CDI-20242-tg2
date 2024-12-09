@@ -1349,6 +1349,38 @@ PrefabInstance:
       propertyPath: m_Colors.m_PressedColor.r
       value: 0.09411765
       objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2492990722406202299, guid: 3585da843026da746b97889abdcad054, type: 3}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1184747394207700615, guid: 29081a423535c0a408c659d98f8f67fb, type: 3}
+    - target: {fileID: 7401334065084549452, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8252492180250118038, guid: 1ae6e33daf440674881e89f81ee54934, type: 3}
@@ -1596,7 +1628,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6244298004425740631, guid: c3546e36dfed27547bdc2fed355a0cf2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3546e36dfed27547bdc2fed355a0cf2, type: 3}

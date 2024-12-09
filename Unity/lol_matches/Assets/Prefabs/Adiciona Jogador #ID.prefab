@@ -2460,7 +2460,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2503702084891683182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2492990722406202299, guid: 3585da843026da746b97889abdcad054, type: 3}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: ChangeScreen
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4179912588601504859, guid: 44fe1fa97255dc147a697f1e4dbe8838, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2425880724903839536
 GameObject:
   m_ObjectHideFlags: 0
@@ -7384,7 +7396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3007678191085541885
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10770,7 +10782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965081979169335129, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
       propertyPath: m_text
-      value: Nome do Jogador
+      value: "Nome do Jogador\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7965081979169335129, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
       propertyPath: m_enableWordWrapping

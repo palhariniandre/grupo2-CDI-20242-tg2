@@ -332,7 +332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7051816291080119212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2492990722406202299, guid: 3585da843026da746b97889abdcad054, type: 3}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: ChangeScreen
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1184747394207700615, guid: 29081a423535c0a408c659d98f8f67fb, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3449881091803985538
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +486,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5083426386849730889}
+  m_Father: {fileID: 4541169788498996571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -723,7 +735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5539307031505169097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -736,7 +748,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2675391031775218027}
+  - {fileID: 6678391255749834105}
   - {fileID: 7268811096105245412}
   - {fileID: 2350499642070809865}
   - {fileID: 5481704554319565903}
@@ -1048,14 +1060,14 @@ PrefabInstance:
       addedObject: {fileID: 7197165046162568673}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
---- !u!224 &2675391031775218027 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6042044678505358201, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
-  m_PrefabInstance: {fileID: 1114586936633382400}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &5083426386849730889 stripped
+--- !u!224 &4541169788498996571 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3491054099718552411, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
+  m_PrefabInstance: {fileID: 1114586936633382400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6678391255749834105 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6042044678505358201, guid: ccebc5bb168b2574e8f97d12dc251239, type: 3}
   m_PrefabInstance: {fileID: 1114586936633382400}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5385403826884396388
