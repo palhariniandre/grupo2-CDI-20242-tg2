@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1116441490329472095}
   - component: {fileID: 5488689331806357806}
   m_Layer: 5
-  m_Name: "Bot\xE3o A\xE7\xE3o (1)"
+  m_Name: ActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

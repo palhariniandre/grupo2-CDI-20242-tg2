@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 4695048259637649891}
   - component: {fileID: 6886137478979668334}
   m_Layer: 5
-  m_Name: Analise Jogador #ID
+  m_Name: AnalysisPlayer#ID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

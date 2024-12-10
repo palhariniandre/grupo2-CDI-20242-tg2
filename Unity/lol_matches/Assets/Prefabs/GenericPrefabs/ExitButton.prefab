@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6918037527492941815}
   - component: {fileID: 1943387794176450281}
   m_Layer: 5
-  m_Name: "Bot\xE3o Sair"
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

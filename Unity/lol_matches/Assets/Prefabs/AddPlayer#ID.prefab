@@ -11551,7 +11551,7 @@ GameObject:
   - component: {fileID: 387028122339474151}
   - component: {fileID: 1242266173062578793}
   m_Layer: 5
-  m_Name: Adiciona Jogador #ID
+  m_Name: AddPlayer#ID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

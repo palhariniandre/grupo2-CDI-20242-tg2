@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5911171853147967090}
   - component: {fileID: 8022648543868585683}
   m_Layer: 5
-  m_Name: Busca
+  m_Name: Search
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
