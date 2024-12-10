@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MatchEntity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Referências para os componentes de texto
+    public TextMeshProUGUI nomeText;
+    public TextMeshProUGUI idText;
+    public TextMeshProUGUI dataText;
+    public TextMeshProUGUI tempoText;
 
-    // Update is called once per frame
-    void Update()
+    // Método para preencher os dados da partida
+    public void PreencherPartida(Partida partida)
     {
-        
+        nomeText.text = partida.equipeVermelha + " vs " + partida.equipeAzul;
+        idText.text = "ID: " + partida.idPartida.ToString();
+        dataText.text = "Data: " + partida.data; // Exemplo de formato: DD/MM/AA
+        tempoText.text = "Tempo: " + partida.hora; // Exemplo de formato: MM:SS
     }
 }

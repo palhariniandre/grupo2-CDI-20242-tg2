@@ -2,31 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Text;
-using Newtonsoft.Json; 
-
-
+using Newtonsoft.Json;
 
 public class ApiManager : MonoBehaviour
 {
-    // Insira a URL da sua API aqui
     private string url = "http://localhost:5000/api/partidas";
-    
 
     public List<Partida> listaPartidas = new List<Partida>();
+
+    // Prefab que será instanciado
+    public GameObject partidaPrefab;
+
+    // Painel onde as instâncias do prefab serão colocadas
+    public Transform painelPartidas;
+
     void Start()
     {
         // Iniciar a rotina para buscar os dados
         StartCoroutine(GetPartidas());
     }
 
-
-
     IEnumerator GetPartidas()
     {
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-            // Envia a requisição e aguarda a resposta
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.ConnectionError ||
@@ -37,23 +36,18 @@ public class ApiManager : MonoBehaviour
             else
             {
                 string json = www.downloadHandler.text;
-
                 Partida[] partidas = JsonConvert.DeserializeObject<Partida[]>(json);
 
+                listaPartidas.Clear(); // Limpar antes de adicionar novas partidas
                 foreach (var partida in partidas)
                 {
                     listaPartidas.Add(partida);
-                    Debug.Log("ID: " + partida.idPartida + " | " +
-                              "Etapa: " + partida.etapa + " | " + 
-                              "Equipes: " + partida.equipeVermelha + " vs " + partida.equipeAzul + " | " +
-                              "Placar: " + partida.placar + " | " +
-                              "Data: " + partida.data + " Hora: " + partida.hora);
-                    
+                    Debug.Log("Adicionada partida ID: " + partida.idPartida); // Verifique as IDs das partidas
                 }
-                Debug.Log("Quantidade de partidas: " + listaPartidas.Count);
+
+                Debug.Log("Quantidade de partidas carregadas: " + listaPartidas.Count);
             }
         }
     }
+
 }
-
-
