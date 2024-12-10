@@ -81,3 +81,6 @@ CREATE TABLE itensPatUsuario (
 
 ALTER TABLE partidaUsuario
 ADD COLUMN ouroAdquirido INT DEFAULT 0;
+
+ALTER TABLE partida
+ADD COLUMN duracao TIME;
