@@ -25,7 +25,6 @@ public class TeamManager : MonoBehaviour
         UpdateInteractivity();
     }
 
-
     // atualiza a interatividade dos botões
     private void UpdateInteractivity()
     {
@@ -41,10 +40,16 @@ public class TeamManager : MonoBehaviour
         isPlayerSelected = true;
     }
 
-    // limpa a seleção do player
+    // limpa a selecao do player
     public void CleanSelection()
     {
         selectedPlayer = null;
         isPlayerSelected = false;
+    }
+
+    // deleta os dados do player selecionado
+    public void DeletePlayer()
+    {
+        CleanSelection();
     }
 }
