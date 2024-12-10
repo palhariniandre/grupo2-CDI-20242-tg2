@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6244590423369567517}
   - component: {fileID: 5005598962621698941}
   m_Layer: 5
-  m_Name: "Bot\xE3o A\xE7\xE3o (2)"
+  m_Name: ActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 8785434328052179357}
   - component: {fileID: 2797688849695860882}
   m_Layer: 5
-  m_Name: "Bot\xE3o A\xE7\xE3o (3)"
+  m_Name: ActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1a2dc57f712da8a4185947f682815791, type: 3}
     - target: {fileID: 3772247684080150226, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
       propertyPath: m_Name
-      value: "Bot\xE3o A\xE7\xE3o (1)"
+      value: ActionButton
       objectReference: {fileID: 0}
     - target: {fileID: 8413629243662043700, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
       propertyPath: m_Pivot.x

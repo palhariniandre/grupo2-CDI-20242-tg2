@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6928253629887334190}
   - component: {fileID: 1029100638886742730}
   - component: {fileID: 4824202163052810115}
+  - component: {fileID: 5965824225604638658}
   m_Layer: 5
   m_Name: SelectableSlot
   m_TagString: Untagged
@@ -133,6 +134,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5965824225604638658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017418758378128834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8e9c261c7c02c4da0f06dfd7f4b140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Name
+  elementIcon: {fileID: 0}
 --- !u!1 &8719248935592870139
 GameObject:
   m_ObjectHideFlags: 0
