@@ -24,19 +24,19 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 
 ### Relatório
 - [ ] Escrever um relatório seguindo as normas da **MDT UFSM**, disponível em [MDT UFSM 2021](https://www.ufsm.br/app/uploads/sites/538/2021/12/MDT_UFSM_2021.pdf), com os seguintes capítulos:
-  - **Capa**
-  - **Sumário**
-  - **Introdução**:
+  - [ ] **Capa**
+  - [ ] **Sumário**
+  - [ ] **Introdução**:
     - Contextualizar a importância de aplicações que utilizam bancos de dados.
     - Apresentar o problema e os objetivos do projeto.
     - Descrever a metodologia adotada, incluindo ferramentas ou técnicas utilizadas.
     - Introduzir a estrutura do relatório.
-  - **Desenvolvimento**:
+  - [ ] **Desenvolvimento**:
     - Descrever detalhadamente o problema e os requisitos.
     - Apresentar a modelagem do banco de dados (DER e modelo lógico) e sua implementação no SGBD.
     - Documentar o desenvolvimento das funcionalidades, incluindo exemplos de código.
     - Relatar os testes realizados, resultados obtidos e dificuldades enfrentadas.
-  - **Conclusão**:
+  - [ ] **Conclusão**:
     - Sintetizar os resultados, evidenciando como os objetivos foram atingidos.
     - Refletir sobre as aprendizagens e contribuições do projeto.
     - Sugerir melhorias ou trabalhos futuros.
