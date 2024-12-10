@@ -3,24 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Text;
-using Newtonsoft.Json; // Certifique-se de ter o Newtonsoft.Json importado
-// Você pode importar via o Package Manager ou colocar o pacote JSON .NET para Unity.
-
-public class Partida 
-{
-    public int idPartida;
-    public string data;
-    public string hora;
-    public string etapa;
-    public string equipeAzul;
-    public string equipeVermelha;
-    public int AnoCampeonato;
-    public string placar;
-}
+using Newtonsoft.Json; 
 
 
 
-public class APImanager : MonoBehaviour
+public class ApiManager : MonoBehaviour
 {
     // Insira a URL da sua API aqui
     private string url = "http://localhost:5000/api/partidas";
@@ -53,17 +40,20 @@ public class APImanager : MonoBehaviour
 
                 Partida[] partidas = JsonConvert.DeserializeObject<Partida[]>(json);
 
-                foreach (var partida in listaPartidas)
+                foreach (var partida in partidas)
                 {
-                   
+                    listaPartidas.Add(partida);
                     Debug.Log("ID: " + partida.idPartida + " | " +
                               "Etapa: " + partida.etapa + " | " + 
                               "Equipes: " + partida.equipeVermelha + " vs " + partida.equipeAzul + " | " +
                               "Placar: " + partida.placar + " | " +
                               "Data: " + partida.data + " Hora: " + partida.hora);
-                    listaPartidas.Add(partida);
+                    
                 }
+                Debug.Log("Quantidade de partidas: " + listaPartidas.Count);
             }
         }
     }
 }
+
+
