@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        // No início, desativa todos os prefabs e inicia o menu principal
+        // No inï¿½cio, desativa todos os prefabs e inicia o menu principal
         DeactiveAll();
         mainMenu.SetActive(true);
         currentScreen = mainMenu;
@@ -24,7 +24,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    // método para avançar/voltar uma tela
+    // mï¿½todo para avanï¿½ar/voltar uma tela
     public void ChangeScreen(GameObject screen)
     {
         currentScreen.SetActive(false);
