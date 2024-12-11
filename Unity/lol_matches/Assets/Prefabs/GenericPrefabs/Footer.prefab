@@ -106,8 +106,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: editar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 489236f8960027a41872b2543faebaaf, type: 2}
-  m_sharedMaterial: {fileID: 8631276571794482684, guid: 489236f8960027a41872b2543faebaaf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
+  m_sharedMaterial: {fileID: 789987975251559632, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -240,8 +240,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: voltar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 489236f8960027a41872b2543faebaaf, type: 2}
-  m_sharedMaterial: {fileID: 8631276571794482684, guid: 489236f8960027a41872b2543faebaaf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
+  m_sharedMaterial: {fileID: 789987975251559632, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -495,8 +495,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: excluir
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 489236f8960027a41872b2543faebaaf, type: 2}
-  m_sharedMaterial: {fileID: 8631276571794482684, guid: 489236f8960027a41872b2543faebaaf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
+  m_sharedMaterial: {fileID: 789987975251559632, guid: 3d00340738d04084499a4fb80697c6df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -819,6 +819,14 @@ PrefabInstance:
     - target: {fileID: 3772247684080150226, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
       propertyPath: m_Name
       value: ActionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412694742087793990, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
+      propertyPath: m_fontStyle
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412694742087793990, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8413629243662043700, guid: a0bc6904f34d9c245960f57abc6bc247, type: 3}
       propertyPath: m_Pivot.x
