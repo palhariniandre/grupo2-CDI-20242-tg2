@@ -20,7 +20,7 @@ def index():
     return "Servidor Flask está ativo! Use /api/partidas para listar as partidas do banco de dados 'lol'."
 
 @app.route('/api/campeonato', methods=['GET'])
-def get_campeonatos():
+def Getcampeonatos():
     try:
         cur = mysql.connection.cursor()
         query = """
@@ -42,7 +42,7 @@ def get_campeonatos():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/partidas', methods=['GET'])
-def get_partidas():
+def GetPartidas():
     try:
         cur = mysql.connection.cursor()
         query = """
@@ -78,7 +78,7 @@ def get_partidas():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/jogadores', methods=['GET'])
-def get_jogadores():
+def GetJogadores():
     try:
         cur = mysql.connection.cursor()
         query = """
@@ -103,7 +103,7 @@ def get_jogadores():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/equipe', methods=['GET'])
-def get_equipes():
+def GetEquipes():
     try:
         cur = mysql.connection.cursor()
         query = """
@@ -124,7 +124,7 @@ def get_equipes():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/item', methods=['GET'])
-def get_itens():
+def GetItens():
     try:
         cur = mysql.connection.cursor()
         query = """
