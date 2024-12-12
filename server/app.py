@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from datetime import timedelta
 from datetime import date
@@ -77,9 +77,10 @@ def GetPartidas():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/jogadores', methods=['GET'])
-def GetJogadores():
-    try:
+@app.route('/api/jogadores', methods=['GET', 'POST'])
+def manageJogadores():
+    if (request.method == 'GET'):
+    
         cur = mysql.connection.cursor()
         query = """
         SELECT 
@@ -99,8 +100,27 @@ def GetJogadores():
             jogadores.append(row)
 
         return jsonify(jogadores), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    elif (request.method == 'POST'):
+        try:
+            data = request.get_json()
+
+            nome = data['nome']
+            ranque = data['ranque']
+            posicao = data['posicao']
+            idEquipe = data['idEquipe'] 
+
+
+            cur = mysql.connection.cursor()
+            query = """
+            INSERT INTO usuario (nome, ranque, posicao, idEquipe)
+            VALUES (%s, %s, %s, %s);
+            """
+            cur.execute(query, (nome, ranque, posicao, idEquipe))
+            mysql.connection.commit()
+
+            return jsonify({"message": "Jogador criado com sucesso!"}), 201
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
 @app.route('/api/equipe', methods=['GET'])
 def GetEquipes():
