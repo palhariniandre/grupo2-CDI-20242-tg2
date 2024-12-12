@@ -5,11 +5,11 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 ## To-Do List
 
 ### Banco de Dados
-- [ ] Criar o banco de dados no SGBD MariaDB a partir dos diagramas ER.
+- [X] Criar o banco de dados no SGBD MariaDB a partir dos diagramas ER.
 
 ### Layout e Front-End
 - [X] Desenvolver o layout da aplicação em Figma.
-- [ ] Implementar o layout em ~HTML, CSS e JavaScript~ Unity.
+- [X] Implementar o layout em ~HTML, CSS e JavaScript~ Unity.
 
 ### Back-End e Integração
   - Desenvolver a aplicação para integração entre banco de dados, front-end e back-end, seguindo os requisitos:
