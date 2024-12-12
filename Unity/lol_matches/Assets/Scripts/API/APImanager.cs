@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using System.Text;
 
 public class ApiManager : MonoBehaviour
 {
@@ -15,12 +16,17 @@ public class ApiManager : MonoBehaviour
 
     void Start()
     {
-        // Iniciar a rotina para buscar os dados
+        // Busca dados das respectivas URLs
         StartCoroutine(GetPartidas());
         StartCoroutine(GetCampeonatos());
-        StartCoroutine(GetJogadores());
+        StartCoroutine(ManageJogadores(RequestType.GET));
         StartCoroutine(GetEquipes());
         StartCoroutine(GetItens());
+    }
+
+    public void EnviarJogador(Jogador jogador)
+    {
+       StartCoroutine(ManageJogadores(RequestType.POST, jogador));
     }
 
     IEnumerator GetCampeonatos()
@@ -75,29 +81,57 @@ public class ApiManager : MonoBehaviour
         }
     }
 
-    IEnumerator GetJogadores()
+    IEnumerator ManageJogadores(RequestType request, Jogador newJogador = null)
     {
-        using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.ConnectionError ||
-            www.result == UnityWebRequest.Result.ProtocolError)
+        if (request == RequestType.GET)
         {
-            Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
-        }
-        else
-        {
-            string json = www.downloadHandler.text;
-            Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
+            using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
+            yield return www.SendWebRequest();
 
-            listaJogadores.Clear(); // Limpar antes de adicionar novas partidas
-            foreach (var jogador in jogadores)
+            if (www.result == UnityWebRequest.Result.ConnectionError ||
+                www.result == UnityWebRequest.Result.ProtocolError)
             {
-                listaJogadores.Add(jogador);
-                Debug.Log("GetJogadores - Adicionado Jogador ID: " + jogador.idUsuario); // Verifique as IDs das partidas
+                Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
             }
+            else
+            {
+                string json = www.downloadHandler.text;
+                Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
 
-            Debug.Log("GetJogadores - Quantidade de jogadores carregados: " + listaJogadores.Count);
+                listaJogadores.Clear(); // Limpar antes de adicionar novas partidas
+                foreach (var jogador in jogadores)
+                {
+                    listaJogadores.Add(jogador);
+                    Debug.Log("GetJogadores - Adicionado Jogador ID: " + jogador.idUsuario); // Verifique as IDs das partidas
+                }
+
+                Debug.Log("GetJogadores - Quantidade de jogadores carregados: " + listaJogadores.Count);
+            }
+        }
+
+        if(request == RequestType.POST)
+        {
+            string jsonData = JsonConvert.SerializeObject(newJogador);
+
+            using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
+            {
+                byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
+                www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+                www.downloadHandler = new DownloadHandlerBuffer();
+                www.SetRequestHeader("Content-Type", "application/json");
+
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.ConnectionError || 
+                    www.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
+                }
+                else
+                {
+                    Debug.Log("Jogador criado");
+                }
+            }
         }
     }
 
@@ -152,7 +186,11 @@ public class ApiManager : MonoBehaviour
             Debug.Log("GetItens - Quantidade de item carregados: " + listaItem.Count);
         }
     }
-
+    enum RequestType
+    {
+       GET = 0,
+       POST = 1
+    }
     #region urls
     private string urlPartidas = "http://localhost:5000/api/partidas";
 
