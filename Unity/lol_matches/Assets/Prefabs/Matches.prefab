@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7570020868796139497}
   - component: {fileID: 6014318089578172928}
   - component: {fileID: 6884664787448320340}
+  - component: {fileID: 2719507780145149278}
   m_Layer: 5
   m_Name: Matches
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2719507780145149278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106566646200417587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c183245ad3ddd4eba54c45fdef8e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentPanel: {fileID: 0}
+  partidaUIPrefab: {fileID: 7431378204401602200, guid: c3546e36dfed27547bdc2fed355a0cf2, type: 3}
 --- !u!1 &5211620611520978192
 GameObject:
   m_ObjectHideFlags: 0
