@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Diagnostics.CodeAnalysis;
 
 public class MatchEntity : MonoBehaviour
 {
@@ -9,12 +10,21 @@ public class MatchEntity : MonoBehaviour
     public TextMeshProUGUI dataText;
     public TextMeshProUGUI tempoText;
 
+    private float id;
+
     // Método para preencher os dados da partida
-    public void PreencherPartida(Partida partida)
+    public void MatchData(Partida partida)
     {
         nomeText.text = partida.equipeVermelha + " vs " + partida.equipeAzul;
-        idText.text = "ID: " + partida.idPartida.ToString();
-        dataText.text = "Data: " + partida.data; // Exemplo de formato: DD/MM/AA
-        tempoText.text = "Tempo: " + partida.hora; // Exemplo de formato: MM:SS
+        id = partida.idPartida;
+        idText.text = "ID: " + id.ToString();
+        dataText.text =  partida.data; // Exemplo de formato: DD/MM/AA
+        tempoText.text = partida.hora; // Exemplo de formato: MM:SS
+    }
+
+    // retorna o id da partida para acessar o resto das informacoes
+    public float GetId()
+    {
+        return id;
     }
 }

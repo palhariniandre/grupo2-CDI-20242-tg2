@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class MatchManager : MonoBehaviour
 {
-    // Referência ao painel de conteúdo dentro do ScrollView onde as partidas serão listadas
+    [Header("Objects")]
     public Transform contentPanel;
+    public GameObject matchPrefab;
 
-    // Referência ao prefab de partida (PartidaUI)
-    public GameObject partidaUIPrefab;
-
-    // Lista que armazenará as instâncias das partidas
-    private List<GameObject> partidaUIList = new List<GameObject>();
-
-    // Instância do ApiManager (se necessário)
+    [Header("Entity")]
+    [SerializeField] private float selectedMatch;
+     
+    [Header("Control Variables")]
+    private List<GameObject> matchList = new List<GameObject>();
     private ApiManager apiManager;
+
+    public float SelectedMatch { get => selectedMatch; set => selectedMatch = value; }
 
     void Start()
     {
@@ -23,49 +25,64 @@ public class MatchManager : MonoBehaviour
         apiManager = FindObjectOfType<ApiManager>();
 
         // Iniciar a rotina para carregar as partidas
-        StartCoroutine(CarregarPartidas());
+        StartCoroutine(LoadMatches());
     }
 
     // Método para carregar as partidas
-    IEnumerator CarregarPartidas()
+    IEnumerator LoadMatches()
     {
         // Aguarda até que o ApiManager tenha preenchido a lista de partidas
         yield return new WaitUntil(() => apiManager.listaPartidas.Count > 0);
 
         // Limpa o conteúdo do painel antes de adicionar novas partidas
-        LimparPartidas();
+        CleanMatches();
 
         // Para cada partida na lista de partidas
         foreach (var partida in apiManager.listaPartidas)
         {
             // Instancia o prefab de partida e o coloca no painel
-            GameObject partidaObj = Instantiate(partidaUIPrefab, contentPanel);
+            GameObject partidaObj = Instantiate(matchPrefab, contentPanel);
 
             // Preenche a partida com as informações
             MatchEntity matchEntity = partidaObj.GetComponent<MatchEntity>();
             if (matchEntity != null)
             {
-                matchEntity.PreencherPartida(partida);
+                matchEntity.MatchData(partida);
             }
 
             // Adiciona a instância na lista para controle
-            partidaUIList.Add(partidaObj);
+            matchList.Add(partidaObj);
         }
 
         // Verifique se o número de partidas foi corretamente carregado
-        Debug.Log("Número de partidas carregadas no menu: " + partidaUIList.Count);
+        Debug.Log("Número de partidas carregadas no menu: " + matchList.Count);
     }
 
-// Método para limpar as instâncias de partidas
-private void LimparPartidas()
+    // Método para limpar as instâncias de partidas
+    private void CleanMatches()
     {
         // Remove todas as instâncias da lista
-        foreach (var matchEntity in partidaUIList)
+        foreach (var matchEntity in matchList)
         {
             Destroy(matchEntity);
         }
 
         // Limpa a lista
-        partidaUIList.Clear();
+        matchList.Clear();
     }
+
+    public void SelectMatch()
+    {
+        MatchEntity matchEntity = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
+       
+        SelectedMatch = matchEntity.GetId();
+
+        Debug.Log(SelectedMatch.ToString());
+    }
+
+    private void OnDisable()
+    {
+        SelectedMatch = 0;
+    }
+
 }

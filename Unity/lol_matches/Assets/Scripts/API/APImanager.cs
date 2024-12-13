@@ -7,13 +7,6 @@ using System.Text;
 
 public class ApiManager : MonoBehaviour
 {
-   
-    // Prefab que será instanciado
-    public GameObject partidaPrefab;
-
-    // Painel onde as instâncias do prefab serão colocadas
-    public Transform painelPartidas;
-
     void Start()
     {
         // Busca dados das respectivas URLs
