@@ -41,10 +41,10 @@ public class ApiManager : MonoBehaviour
             foreach (var campeonato in campeonatos)
             {
                 listaCampeonato.Add(campeonato);
-                Debug.Log("GetCampeonatos - Adicionada campeonato ID: " + campeonato.idCampeonato); // Verifique as IDs das partidas
+               
             }
 
-            Debug.Log("GetCampeonatos - Quantidade de campeonatos carregados: " + listaCampeonato.Count);
+
         }
     }
 
@@ -67,10 +67,9 @@ public class ApiManager : MonoBehaviour
             foreach (var partida in partidas)
             {
                 listaPartidas.Add(partida);
-                Debug.Log("GetPartidas - Adicionada partida ID: " + partida.idPartida); // Verifique as IDs das partidas
+            
             }
 
-            Debug.Log("GetPartidas - Quantidade de partidas carregadas: " + listaPartidas.Count);
         }
     }
 
@@ -95,10 +94,10 @@ public class ApiManager : MonoBehaviour
                 foreach (var jogador in jogadores)
                 {
                     listaJogadores.Add(jogador);
-                    Debug.Log("GetJogadores - Adicionado Jogador ID: " + jogador.idUsuario); // Verifique as IDs das partidas
+                   
                 }
 
-                Debug.Log("GetJogadores - Quantidade de jogadores carregados: " + listaJogadores.Count);
+                
             }
         }
 
@@ -147,10 +146,9 @@ public class ApiManager : MonoBehaviour
             foreach (var equipe in equipes)
             {
                 listaEquipe.Add(equipe);
-                Debug.Log("GetEquipes - Adicionado Equipe ID: " + equipe.idEquipe); // Verifique as IDs das partidas
             }
 
-            Debug.Log("GetEquipes - Quantidade de Equipes carregadas: " + listaEquipe.Count);
+           
         }
     }
 
@@ -178,6 +176,52 @@ public class ApiManager : MonoBehaviour
 
             Debug.Log("GetItens - Quantidade de item carregados: " + listaItem.Count);
         }
+
+    IEnumerator GetPartidaDetalhada(int idPartida)
+    {
+        string url = urlPartidaDetalhada + idPartida; // Monta a URL com o ID da partida
+        using UnityWebRequest www = UnityWebRequest.Get(url);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao buscar dados da URL Partida Detalhada: " + www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+
+            // Parse do JSON da API
+            var resposta = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+
+            if (resposta != null && resposta["status"].ToString() == "success")
+            {
+                // Partida detalhada
+                var partidaJson = JsonConvert.DeserializeObject<Partida>(
+                    resposta["partida"].ToString()
+                );
+                listaPartidas.Clear(); // Limpa a lista de partidas
+                listaPartidas.Add(partidaJson); // Adiciona a partida detalhada à lista
+
+                Debug.Log("GetPartidaDetalhada - Carregada partida ID: " + partidaJson.idPartida);
+
+                // Jogadores da partida
+                var jogadoresJson = JsonConvert.DeserializeObject<List<JogadorPartida>>(
+                    resposta["jogadores"].ToString()
+                );
+                listaJogadorePartida.Clear(); 
+                listaJogadorePartida.AddRange(jogadoresJson);
+
+                Debug.Log("GetPartidaDetalhada - Jogadores carregados: " + listaJogadorePartida.Count);
+            }
+            else
+            {
+                Debug.LogError("Erro na resposta da API: " + json);
+            }
+        }
+    }
+
+
     }
     enum RequestType
     {
@@ -194,6 +238,8 @@ public class ApiManager : MonoBehaviour
     private string urlEquipes = "http://localhost:5000/api/equipe";
 
     private string urlItens = "http://localhost:5000/api/item";
+    
+    public string urlPartidaDetalhada = "http://localhost:5000/api/partidaId/"; 
     #endregion
 
     #region lists
@@ -206,5 +252,8 @@ public class ApiManager : MonoBehaviour
     public List<Equipe> listaEquipe = new List<Equipe>();
 
     public List<Item> listaItem = new List<Item>();
+
+    public List<JogadorPartida> listaJogadorePartida = new List<JogadorPartida>();
     #endregion
+
 }
