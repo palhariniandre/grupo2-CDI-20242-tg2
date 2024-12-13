@@ -1,55 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TeamManager : MonoBehaviour
 {
-    [Header("Selected Player")]
-    [SerializeField] private GameObject selectedPlayer;
-    private bool isPlayerSelected = false;
+    [Header("Objects")]
+    public Transform contentPanel;
+    public GameObject teamPrefab;
 
-    [Header("Buttons")]
-    [SerializeField] private Button deleteTeam;
-    [SerializeField] private Button deletePlayer;
-    [SerializeField] private Button editPlayer;
-    [SerializeField] private Button savePlayer;
-    [SerializeField] private Button addPlayer;
+    [Header("Entity")]
+    [SerializeField] private GameObject selectedTeam;
+
+    [Header("Control Variables")]
+    private List<GameObject> teamList = new List<GameObject>();
+    private ApiManager apiManager;
 
     void Start()
     {
-        
+        // Obter a referência do ApiManager
+        apiManager = FindObjectOfType<ApiManager>();
+
+        // Iniciar a rotina para carregar as partidas
+        StartCoroutine(LoadTeams());
     }
 
-    // Update is called once per frame
-    void Update()
+    // Método para carregar as partidas
+    IEnumerator LoadTeams()
     {
-        UpdateInteractivity();
+        // Aguarda até que o ApiManager tenha preenchido a lista de partidas
+        yield return new WaitUntil(() => apiManager.listaPartidas.Count > 0);
+
+        // Limpa o conteúdo do painel antes de adicionar novas partidas
+        CleanTeams();
+
+        // Para cada partida na lista de partidas
+        foreach (var team in apiManager.listaEquipe)
+        {
+            // Instancia o prefab de partida e o coloca no painel
+            GameObject teamObj = Instantiate(teamPrefab, contentPanel);
+
+            // Preenche a partida com as informações
+            TeamEntity teamEntity = teamObj.GetComponent<TeamEntity>();
+            if (teamEntity != null)
+            {
+                teamEntity.DataTeam(team);
+            }
+
+            // Adiciona a instância na lista para controle
+            teamList.Add(teamObj);
+        }
+
+        // Verifique se o número de partidas foi corretamente carregado
+        Debug.Log("Número de equipes carregadas no menu: " + teamList.Count);
     }
 
-    // atualiza a interatividade dos botões
-    private void UpdateInteractivity()
+    // Método para limpar as instâncias de partidas
+    private void CleanTeams()
     {
-        deletePlayer.interactable = isPlayerSelected;
-        editPlayer.interactable = isPlayerSelected;
-        savePlayer.interactable = isPlayerSelected;
-    }
+        // Remove todas as instâncias da lista
+        foreach (var matchEntity in teamList)
+        {
+            Destroy(matchEntity);
+        }
 
-    // seta o player selecionado
-    public void SelectPlayer(GameObject player)
-    {
-        selectedPlayer = player;
-        isPlayerSelected = true;
-    }
-
-    // limpa a selecao do player
-    public void CleanSelection()
-    {
-        selectedPlayer = null;
-        isPlayerSelected = false;
-    }
-
-    // deleta os dados do player selecionado
-    public void DeletePlayer()
-    {
-        CleanSelection();
+        // Limpa a lista
+        teamList.Clear();
     }
 }
