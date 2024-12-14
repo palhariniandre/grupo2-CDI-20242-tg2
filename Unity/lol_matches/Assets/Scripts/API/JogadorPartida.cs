@@ -2,14 +2,18 @@ public class JogadorPartida
 {
     public int idPartidaUsuario;
     public int idJogador;
+    public int idEquipe;
     public string nome;
     public string usuario;
+    public string ranque;
+    public string posicao;
     public int kills;
     public int deaths;
     public int assists;
     public int farm;
     public int ouroAdquirido;
-    public string campeao;
+    public string idCampeao;
+    public string nomeCampeao;
     public int item1id;
     public string item1nome;
     public int item2id;
