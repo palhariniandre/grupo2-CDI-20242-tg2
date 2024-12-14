@@ -42,6 +42,7 @@ public class MatchPage : MonoBehaviour
     [Header("References")]
     [SerializeField] private ApiManager apiManager;
     [SerializeField] private MatchManager matchManager;
+    [SerializeField] private MainMenuManager mainMenu;
 
     // atualiza todas as referencia de acordo com o id da partida selecionada no feed
 
@@ -52,7 +53,7 @@ public class MatchPage : MonoBehaviour
         analyse.interactable = false;
     }
 
-    void Start()
+    void OnEnable()
     {
         apiManager = FindObjectOfType<ApiManager>();
 
@@ -60,23 +61,25 @@ public class MatchPage : MonoBehaviour
     }
 
     // atualiza as informacoes da partida conforme a partida selecionada
-    private void UpdateMatchInfo(float idMatch)
+    public void UpdateMatchInfo(float idMatch)
     {
-        foreach (var partida in apiManager.listaPartidas)
+        Debug.Log(idMatch);
+        // Encontre a partida com o id correspondente
+        var partida = apiManager.listaPartidas.Find(p => p.idPartida == idMatch);
+        if (partida != null)
         {
+            // Exibe as informações da partida
             redTeamName.text = partida.equipeVermelha;
             blueTeamName.text = partida.equipeAzul;
 
-            if (partida.idPartida == idMatch)
-            {
-                matchId.text = "ID: " + partida.idPartida.ToString();
-                matchYear.text = partida.data;
-                matchPhase.text = partida.etapa;
-                matchHour.text = partida.hora;
-                matchDuration.text = partida.hora;
-                matchScore.text = partida.placar.ToString();
-            }
+            matchId.text = "ID: " + partida.idPartida.ToString();
+            matchYear.text = partida.data;
+            matchPhase.text = partida.etapa;
+            matchHour.text = partida.hora;
+            matchDuration.text = partida.duracao; // Corrigido para a variável correta
+            matchScore.text = partida.placar.ToString();
 
+            // Atualiza os jogadores das equipes
             foreach (var player in apiManager.listaJogadores)
             {
                 if (player.equipe == partida.equipeAzul)
@@ -88,10 +91,11 @@ public class MatchPage : MonoBehaviour
                     UpdateRedTeam(player);
                 }
             }
-
         }
-
-        Debug.Log("atualiza informações");
+        else
+        {
+            Debug.LogWarning("Partida não encontrada para o ID: " + idMatch);
+        }
     }
 
     // atualiza o dado de cada player de acordo com a posicao da equipe azul e vermelha PRECISA TIRAR ESSES RANDOM BELEZA?
@@ -144,6 +148,7 @@ public class MatchPage : MonoBehaviour
 
     public void SelectPlayer(GameObject player)
     {
+        FindAnyObjectByType<MainMenuManager>().SelectPlayer(null);
         analyse.interactable = true;
         selectedPlayer = player;
     }

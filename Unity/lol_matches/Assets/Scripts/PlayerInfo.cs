@@ -34,11 +34,6 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private Sprite blueTeamIcon;
     [SerializeField] private Sprite redTeamIcon;
 
-    private void Start()
-    {
-        // incializa a janela de campeao com os dados do banco de dados de acordo com o id
-        UpdateInfo();
-    }
 
     // ativa a janela de selecao de item/campeao
     public void OpenWindow(GameObject window)
