@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.Text;
+using System.Threading;
 
 public class ApiManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class ApiManager : MonoBehaviour
     {
        StartCoroutine(ManageJogadores(RequestType.POST, jogador));
     }
+
 
     #region Select()
     IEnumerator GetCampeonatos()
@@ -180,7 +182,6 @@ public class ApiManager : MonoBehaviour
                 ListaJogadoresAzul.Clear();
                 ListaJogadoresAzul = jogadoresAzul; // Popula a lista de jogadores da equipe azul
                 Debug.Log($"Jogadores da equipe azul carregados: {ListaJogadoresAzul.Count}");
-                Debug.Log($"Jogadores da equipe azul: {ListaJogadoresAzul[0].nome}, {ListaJogadoresAzul[0].kills}");
             }
             catch (System.Exception e)
             {
@@ -215,7 +216,7 @@ public class ApiManager : MonoBehaviour
 
     #endregion
 
-    #region Inserts
+    #region Inserts()
     IEnumerator ManageJogadores(RequestType request, Jogador newJogador = null)
         {
             if (request == RequestType.GET)
@@ -287,8 +288,9 @@ public class ApiManager : MonoBehaviour
 
     private string urlItens = "http://localhost:5000/api/item";
     
-    public string urlPartidaId = "http://localhost:5000/api/partidaId/"; 
-    public string urlViewEquipePartida = "http://localhost:5000/api/vw_partida";
+    private string urlPartidaId = "http://localhost:5000/api/partidaId/"; 
+
+    private string urlViewEquipePartida = "http://localhost:5000/api/vw_partida";
     #endregion
 
     #region lists

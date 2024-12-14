@@ -286,7 +286,20 @@ def get_view_partida():
             nomeCampeao,
             classeCampeao,
             ouroAdquirido,
-            farm
+            farm,
+            item1id,
+            item1nome,
+            item2id,
+            item2nome,
+            item3id,
+            item3nome,
+            item4id,
+            item4nome,
+            item5id,
+            item5nome,
+            item6id,
+            item6nome
+
         FROM vw_partida
         WHERE idPartida = %s AND idEquipe = %s;
         """
