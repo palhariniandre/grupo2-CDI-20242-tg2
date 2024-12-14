@@ -20,22 +20,22 @@ public class MatchPage : MonoBehaviour
 
     [Header("Blue Team Players")]
     [SerializeField] private TextMeshProUGUI blueTeamName;
-    [SerializeField] private IndividualInfo topBlue;
-    [SerializeField] private IndividualInfo jgBlue;
-    [SerializeField] private IndividualInfo midBlue;
-    [SerializeField] private IndividualInfo adcBlue;
-    [SerializeField] private IndividualInfo supBlue;
+    [SerializeField] private PlayerMatchInfo topBlue;
+    [SerializeField] private PlayerMatchInfo jgBlue;
+    [SerializeField] private PlayerMatchInfo midBlue;
+    [SerializeField] private PlayerMatchInfo adcBlue;
+    [SerializeField] private PlayerMatchInfo supBlue;
 
     [Header("Red Team Players")]
     [SerializeField] private TextMeshProUGUI redTeamName;
-    [SerializeField] private IndividualInfo topRed;
-    [SerializeField] private IndividualInfo jgRed;
-    [SerializeField] private IndividualInfo midRed;
-    [SerializeField] private IndividualInfo adcRed;
-    [SerializeField] private IndividualInfo supRed;
+    [SerializeField] private PlayerMatchInfo topRed;
+    [SerializeField] private PlayerMatchInfo jgRed;
+    [SerializeField] private PlayerMatchInfo midRed;
+    [SerializeField] private PlayerMatchInfo adcRed;
+    [SerializeField] private PlayerMatchInfo supRed;
 
     [Header("Player Analysis")]
-    [SerializeField] private GameObject selectedPlayer;
+    [SerializeField] private PlayerMatchInfo selectedPlayer;
     [SerializeField] private bool isPlayerSelected = false;
     [SerializeField] private Button analyse;
 
@@ -106,19 +106,19 @@ public class MatchPage : MonoBehaviour
         switch (player.posicao)
         {
             case "Top":
-                topBlue.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                topBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Jungle":
-                jgBlue.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                jgBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Mid":
-                midBlue.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                midBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "ADC":
-                adcBlue.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                adcBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Support":
-                supBlue.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                supBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
         }
     }
@@ -129,26 +129,25 @@ public class MatchPage : MonoBehaviour
         switch (player.posicao)
         {
             case "Top":
-                topRed.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                topRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Jungle":
-                jgRed.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                jgRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Mid":
-                midRed.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                midRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "ADC":
-                adcRed.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                adcRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
             case "Support":
-                supRed.UpdateData(player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300));
+                supRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
                 break;
         }
     }
 
-    public void SelectPlayer(GameObject player)
+    public void SelectPlayer(PlayerMatchInfo player)
     {
-        FindAnyObjectByType<MainMenuManager>().SelectPlayer(null);
         analyse.interactable = true;
         selectedPlayer = player;
     }
@@ -157,21 +156,5 @@ public class MatchPage : MonoBehaviour
     {
         selectedPlayer = null;
         analyse.interactable = false;
-    }
-}
-
-[Serializable]
-public class IndividualInfo
-{
-    [SerializeField] TextMeshProUGUI playerNick;
-    [SerializeField] TextMeshProUGUI playerKda;
-    [SerializeField] TextMeshProUGUI playerFarm;
-    public void UpdateData(string nick, float k, float d, float a, float farm)
-    {
-        // atualiza os dados do jogador
-        playerNick.text = nick;
-        string kda = k + "/" + d + "/" + a;
-        playerKda.text = kda.ToString();
-        playerFarm.text = farm.ToString();
     }
 }

@@ -15,6 +15,13 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rankName;
     [SerializeField] private Image laneIcon;
     [SerializeField] private TextMeshProUGUI laneName;
+    [SerializeField] private Image[] itemSlots;
+    [SerializeField] private TextMeshProUGUI gold;
+    [SerializeField] private TextMeshProUGUI kill;
+    [SerializeField] private TextMeshProUGUI death;
+    [SerializeField] private TextMeshProUGUI assist;
+
+    private int idPlayer = -1;
 
     [Header("Windows")]
     [SerializeField] private GameObject championWindow;
@@ -34,6 +41,8 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private Sprite blueTeamIcon;
     [SerializeField] private Sprite redTeamIcon;
 
+    [Header("References")]
+    [SerializeField] private ApiManager apiManager;
 
     // ativa a janela de selecao de item/campeao
     public void OpenWindow(GameObject window)
@@ -84,16 +93,30 @@ public class PlayerInfo : MonoBehaviour
         saveButton.interactable = true;
     }
 
-    public void UpdateInfo()
+    public void UpdateInfo(PlayerMatchInfo player)
     {
-        // se eh apenas uma tela de analise deve ser setada para true no inspector e so atualizar as informacoes
-        if (isAnalyzing)
+        apiManager = FindObjectOfType<ApiManager>();
+
+        foreach(var bluePlayer in apiManager.ListaJogadoresAzul)
         {
-            // atualiza as informacoes do jogador de acordo com a equipe
-            // if(bd.team == "blue")
-            // { teamIcon.sprite = blueTeamIcon; }
-            // else
-            // { teamIcon.sprite = redTeamIcon; }
+            if(player.GetPlayerId() == bluePlayer.idJogador)
+            {
+                idPlayer = bluePlayer.idJogador;
+
+                
+
+            }
+        }
+
+        foreach(var genericPlayer in apiManager.listaJogadores)
+        {
+            if(genericPlayer.idUsuario == idPlayer)
+            {
+                rankName.text = genericPlayer.ranque;
+                //rankIcon.sprite = MatchObjects.Instance.GetChampIcon(genericPlayer.rank);
+                laneName.text = genericPlayer.posicao;
+                //laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(genericPlayer.lane);
+            }
         }
     }
 
