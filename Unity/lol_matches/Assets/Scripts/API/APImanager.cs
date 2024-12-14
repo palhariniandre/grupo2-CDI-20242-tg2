@@ -22,6 +22,7 @@ public class ApiManager : MonoBehaviour
        StartCoroutine(ManageJogadores(RequestType.POST, jogador));
     }
 
+    #region Select()
     IEnumerator GetCampeonatos()
     {
         using UnityWebRequest www = UnityWebRequest.Get(urlCampeonato);
@@ -73,59 +74,6 @@ public class ApiManager : MonoBehaviour
         }
     }
 
-    IEnumerator ManageJogadores(RequestType request, Jogador newJogador = null)
-    {
-        if (request == RequestType.GET)
-        {
-            using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
-            yield return www.SendWebRequest();
-
-            if (www.result == UnityWebRequest.Result.ConnectionError ||
-                www.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
-            }
-            else
-            {
-                string json = www.downloadHandler.text;
-                Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
-
-                listaJogadores.Clear(); // Limpar antes de adicionar novas partidas
-                foreach (var jogador in jogadores)
-                {
-                    listaJogadores.Add(jogador);
-                   
-                }
-
-                
-            }
-        }
-
-        if(request == RequestType.POST)
-        {
-            string jsonData = JsonConvert.SerializeObject(newJogador);
-
-            using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
-            {
-                byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
-                www.uploadHandler = new UploadHandlerRaw(jsonToSend);
-                www.downloadHandler = new DownloadHandlerBuffer();
-                www.SetRequestHeader("Content-Type", "application/json");
-
-                yield return www.SendWebRequest();
-
-                if (www.result == UnityWebRequest.Result.ConnectionError || 
-                    www.result == UnityWebRequest.Result.ProtocolError)
-                {
-                    Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
-                }
-                else
-                {
-                    Debug.Log("Jogador criado");
-                }
-            }
-        }
-    }
 
     IEnumerator GetEquipes()
     {
@@ -167,62 +115,162 @@ public class ApiManager : MonoBehaviour
             string json = www.downloadHandler.text;
             Item[] itens = JsonConvert.DeserializeObject<Item[]>(json);
 
-            listaItem.Clear(); // Limpar antes de adicionar novas partidas
+            listaItem.Clear(); // Limpar antes de adicionar novos itens
             foreach (var item in itens) 
             {
                 listaItem.Add(item);
-                Debug.Log("GetItens - Adicionado Item ID: " + item.idItem); // Verifique as IDs das partidas
+                //Debug.Log("GetItens - Adicionado Item ID: " + item.idItem); // Verifique as IDs das partidas
             }
 
             Debug.Log("GetItens - Quantidade de item carregados: " + listaItem.Count);
         }
+    }
+    #endregion
 
-    IEnumerator GetPartidaDetalhada(int idPartida)
+    #region Select(Something)
+    
+    IEnumerator GetPartidaId(int idPartida)
+    /* esse metodo busca os detalhes da partida e os jogadores de cada equipe 
+       ele preenche o objeto partidaID com os dados da partida e as 
+       listas de jogadores de cada equipe ListaJogadoresAzul e ListaJogadoresVermelhos
+    */
     {
-        string url = urlPartidaDetalhada + idPartida; // Monta a URL com o ID da partida
-        using UnityWebRequest www = UnityWebRequest.Get(url);
-        yield return www.SendWebRequest();
+        string urlPartida = $"{urlPartidaId}{idPartida}";
+        using UnityWebRequest wwwPartida = UnityWebRequest.Get(urlPartida);
+        yield return wwwPartida.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        if (wwwPartida.result == UnityWebRequest.Result.ConnectionError || wwwPartida.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogError("Erro ao buscar dados da URL Partida Detalhada: " + www.error);
+            Debug.LogError($"Erro ao buscar os detalhes da partida: {wwwPartida.error}");
+            yield break;
         }
-        else
+
+        try
         {
-            string json = www.downloadHandler.text;
-
-            // Parse do JSON da API
-            var resposta = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-
-            if (resposta != null && resposta["status"].ToString() == "success")
+            var respostaPartida = JsonConvert.DeserializeObject<Dictionary<string, object>>(wwwPartida.downloadHandler.text);
+            if (respostaPartida["status"].ToString() == "success")
             {
-                // Partida detalhada
-                var partidaJson = JsonConvert.DeserializeObject<Partida>(
-                    resposta["partida"].ToString()
-                );
-                listaPartidas.Clear(); // Limpa a lista de partidas
-                listaPartidas.Add(partidaJson); // Adiciona a partida detalhada à lista
-
-                Debug.Log("GetPartidaDetalhada - Carregada partida ID: " + partidaJson.idPartida);
-
-                // Jogadores da partida
-                var jogadoresJson = JsonConvert.DeserializeObject<List<JogadorPartida>>(
-                    resposta["jogadores"].ToString()
-                );
-                listaJogadorePartida.Clear(); 
-                listaJogadorePartida.AddRange(jogadoresJson);
-
-                Debug.Log("GetPartidaDetalhada - Jogadores carregados: " + listaJogadorePartida.Count);
+                partidaID = JsonConvert.DeserializeObject<Partida>(respostaPartida["partida"].ToString());
             }
             else
             {
-                Debug.LogError("Erro na resposta da API: " + json);
+                Debug.LogError("Erro na resposta da API de detalhes da partida.");
+                yield break;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Erro ao desserializar JSON da partida: {e.Message}");
+            yield break;
+        }
+
+        string urlJogadoresAzul = $"{urlViewEquipePartida}?idPartida={idPartida}&idEquipe={partidaID.idEquipeAzul}";
+        using UnityWebRequest wwwAzul = UnityWebRequest.Get(urlJogadoresAzul);
+        yield return wwwAzul.SendWebRequest();
+
+        if (wwwAzul.result == UnityWebRequest.Result.ConnectionError || wwwAzul.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro ao buscar os jogadores da equipe azul: {wwwAzul.error}");
+        }
+        else
+        {
+            try
+            {
+                var jogadoresAzul = JsonConvert.DeserializeObject<List<JogadorPartida>>(wwwAzul.downloadHandler.text);
+                ListaJogadoresAzul.Clear();
+                ListaJogadoresAzul = jogadoresAzul; // Popula a lista de jogadores da equipe azul
+                Debug.Log($"Jogadores da equipe azul carregados: {ListaJogadoresAzul.Count}");
+                Debug.Log($"Jogadores da equipe azul: {ListaJogadoresAzul[0].nome}, {ListaJogadoresAzul[0].kills}");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Erro ao desserializar JSON dos jogadores da equipe azul: {e.Message}");
+            }
+        }
+
+        string urlJogadoresVermelho = $"{urlViewEquipePartida}?idPartida={idPartida}&idEquipe={partidaID.idEquipeVermelha}";
+        using UnityWebRequest wwwVermelho = UnityWebRequest.Get(urlJogadoresVermelho);
+        yield return wwwVermelho.SendWebRequest();
+
+        if (wwwVermelho.result == UnityWebRequest.Result.ConnectionError || wwwVermelho.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro ao buscar os jogadores da equipe vermelha: {wwwVermelho.error}");
+        }
+        else
+        {
+            try
+            {
+                var jogadoresVermelhos = JsonConvert.DeserializeObject<List<JogadorPartida>>(wwwVermelho.downloadHandler.text);
+                ListaJogadoresVermelhos.Clear();
+                ListaJogadoresVermelhos = jogadoresVermelhos; 
+                Debug.Log($"Jogadores da equipe vermelha carregados: {ListaJogadoresVermelhos.Count}");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Erro ao desserializar JSON dos jogadores da equipe vermelha: {e.Message}");
             }
         }
     }
 
 
-    }
+    #endregion
+
+    #region Inserts
+    IEnumerator ManageJogadores(RequestType request, Jogador newJogador = null)
+        {
+            if (request == RequestType.GET)
+            {
+                using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.ConnectionError ||
+                    www.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
+                }
+                else
+                {
+                    string json = www.downloadHandler.text;
+                    Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
+
+                    listaJogadores.Clear(); // Limpar antes de adicionar novas partidas
+                    foreach (var jogador in jogadores)
+                    {
+                        listaJogadores.Add(jogador);
+                    
+                    }
+
+                    
+                }
+            }
+
+            if(request == RequestType.POST)
+            {
+                string jsonData = JsonConvert.SerializeObject(newJogador);
+
+                using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
+                {
+                    byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
+                    www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+                    www.downloadHandler = new DownloadHandlerBuffer();
+                    www.SetRequestHeader("Content-Type", "application/json");
+
+                    yield return www.SendWebRequest();
+
+                    if (www.result == UnityWebRequest.Result.ConnectionError || 
+                        www.result == UnityWebRequest.Result.ProtocolError)
+                    {
+                        Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
+                    }
+                    else
+                    {
+                        Debug.Log("Jogador criado");
+                    }
+                }
+            }
+        }
+    #endregion
+    
     enum RequestType
     {
        GET = 0,
@@ -239,7 +287,8 @@ public class ApiManager : MonoBehaviour
 
     private string urlItens = "http://localhost:5000/api/item";
     
-    public string urlPartidaDetalhada = "http://localhost:5000/api/partidaId/"; 
+    public string urlPartidaId = "http://localhost:5000/api/partidaId/"; 
+    public string urlViewEquipePartida = "http://localhost:5000/api/vw_partida";
     #endregion
 
     #region lists
@@ -252,8 +301,15 @@ public class ApiManager : MonoBehaviour
     public List<Equipe> listaEquipe = new List<Equipe>();
 
     public List<Item> listaItem = new List<Item>();
+    public List<JogadorPartida> ListaJogadoresAzul = new List<JogadorPartida>();
+    public List<JogadorPartida> ListaJogadoresVermelhos = new List<JogadorPartida>();
 
-    public List<JogadorPartida> listaJogadorePartida = new List<JogadorPartida>();
     #endregion
+    
+    #region objects 
+    public Partida partidaID;
+    public Equipe equipeVermelha;
+    public Equipe equipeAzul;
 
+    #endregion
 }
