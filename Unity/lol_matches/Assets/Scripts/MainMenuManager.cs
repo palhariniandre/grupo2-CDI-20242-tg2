@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
@@ -36,5 +37,10 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Saindo do jogo..."); // Apenas para testes no Editor
         Application.Quit();
+    }
+
+    internal void SelectPlayer(PlayerInfo player)
+    {
+        throw new NotImplementedException();
     }
 }
