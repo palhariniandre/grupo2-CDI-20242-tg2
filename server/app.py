@@ -40,10 +40,6 @@ def Getcampeonatos():
         return jsonify(campeonatos), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
-
-
-
 
 @app.route('/api/partidas', methods=['GET'])
 def GetPartidas():
@@ -84,50 +80,51 @@ def GetPartidas():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/jogadores', methods=['GET', 'POST'])
-def manageJogadores():
-    if (request.method == 'GET'):
+# Rota para obter jogadores (GET)
+@app.route('/api/jogadores', methods=['GET'])
+def getJogadores():
+    cur = mysql.connection.cursor()
+    query = """
+    SELECT 
+        u.idUsuario, 
+        u.nome, 
+        u.ranque, 
+        u.posicao, 
+        e.nome AS equipe 
+    FROM usuario u
+    LEFT JOIN equipe e ON u.idEquipe = e.idEquipe;
+    """
+    cur.execute(query)
+    rows = cur.fetchall()
     
+    jogadores = []
+    for row in rows:
+        jogadores.append(row)
+
+    return jsonify(jogadores), 200
+# Post para jogadores
+@app.route('/api/jogadores', methods=['POST'])
+def postJogador():
+    try:
+        data = request.get_json()
+
+        nome = data['nome']
+        ranque = data['ranque']
+        posicao = data['posicao']
+        idEquipe = data['idEquipe'] 
+
         cur = mysql.connection.cursor()
         query = """
-        SELECT 
-            u.idUsuario, 
-            u.nome, 
-            u.ranque, 
-            u.posicao, 
-            e.nome AS equipe 
-        FROM usuario u
-        LEFT JOIN equipe e ON u.idEquipe = e.idEquipe;
+        INSERT INTO usuario (nome, ranque, posicao, idEquipe)
+        VALUES (%s, %s, %s, %s);
         """
-        cur.execute(query)
-        rows = cur.fetchall()
-        
-        jogadores = []
-        for row in rows:
-            jogadores.append(row)
+        cur.execute(query, (nome, ranque, posicao, idEquipe))
+        mysql.connection.commit()
 
-        return jsonify(jogadores), 200
-    elif (request.method == 'POST'):
-        try:
-            data = request.get_json()
+        return jsonify({"message": "Jogador criado com sucesso!"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
-            nome = data['nome']
-            ranque = data['ranque']
-            posicao = data['posicao']
-            idEquipe = data['idEquipe'] 
-
-
-            cur = mysql.connection.cursor()
-            query = """
-            INSERT INTO usuario (nome, ranque, posicao, idEquipe)
-            VALUES (%s, %s, %s, %s);
-            """
-            cur.execute(query, (nome, ranque, posicao, idEquipe))
-            mysql.connection.commit()
-
-            return jsonify({"message": "Jogador criado com sucesso!"}), 201
-        except Exception as e:
-            return jsonify({"error": str(e)}), 500
 
 @app.route('/api/equipe', methods=['GET'])
 def GetEquipes():
@@ -149,6 +146,26 @@ def GetEquipes():
         return jsonify(equipes), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+# Post para equipes
+@app.route('/api/equipe', methods=['POST'])
+def postEquipe():
+    try:
+        data = request.get_json()
+
+        nome = data['nome']
+
+        cur = mysql.connection.cursor()
+        query = """
+        INSERT INTO equipe (nome)
+        VALUES (%s);
+        """
+        cur.execute(query, (nome,))
+        mysql.connection.commit()
+
+        return jsonify({"message": "Equipe criada com sucesso!"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 @app.route('/api/item', methods=['GET'])
 def GetItens():
@@ -180,11 +197,33 @@ def GetItens():
         return jsonify(itens), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
+
+# select para champions
+@app.route('/api/campeao', methods=['GET'])
+def GetCampeoes():
+    try:
+        cur = mysql.connection.cursor()
+        query = """
+        SELECT 
+            c.idCampeao, 
+            c.nomeCampeao, 
+            c.classeCampeao, 
+            c.vezesSelecionado
+        FROM vw_campeoes c;
+        """
+        cur.execute(query)
+        rows = cur.fetchall()
+        
+        campeoes = []
+        for row in rows:
+            campeoes.append(row)
+
+        return jsonify(campeoes), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 # selects para as tabelas com where
-
 @app.route('/api/equipes/<int:idEquipe>', methods=['GET'])
 def getEquipeById(idEquipe):
     try:
