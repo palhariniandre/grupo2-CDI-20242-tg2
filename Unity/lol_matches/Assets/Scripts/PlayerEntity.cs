@@ -6,13 +6,15 @@ using UnityEngine;
 public class PlayerEntity : MonoBehaviour
 {
     public TextMeshProUGUI playerName;
-    private int id;
+    public TextMeshProUGUI playerId;
+    int id;
 
-    public void PlayerData(string name)
+    public void PlayerData(Jogador jogador)
     {
-        playerName.text = name;
+        playerName.text = jogador.nome;
+        id = jogador.idUsuario;
+        playerId.text = id.ToString();
     }
-
     public int GetIdPlayer()
     {
         return id;
