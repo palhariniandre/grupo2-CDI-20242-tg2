@@ -23,6 +23,10 @@ public class ApiManager : MonoBehaviour
        StartCoroutine(ManageJogadores(RequestType.POST, jogador));
     }
 
+    public void RecebaPartidaId(int partidaId)
+    {
+        StartCoroutine(GetPartidaId(partidaId));
+    }
 
     #region Select()
     IEnumerator GetCampeonatos()
