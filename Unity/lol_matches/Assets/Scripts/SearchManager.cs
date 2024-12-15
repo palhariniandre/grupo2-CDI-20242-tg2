@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEditor.Progress;
@@ -15,24 +16,32 @@ public class SearchManager : MonoBehaviour
     public GameObject matchPrefab;
 
     [Header("Entity")]
-    [SerializeField] private GameObject selectedEntity;
+    [SerializeField] private int selectedEntityId;
+
+    public GameObject selectedEntity;
 
     [Header("Control Variables")]
     private List<GameObject> list = new List<GameObject>();
     private ApiManager apiManager;
 
-    public GameObject SelectedEntity { get => selectedEntity; set => selectedEntity = value; }
+    [Header("Screens")]
+    [SerializeField] private GameObject itemAnalysis;
+    [SerializeField] private GameObject matchAnalysis;
+    [SerializeField] private GameObject playerAnalysis;
+    [SerializeField] private GameObject teamAnalysis;
+    [SerializeField] private GameObject champAnalysis;
+
+    public int SelectedEntity { get => selectedEntityId; set => selectedEntityId = value; }
 
     void Start()
     {
         apiManager = FindObjectOfType<ApiManager>();
-
     }
     private void CleanEntities()
     {
-        foreach (var matchEntity in list)
+        foreach (var entity in list)
         {
-            Destroy(matchEntity);
+            Destroy(entity);
         }
 
         list.Clear();
@@ -41,13 +50,12 @@ public class SearchManager : MonoBehaviour
     // busca partidas
     public void SearchMatches()
     {
+        CleanEntities();
         StartCoroutine(LoadMatches());
     }
     IEnumerator LoadMatches()
     {
         yield return new WaitUntil(() => apiManager.listaPartidas.Count > 0);
-
-        CleanEntities();
 
         foreach (var partida in apiManager.listaPartidas)
         {
@@ -69,18 +77,22 @@ public class SearchManager : MonoBehaviour
     {
         MatchEntity match = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
 
-        SelectedEntity = match.gameObject;
+        selectedEntityId = match.GetIdMatch();
+        selectedEntity = match.gameObject;
+
+        Debug.Log(selectedEntityId + "" + selectedEntity);
+
     }
 
+    // manipula itens
     public void SearchItems()
     {
+        CleanEntities();
         StartCoroutine(LoadItems());
     }
     IEnumerator LoadItems()
     {
         yield return new WaitUntil(() => apiManager.listaItem.Count > 0);
-
-        CleanEntities();
 
         foreach (var item in apiManager.listaItem)
         {
@@ -102,18 +114,22 @@ public class SearchManager : MonoBehaviour
     {
         ItemEntity item = EventSystem.current.currentSelectedGameObject.GetComponent<ItemEntity>();
 
-        SelectedEntity = item.gameObject;
+        selectedEntityId = item.GetIdItem();
+        selectedEntity = item.gameObject;
+
+        Debug.Log(selectedEntityId + "" + selectedEntity);
+
     }
 
+    // manipula jogadores
     public void SearchPlayers()
     {
+        CleanEntities();
         StartCoroutine(LoadPlayers());
     }
     IEnumerator LoadPlayers()
     {
         yield return new WaitUntil(() => apiManager.listaJogadores.Count > 0);
-
-        CleanEntities();
 
         foreach (var player in apiManager.listaJogadores)
         {
@@ -135,18 +151,22 @@ public class SearchManager : MonoBehaviour
     {
         PlayerEntity player = EventSystem.current.currentSelectedGameObject.GetComponent<PlayerEntity>();
 
-        SelectedEntity = player.gameObject;
+        selectedEntityId = player.GetIdPlayer();
+        selectedEntity = player.gameObject;
+
+        Debug.Log(selectedEntityId + "" + selectedEntity);
+
     }
 
+    // manipula campeoes
     public void SearchChamps()
     {
+        CleanEntities();
         StartCoroutine(LoadChamps());
     }
     IEnumerator LoadChamps()
     {
         yield return new WaitUntil(() => apiManager.listaJogadores.Count > 0);
-
-        CleanEntities();
 
         /* foreach (var champ in apiManager.listaItem)
          {
@@ -170,18 +190,21 @@ public class SearchManager : MonoBehaviour
     {
         ChampEntity champ = EventSystem.current.currentSelectedGameObject.GetComponent<ChampEntity>();
 
-        SelectedEntity = champ.gameObject;
+        selectedEntityId = champ.GetIdChamp();
+        selectedEntity = champ.gameObject;
+
+        Debug.Log(selectedEntityId + "" + selectedEntity);
     }
 
+    // manipula equipes
     public void SearchTeams()
     {
+        CleanEntities();
         StartCoroutine(LoadTeams());
     }
     IEnumerator LoadTeams()
     {
         yield return new WaitUntil(() => apiManager.listaEquipe.Count > 0);
-
-        CleanEntities();
 
         foreach (var team in apiManager.listaEquipe)
          {
@@ -203,12 +226,60 @@ public class SearchManager : MonoBehaviour
     {
         TeamEntity team = EventSystem.current.currentSelectedGameObject.GetComponent<TeamEntity>();
 
-        SelectedEntity = team.gameObject;
+        selectedEntityId = team.GetIdTeam();
+        selectedEntity = team.gameObject;
+
+        Debug.Log(selectedEntityId + "" + selectedEntity);
+
     }
+
+    // abre a tela conforme a entidade selecionada
+    public void AnalyseEntity()
+    {
+        Debug.LogWarning("oiii");
+
+        GameObject screen;
+
+        switch (selectedEntity.tag)
+        {
+            case "Team":
+                screen = teamAnalysis;
+                break;
+            case "Player":
+                screen = playerAnalysis;
+                break;
+            case "Partida":
+                screen = matchAnalysis;
+                break;
+            case "Item":
+                screen = itemAnalysis;
+                break;
+            case "Champ":
+                screen = champAnalysis;
+                break;
+            default:
+                screen = gameObject;
+                break;
+        }
+
+        Debug.Log(screen.name);
+
+        //MainMenuManager.Instance.ChangeScreen(screen);
+
+    }
+
+
+    public void BackMenu(GameObject screen)
+    {
+        //MainMenuManager.Instance.ChangeScreen(screen);
+        Debug.Log("volta");
+    }
+
 
     private void OnDisable()
     {
-        SelectedEntity = null;
+        SelectedEntity = -1;
+        selectedEntity = null;
     }
 
 }

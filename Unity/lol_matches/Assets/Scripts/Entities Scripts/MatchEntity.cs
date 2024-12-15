@@ -23,7 +23,7 @@ public class MatchEntity : MonoBehaviour
     }
 
     // retorna o id da partida para acessar o resto das informacoes
-    public int GetId()
+    public int GetIdMatch()
     {
         return id;
     }

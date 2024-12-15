@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
@@ -9,7 +10,37 @@ public class MainMenuManager : MonoBehaviour
     [Header("Menu Inicial")]
     public GameObject mainMenu;
     public GameObject currentScreen;
+   
+    /*private static MainMenuManager _instance;
 
+    public static MainMenuManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<MainMenuManager>();
+
+                if (_instance == null)
+                {
+                    Debug.LogError("Não foi encontrado nenhum objeto MainMenuManager na cena!");
+                }
+            }
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != this)
+        {
+           Destroy(gameObject);
+        }
+    } */
     private void Start()
     {
         // No in�cio, desativa todos os prefabs e inicia o menu principal
