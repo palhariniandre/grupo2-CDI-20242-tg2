@@ -63,8 +63,9 @@ public class MatchPage : MonoBehaviour
     }
 
     // atualiza as informacoes da partida conforme a partida selecionada
-    public void UpdateMatchInfo(float idMatch)
+    public void UpdateMatchInfo(int idMatch)
     {
+        apiManager.RecebaPartidaId(matchManager.SelectedMatch);
         // Encontre a partida com o id correspondente
         var partida = apiManager.listaPartidas.Find(p => p.idPartida == idMatch);
         if (partida != null)
