@@ -102,6 +102,33 @@ public class MatchObjects : MonoBehaviour
         }
     }
 
+    public Sprite GetRankIcon(string rank)
+    {
+        switch(rank)
+        {
+            case "Bronze":
+                return rankIcons[0];
+            case "Prata":
+                return rankIcons[1];
+            case "Ouro":
+                return rankIcons[2];
+            case "Platina":
+                return rankIcons[3];
+            case "Esmeralda":
+                return rankIcons[4];
+            case "Diamante":
+                return rankIcons[5];
+            case "Mestre":
+                return rankIcons[6];
+            case "GrandMaster":
+                return rankIcons[7];
+            case "Challenger":
+                return rankIcons[8];
+            default:
+                return null;
+        }
+    }
+
     #region enums
     public enum Champions
     {
