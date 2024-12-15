@@ -3,6 +3,8 @@ SELECT
     u.idUsuario,
     u.idEquipe,
     u.nome,
+    u.ranque,
+    u.posicao,
     up.idPartida,
     up.kills,
     up.deaths,

@@ -10,7 +10,7 @@ public class MatchEntity : MonoBehaviour
     public TextMeshProUGUI dataText;
     public TextMeshProUGUI tempoText;
 
-    private float id;
+    private int id;
 
     // Método para preencher os dados da partida
     public void MatchData(Partida partida)
@@ -23,7 +23,7 @@ public class MatchEntity : MonoBehaviour
     }
 
     // retorna o id da partida para acessar o resto das informacoes
-    public float GetId()
+    public int GetId()
     {
         return id;
     }

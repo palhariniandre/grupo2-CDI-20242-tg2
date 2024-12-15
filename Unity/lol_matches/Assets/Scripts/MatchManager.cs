@@ -11,13 +11,13 @@ public class MatchManager : MonoBehaviour
     public GameObject matchPrefab;
 
     [Header("Entity")]
-    [SerializeField] private float selectedMatch;
+    [SerializeField] private int selectedMatch;
      
     [Header("Control Variables")]
     private List<GameObject> matchList = new List<GameObject>();
     private ApiManager apiManager;
 
-    public float SelectedMatch { get => selectedMatch; set => selectedMatch = value; }
+    public int SelectedMatch { get => selectedMatch; set => selectedMatch = value; }
 
     void Start()
     {
@@ -76,8 +76,6 @@ public class MatchManager : MonoBehaviour
         MatchEntity matchEntity = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
        
         SelectedMatch = matchEntity.GetId();
-
-        Debug.Log(SelectedMatch.ToString());
     }
 
     private void OnDisable()

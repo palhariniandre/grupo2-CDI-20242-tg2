@@ -279,6 +279,8 @@ def get_view_partida():
             idEquipe,
             nome,
             idPartida,
+            ranque,
+            posicao,
             kills,
             deaths,
             assists,
