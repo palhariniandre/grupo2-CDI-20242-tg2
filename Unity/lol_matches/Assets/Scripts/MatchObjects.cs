@@ -68,7 +68,7 @@ public class MatchObjects : MonoBehaviour
         Champions champ = (Champions)champId;
         string champName = champ.ToString();
 
-        Sprite champSprite = champIcons.Single(s => s.name == champName);
+        Sprite champSprite = champIcons.First(s => s.name == champName);
 
         return champSprite;
     }
@@ -78,7 +78,7 @@ public class MatchObjects : MonoBehaviour
         Items item = (Items)itemId;
         string itemName = item.ToString();
 
-        Sprite itemSprite = itemIcons.Single(s => s.name == itemName);
+        Sprite itemSprite = itemIcons.First(s => s.name == itemName);
 
         return itemSprite; 
     }
