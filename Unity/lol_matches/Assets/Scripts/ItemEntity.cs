@@ -8,10 +8,11 @@ public class ItemEntity : MonoBehaviour
     public Image itemIcon;
     private int id;
 
-    public void ItemData(string name, Sprite icon)
+    public void ItemData(Item item)
     {
+        id = item.idItem;
         itemName.text = name;
-        itemIcon.sprite = icon;
+        itemIcon.sprite = MatchObjects.Instance.GetItemIcon(id);
     }
 
     public int GetIdItem()
