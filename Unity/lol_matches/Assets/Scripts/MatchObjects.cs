@@ -68,7 +68,7 @@ public class MatchObjects : MonoBehaviour
         Champions champ = (Champions)champId;
         string champName = champ.ToString();
 
-        Sprite champSprite = champIcons.Single(s => s.name == champName);
+        Sprite champSprite = champIcons.First(s => s.name == champName);
 
         return champSprite;
     }
@@ -78,7 +78,7 @@ public class MatchObjects : MonoBehaviour
         Items item = (Items)itemId;
         string itemName = item.ToString();
 
-        Sprite itemSprite = itemIcons.Single(s => s.name == itemName);
+        Sprite itemSprite = itemIcons.First(s => s.name == itemName);
 
         return itemSprite; 
     }
@@ -97,6 +97,33 @@ public class MatchObjects : MonoBehaviour
                 return laneIcons[3];
             case "Support":
                 return laneIcons[4];
+            default:
+                return null;
+        }
+    }
+
+    public Sprite GetRankIcon(string rank)
+    {
+        switch(rank)
+        {
+            case "Bronze":
+                return rankIcons[0];
+            case "Prata":
+                return rankIcons[1];
+            case "Ouro":
+                return rankIcons[2];
+            case "Platina":
+                return rankIcons[3];
+            case "Esmeralda":
+                return rankIcons[4];
+            case "Diamante":
+                return rankIcons[5];
+            case "Mestre":
+                return rankIcons[6];
+            case "GrandMaster":
+                return rankIcons[7];
+            case "Challenger":
+                return rankIcons[8];
             default:
                 return null;
         }
