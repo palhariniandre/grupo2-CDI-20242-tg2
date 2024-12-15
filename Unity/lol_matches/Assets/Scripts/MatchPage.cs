@@ -43,18 +43,20 @@ public class MatchPage : MonoBehaviour
     [SerializeField] private ApiManager apiManager;
     [SerializeField] private MatchManager matchManager;
     [SerializeField] private MainMenuManager mainMenu;
+    public PlayerMatchInfo SelectedPlayer { get => selectedPlayer; set => selectedPlayer = value; }
 
     // atualiza todas as referencia de acordo com o id da partida selecionada no feed
 
     private void OnDisable()
     {
-        selectedPlayer = null;
         isPlayerSelected = false;
         analyse.interactable = false;
     }
 
     void OnEnable()
     {
+        SelectedPlayer = null;
+
         apiManager = FindObjectOfType<ApiManager>();
 
         UpdateMatchInfo(matchManager.SelectedMatch);
@@ -63,7 +65,6 @@ public class MatchPage : MonoBehaviour
     // atualiza as informacoes da partida conforme a partida selecionada
     public void UpdateMatchInfo(float idMatch)
     {
-        Debug.Log(idMatch);
         // Encontre a partida com o id correspondente
         var partida = apiManager.listaPartidas.Find(p => p.idPartida == idMatch);
         if (partida != null)
@@ -149,12 +150,12 @@ public class MatchPage : MonoBehaviour
     public void SelectPlayer(PlayerMatchInfo player)
     {
         analyse.interactable = true;
-        selectedPlayer = player;
+        SelectedPlayer = player;
     }
 
     public void CleanSelection()
     {
-        selectedPlayer = null;
+        SelectedPlayer = null;
         analyse.interactable = false;
     }
 }

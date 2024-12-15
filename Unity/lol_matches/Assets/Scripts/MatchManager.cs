@@ -76,8 +76,6 @@ public class MatchManager : MonoBehaviour
         MatchEntity matchEntity = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
        
         SelectedMatch = matchEntity.GetId();
-
-        Debug.Log(SelectedMatch.ToString());
     }
 
     private void OnDisable()

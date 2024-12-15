@@ -95,29 +95,6 @@ public class PlayerInfo : MonoBehaviour
 
     public void UpdateInfo(PlayerMatchInfo player)
     {
-        apiManager = FindObjectOfType<ApiManager>();
-
-        foreach(var bluePlayer in apiManager.ListaJogadoresAzul)
-        {
-            if(player.GetPlayerId() == bluePlayer.idJogador)
-            {
-                idPlayer = bluePlayer.idJogador;
-
-                
-
-            }
-        }
-
-        foreach(var genericPlayer in apiManager.listaJogadores)
-        {
-            if(genericPlayer.idUsuario == idPlayer)
-            {
-                rankName.text = genericPlayer.ranque;
-                //rankIcon.sprite = MatchObjects.Instance.GetChampIcon(genericPlayer.rank);
-                laneName.text = genericPlayer.posicao;
-                //laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(genericPlayer.lane);
-            }
-        }
     }
 
     public void Save()

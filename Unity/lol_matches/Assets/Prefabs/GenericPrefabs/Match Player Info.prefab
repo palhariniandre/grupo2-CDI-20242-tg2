@@ -331,6 +331,7 @@ MonoBehaviour:
   playerNick: {fileID: 3240568881452967166}
   playerKda: {fileID: 3054924101176758145}
   playerFarm: {fileID: 1044111747095926457}
+  playerId: 0
 --- !u!114 &7157362469066986775
 MonoBehaviour:
   m_ObjectHideFlags: 0

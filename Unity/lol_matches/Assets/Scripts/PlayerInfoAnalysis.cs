@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,8 +22,8 @@ public class PlayerInfoAnalysis : MonoBehaviour
     [SerializeField] private TextMeshProUGUI kill;
     [SerializeField] private TextMeshProUGUI death;
     [SerializeField] private TextMeshProUGUI assist;
-
-    private int idPlayer = -1;
+    [SerializeField] private int idPlayer = -1;
+    [SerializeField] private JogadorPartida infoPlayer;
 
     [Header("Team Sprites")]
     [SerializeField] private Sprite blueTeamIcon;
@@ -29,28 +31,65 @@ public class PlayerInfoAnalysis : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private ApiManager apiManager;
+    [SerializeField] private MatchPage matchPage;
 
-    public void UpdateInfo(PlayerMatchInfo player)
+    private void OnEnable()
     {
-        apiManager = FindObjectOfType<ApiManager>();
+        UpdatePlayerAnalysisInfo(matchPage.SelectedPlayer);
+    }
 
-        foreach(var bluePlayer in apiManager.ListaJogadoresAzul)
+    public void UpdatePlayerAnalysisInfo(PlayerMatchInfo player)
+    {
+        //apiManager = FindObjectOfType<ApiManager>();
+        idPlayer = player.GetPlayerId();
+
+        bool isRed = apiManager.ListaJogadoresAzul.Any(info => info.idJogador == idPlayer);
+        bool isBlue = apiManager.ListaJogadoresVermelhos.Any(info => info.idJogador == idPlayer);
+
+        if (isRed)
         {
-            if(player.GetPlayerId() == bluePlayer.idJogador)
-            {
-                idPlayer = bluePlayer.idJogador;
-            }
+            teamIcon.sprite = redTeamIcon;
+            infoPlayer = apiManager.ListaJogadoresVermelhos.Single(info => info.idJogador == idPlayer);
+        }
+        else if (isBlue)
+        {
+            teamIcon.sprite = blueTeamIcon;
+            infoPlayer = apiManager.ListaJogadoresAzul.Find(info => info.idJogador == idPlayer);
+        }
+        else
+        {
+            Jogador jogador = apiManager.listaJogadores.Find(info => info.idUsuario == idPlayer);
+
+            playerName.text = jogador.nome;
+            rankName.text = jogador.ranque;
+            laneName.text = jogador.posicao;
+
+            Debug.LogError("nenhuma referência");
         }
 
-        foreach(var genericPlayer in apiManager.listaJogadores)
-        {
-            if(genericPlayer.idUsuario == idPlayer)
-            {
-                rankName.text = genericPlayer.ranque;
-                //rankIcon.sprite = MatchObjects.Instance.GetChampIcon(genericPlayer.rank);
-                laneName.text = genericPlayer.posicao;
-                //laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(genericPlayer.lane);
-            }
-        }
+        //UpdateInterface(infoPlayer);
+
+    }
+    private void UpdateInterface(JogadorPartida player)
+    {
+        playerName.text = player.nome;
+
+        //championIcon.sprite = MatchObjects.Instance.GetChampIcon(bluePlayer.idCampeao);
+        championName.text = player.nomeCampeao;
+
+        //rankIcon.sprite = MatchObjects.Instance.GetRankIcon(bluePlayer.ranque);
+        rankName.text = player.ranque;
+
+        //laneIcon.sprite = MatchObjects.Instance.GetRankName(bluePlayer.ranque);
+        laneName.text = player.posicao;
+
+        //itemSlots;
+
+        gold.text = player.ouroAdquirido.ToString();
+        kill.text = player.kills.ToString();
+        death.text = player.deaths.ToString();
+        assist.text = player.assists.ToString();
+
+        Debug.Log("oiiiii");
     }
 }
