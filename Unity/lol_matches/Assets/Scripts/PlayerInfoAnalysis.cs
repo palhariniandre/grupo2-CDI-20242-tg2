@@ -43,18 +43,18 @@ public class PlayerInfoAnalysis : MonoBehaviour
         //apiManager = FindObjectOfType<ApiManager>();
         idPlayer = player.GetPlayerId();
 
-        bool isRed = apiManager.ListaJogadoresAzul.Any(info => info.idJogador == idPlayer);
-        bool isBlue = apiManager.ListaJogadoresVermelhos.Any(info => info.idJogador == idPlayer);
+        bool isRed = apiManager.ListaJogadoresVermelhos.Any(info => info.idUsuario == idPlayer);
+        bool isBlue = apiManager.ListaJogadoresAzul.Any(info => info.idUsuario == idPlayer);
 
         if (isRed)
         {
             teamIcon.sprite = redTeamIcon;
-            infoPlayer = apiManager.ListaJogadoresVermelhos.Single(info => info.idJogador == idPlayer);
+            infoPlayer = apiManager.ListaJogadoresVermelhos.Single(info => info.idUsuario == idPlayer);
         }
         else if (isBlue)
         {
             teamIcon.sprite = blueTeamIcon;
-            infoPlayer = apiManager.ListaJogadoresAzul.Find(info => info.idJogador == idPlayer);
+            infoPlayer = apiManager.ListaJogadoresAzul.Find(info => info.idUsuario == idPlayer);
         }
         else
         {
@@ -68,7 +68,7 @@ public class PlayerInfoAnalysis : MonoBehaviour
             Debug.LogError("nenhuma referência");
         }
 
-        //UpdateInterface(infoPlayer);
+        UpdateInterface(infoPlayer);
 
     }
     private void UpdateInterface(JogadorPartida player)
