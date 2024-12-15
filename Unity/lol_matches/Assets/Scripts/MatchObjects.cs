@@ -71,8 +71,6 @@ public class MatchObjects : MonoBehaviour
         Sprite champSprite = champIcons.Single(s => s.name == champName);
 
         return champSprite;
-
-        //return champIcons[index];
     }
 
     public Sprite GetItemIcon(int itemId)
@@ -83,8 +81,6 @@ public class MatchObjects : MonoBehaviour
         Sprite itemSprite = itemIcons.Single(s => s.name == itemName);
 
         return itemSprite; 
-
-        //return itemIcons[index];
     }
 
     public Sprite GetLaneIcon(string pos)
@@ -105,8 +101,6 @@ public class MatchObjects : MonoBehaviour
                 return null;
         }
     }
-
-
 
     #region enums
     public enum Champions
@@ -131,7 +125,7 @@ public class MatchObjects : MonoBehaviour
         Ryze = 30,
         Camille = 164,
         Kindred = 203,
-        TwistedFate = 105,
+        Corki = 105,
         Nautilus = 111,
         KaiSa = 145,
         Jax = 24,
@@ -155,8 +149,6 @@ public class MatchObjects : MonoBehaviour
         Soraka = 40,
         Zoe = 121
     }
-    
- 
         public enum Items
     {
         InfinityEdge = 1,

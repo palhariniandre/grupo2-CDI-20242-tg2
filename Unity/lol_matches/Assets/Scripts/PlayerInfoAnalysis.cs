@@ -63,7 +63,8 @@ public class PlayerInfoAnalysis : MonoBehaviour
             playerName.text = jogador.nome;
             rankName.text = jogador.ranque;
             laneName.text = jogador.posicao;
-
+            championName.text = MatchObjects.Instance.GetChampName(67);
+            championIcon.sprite = MatchObjects.Instance.GetChampIcon(67);
             Debug.LogError("nenhuma referência");
         }
 
