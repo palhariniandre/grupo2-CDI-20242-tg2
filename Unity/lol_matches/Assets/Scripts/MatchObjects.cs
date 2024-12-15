@@ -146,6 +146,7 @@ public class MatchObjects : MonoBehaviour
         Aphelios = 523,
         Hecarim = 120,
         Kayle = 10,
+        Kled = 51,
         Yone = 777,
         Pantheon = 80,
         Amumu = 432,
