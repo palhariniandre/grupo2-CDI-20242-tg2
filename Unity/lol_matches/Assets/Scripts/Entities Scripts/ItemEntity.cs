@@ -11,8 +11,8 @@ public class ItemEntity : MonoBehaviour
     public void ItemData(Item item)
     {
         id = item.idItem;
-        itemName.text = name;
-        itemIcon.sprite = MatchObjects.Instance.GetItemIcon(id);
+        itemName.text = item.nome;
+        //itemIcon.sprite = MatchObjects.Instance.GetItemIcon(id); png dos itens precisa ser atualizado
     }
 
     public int GetIdItem()
