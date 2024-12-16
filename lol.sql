@@ -21,21 +21,18 @@ USE `lol`;
 
 -- Dumping structure for table lol.campeonato
 CREATE TABLE IF NOT EXISTS `campeonato` (
-  `idCampeonato` int(11) NOT NULL AUTO_INCREMENT,
+  `idCampeonato` int(11) NULL AUTO_INCREMENT,
   `ano` int(11) DEFAULT NULL,
-  `idEquipeVencedora` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idCampeonato`),
-  KEY `idEquipeVencedora` (`idEquipeVencedora`),
-  CONSTRAINT `campeonato_ibfk_1` FOREIGN KEY (`idEquipeVencedora`) REFERENCES `equipe` (`idEquipe`)
+  PRIMARY KEY (`idCampeonato`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Dumping data for table lol.campeonato: ~5 rows (approximately)
-INSERT INTO `campeonato` (`idCampeonato`, `ano`, `idEquipeVencedora`) VALUES
-	(1, 2020, 1),
-	(2, 2021, 6),
-	(3, 2022, 2),
-	(4, 2023, 8),
-	(5, 2024, 5);
+INSERT INTO `campeonato` (`idCampeonato`, `ano`) VALUES
+	(1, 2020),
+	(2, 2021),
+	(3, 2022),
+	(4, 2023),
+	(5, 2024);
 
 -- Dumping structure for procedure lol.DeleteEquipe
 DELIMITER //
@@ -57,7 +54,7 @@ DELIMITER ;
 
 -- Dumping structure for table lol.equipe
 CREATE TABLE IF NOT EXISTS `equipe` (
-  `idEquipe` int(11) NOT NULL AUTO_INCREMENT,
+  `idEquipe` int(11) NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idEquipe`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
@@ -77,7 +74,7 @@ INSERT INTO `equipe` (`idEquipe`, `nome`) VALUES
 
 -- Dumping structure for table lol.itens
 CREATE TABLE IF NOT EXISTS `itens` (
-  `idItem` int(11) NOT NULL AUTO_INCREMENT,
+  `idItem` int(11) NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   `AP` int(11) DEFAULT 0,
   `penetMagica` int(11) DEFAULT 0,
@@ -121,8 +118,8 @@ INSERT INTO `itens` (`idItem`, `nome`, `AP`, `penetMagica`, `regMana`, `vida`, `
 
 -- Dumping structure for table lol.itenspatusuario
 CREATE TABLE IF NOT EXISTS `itenspatusuario` (
-  `idPartidaUsuario` int(11) NOT NULL,
-  `idItem` int(11) NOT NULL,
+  `idPartidaUsuario` int(11),
+  `idItem` int(11),
   PRIMARY KEY (`idPartidaUsuario`,`idItem`),
   KEY `idItem` (`idItem`),
   CONSTRAINT `itenspatusuario_ibfk_1` FOREIGN KEY (`idPartidaUsuario`) REFERENCES `partidausuario` (`idPartidaUsuario`),
@@ -554,7 +551,7 @@ INSERT INTO `itenspatusuario` (`idPartidaUsuario`, `idItem`) VALUES
 
 -- Dumping structure for table lol.partida
 CREATE TABLE IF NOT EXISTS `partida` (
-  `idPartida` int(11) NOT NULL AUTO_INCREMENT,
+  `idPartida` int(11) NULL AUTO_INCREMENT,
   `placar` varchar(50) DEFAULT NULL,
   `data` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
@@ -612,7 +609,7 @@ INSERT INTO `partida` (`idPartida`, `placar`, `data`, `hora`, `etapa`, `idEquipe
 
 -- Dumping structure for table lol.partidausuario
 CREATE TABLE IF NOT EXISTS `partidausuario` (
-  `idPartidaUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `idPartidaUsuario` int(11) NULL AUTO_INCREMENT,
   `idUsuario` int(11) DEFAULT NULL,
   `idPartida` int(11) DEFAULT NULL,
   `kills` int(11) DEFAULT 0,
@@ -676,7 +673,7 @@ INSERT INTO `partidausuario` (`idPartidaUsuario`, `idUsuario`, `idPartida`, `kil
 	(42, 2, 5, 6, 5, 10, 203, 'Kindred', 'Marksman', 11027, 207),
 	(43, 3, 5, 7, 3, 11, 238, 'Zed', 'Assassin', 9180, 245),
 	(44, 4, 5, 0, 7, 20, 117, 'Janna', 'Support', 10061, 234),
-	(45, 5, 5, 10, 2, 9, 51, 'Klad', 'Fighter', 8271, 267),
+	(45, 5, 5, 10, 2, 9, 51, 'Kled', 'Fighter', 8271, 267),
 	(46, 11, 5, 8, 6, 8, 41, 'Twisted Fate', 'Mage', 9502, 244),
 	(47, 12, 5, 7, 4, 6, 81, 'Ezreal', 'Marksman', 11414, 223),
 	(48, 13, 5, 5, 6, 10, 120, 'Hecarim', 'Fighter', 10442, 265),
@@ -705,11 +702,11 @@ INSERT INTO `partidausuario` (`idPartidaUsuario`, `idUsuario`, `idPartida`, `kil
 
 -- Dumping structure for table lol.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   `ranque` varchar(50) DEFAULT NULL,
   `posicao` varchar(50) DEFAULT NULL,
-  `idEquipe` int(11) NOT NULL,
+  `idEquipe` int(11) NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `idEquipe` (`idEquipe`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idEquipe`) REFERENCES `equipe` (`idEquipe`)
@@ -774,7 +771,7 @@ CREATE TABLE `vw_campeoes` (
 	`idCampeao` INT(11) NULL,
 	`nomeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
 	`classeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`vezesSelecionado` BIGINT(21) NOT NULL,
+	`vezesSelecionado` BIGINT(21) NULL,
 	`totalKills` DECIMAL(32,0) NULL,
 	`totalDeaths` DECIMAL(32,0) NULL,
 	`totalAssists` DECIMAL(32,0) NULL
@@ -783,8 +780,8 @@ CREATE TABLE `vw_campeoes` (
 -- Dumping structure for view lol.vw_partida
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_partida` (
-	`idUsuario` INT(11) NOT NULL,
-	`idEquipe` INT(11) NOT NULL,
+	`idUsuario` INT(11) NULL,
+	`idEquipe` INT(11) NULL,
 	`nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
 	`ranque` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
 	`posicao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
