@@ -22,7 +22,7 @@ USE `lol`;
 -- Dumping structure for table lol.campeonato
 CREATE TABLE IF NOT EXISTS `campeonato` (
   `idCampeonato` int(11) NOT NULL AUTO_INCREMENT,
-  `ano` int(11) NOT NULL,
+  `ano` int(11) DEFAULT NULL,
   `idEquipeVencedora` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCampeonato`),
   KEY `idEquipeVencedora` (`idEquipeVencedora`),
@@ -37,14 +37,32 @@ INSERT INTO `campeonato` (`idCampeonato`, `ano`, `idEquipeVencedora`) VALUES
 	(4, 2023, 8),
 	(5, 2024, 5);
 
+-- Dumping structure for procedure lol.DeleteEquipe
+DELIMITER //
+CREATE PROCEDURE `DeleteEquipe`(IN p_idEquipe INT)
+BEGIN
+    -- Excluir jogadores vinculados à equipe
+    DELETE FROM usuario
+    WHERE idEquipe = p_idEquipe;
+
+    -- Excluir partidas onde a equipe está vinculada como equipe vermelha ou azul
+    DELETE FROM partida
+    WHERE idEquipeVermelha = p_idEquipe OR idEquipeAzul = p_idEquipe;
+
+    -- Excluir a equipe
+    DELETE FROM equipe
+    WHERE idEquipe = p_idEquipe;
+END//
+DELIMITER ;
+
 -- Dumping structure for table lol.equipe
 CREATE TABLE IF NOT EXISTS `equipe` (
   `idEquipe` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idEquipe`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Dumping data for table lol.equipe: ~12 rows (approximately)
+-- Dumping data for table lol.equipe: ~10 rows (approximately)
 INSERT INTO `equipe` (`idEquipe`, `nome`) VALUES
 	(1, 'Gen.G'),
 	(2, 'Bilibili Gaming'),
@@ -55,13 +73,12 @@ INSERT INTO `equipe` (`idEquipe`, `nome`) VALUES
 	(7, 'Dplus Kia'),
 	(8, 'Beijing JDG Intel Esports'),
 	(9, 'kt Rolster'),
-	(10, 'Suzhou LNG Ninebot Esports'),
-	(50, 'Ecompers');
+	(10, 'Suzhou LNG Ninebot Esports');
 
 -- Dumping structure for table lol.itens
 CREATE TABLE IF NOT EXISTS `itens` (
   `idItem` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
   `AP` int(11) DEFAULT 0,
   `penetMagica` int(11) DEFAULT 0,
   `regMana` int(11) DEFAULT 0,
@@ -538,14 +555,14 @@ INSERT INTO `itenspatusuario` (`idPartidaUsuario`, `idItem`) VALUES
 -- Dumping structure for table lol.partida
 CREATE TABLE IF NOT EXISTS `partida` (
   `idPartida` int(11) NOT NULL AUTO_INCREMENT,
-  `placar` varchar(50) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
-  `etapa` varchar(50) NOT NULL,
-  `idEquipeAzul` int(11) NOT NULL,
-  `idEquipeVermelha` int(11) NOT NULL,
-  `idCampeonato` int(11) NOT NULL,
-  `duracao` time NOT NULL,
+  `placar` varchar(50) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  `etapa` varchar(50) DEFAULT NULL,
+  `idEquipeAzul` int(11) DEFAULT NULL,
+  `idEquipeVermelha` int(11) DEFAULT NULL,
+  `idCampeonato` int(11) DEFAULT NULL,
+  `duracao` time DEFAULT NULL,
   PRIMARY KEY (`idPartida`),
   KEY `idEquipeAzul` (`idEquipeAzul`),
   KEY `idEquipeVermelha` (`idEquipeVermelha`),
@@ -555,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `partida` (
   CONSTRAINT `partida_ibfk_3` FOREIGN KEY (`idCampeonato`) REFERENCES `campeonato` (`idCampeonato`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Dumping data for table lol.partida: ~32 rows (approximately)
+-- Dumping data for table lol.partida: ~35 rows (approximately)
 INSERT INTO `partida` (`idPartida`, `placar`, `data`, `hora`, `etapa`, `idEquipeAzul`, `idEquipeVermelha`, `idCampeonato`, `duracao`) VALUES
 	(1, '2-1', '2020-11-01', '18:00:00', 'Quartas de Final', 1, 2, 1, '00:30:12'),
 	(2, '3-0', '2020-11-02', '19:00:00', 'Quartas de Final', 3, 4, 1, '00:32:45'),
@@ -596,14 +613,14 @@ INSERT INTO `partida` (`idPartida`, `placar`, `data`, `hora`, `etapa`, `idEquipe
 -- Dumping structure for table lol.partidausuario
 CREATE TABLE IF NOT EXISTS `partidausuario` (
   `idPartidaUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `idPartida` int(11) NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `idPartida` int(11) DEFAULT NULL,
   `kills` int(11) DEFAULT 0,
   `deaths` int(11) DEFAULT 0,
   `assists` int(11) DEFAULT 0,
-  `idCampeao` int(11) NOT NULL,
-  `nomeCampeao` varchar(255) NOT NULL,
-  `classeCampeao` varchar(255) NOT NULL,
+  `idCampeao` int(11) DEFAULT NULL,
+  `nomeCampeao` varchar(255) DEFAULT NULL,
+  `classeCampeao` varchar(255) DEFAULT NULL,
   `ouroAdquirido` int(11) DEFAULT 0,
   `FARM` int(11) DEFAULT 0,
   PRIMARY KEY (`idPartidaUsuario`),
@@ -689,16 +706,16 @@ INSERT INTO `partidausuario` (`idPartidaUsuario`, `idUsuario`, `idPartida`, `kil
 -- Dumping structure for table lol.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `ranque` varchar(50) NOT NULL,
-  `posicao` varchar(50) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `ranque` varchar(50) DEFAULT NULL,
+  `posicao` varchar(50) DEFAULT NULL,
   `idEquipe` int(11) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `idEquipe` (`idEquipe`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idEquipe`) REFERENCES `equipe` (`idEquipe`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Dumping data for table lol.usuario: ~53 rows (approximately)
+-- Dumping data for table lol.usuario: ~50 rows (approximately)
 INSERT INTO `usuario` (`idUsuario`, `nome`, `ranque`, `posicao`, `idEquipe`) VALUES
 	(1, 'Kim Ki-in', 'Challenger', 'Top', 1),
 	(2, 'Kim Geon-bu', 'Challenger', 'Jungle', 1),
@@ -749,17 +766,14 @@ INSERT INTO `usuario` (`idUsuario`, `nome`, `ranque`, `posicao`, `idEquipe`) VAL
 	(47, 'Wei Lian', 'Challenger', 'Jungle', 10),
 	(48, 'Lee Ye-chan', 'Challenger', 'Mid', 10),
 	(49, 'Chen Wei', 'Challenger', 'ADC', 10),
-	(50, 'Luo Siyuan', 'Challenger', 'Support', 10),
-	(101, 'Teste', 'Ranque', 'Top', 50),
-	(102, 'XUAOOOOO', 'bronze', 'Top', 50),
-	(103, 'Novo Jogador', 'Platina', 'Meio', 50);
+	(50, 'Luo Siyuan', 'Challenger', 'Support', 10);
 
 -- Dumping structure for view lol.vw_campeoes
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_campeoes` (
-	`idCampeao` INT(11) NOT NULL,
-	`nomeCampeao` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`classeCampeao` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`idCampeao` INT(11) NULL,
+	`nomeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`classeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
 	`vezesSelecionado` BIGINT(21) NOT NULL,
 	`totalKills` DECIMAL(32,0) NULL,
 	`totalDeaths` DECIMAL(32,0) NULL,
@@ -771,16 +785,16 @@ CREATE TABLE `vw_campeoes` (
 CREATE TABLE `vw_partida` (
 	`idUsuario` INT(11) NOT NULL,
 	`idEquipe` INT(11) NOT NULL,
-	`nome` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`ranque` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`posicao` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`idPartida` INT(11) NOT NULL,
+	`nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`ranque` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`posicao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`idPartida` INT(11) NULL,
 	`kills` INT(11) NULL,
 	`deaths` INT(11) NULL,
 	`assists` INT(11) NULL,
-	`idCampeao` INT(11) NOT NULL,
-	`nomeCampeao` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
-	`classeCampeao` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`idCampeao` INT(11) NULL,
+	`nomeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`classeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
 	`ouroAdquirido` INT(11) NULL,
 	`farm` INT(11) NULL,
 	`item1id` BIGINT(11) NULL,

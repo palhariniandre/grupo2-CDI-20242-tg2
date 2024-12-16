@@ -287,7 +287,27 @@ public class ApiManager : MonoBehaviour
     }
 
     #endregion
-    
+    #region delete()
+
+
+    IEnumerator DeleteEquipe(int idEquipe)
+    {
+        string urlDeleteEquipe = $"{urlEquipes}/{idEquipe}/delete";
+        using UnityWebRequest www = UnityWebRequest.Delete(urlDeleteEquipe);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || 
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao deletar equipe: " + www.error);
+        }
+        else
+        {
+            Debug.Log("Equipe deletada com sucesso.");
+        }
+    }
+
+    #endregion    
     
     #region urls
     private string urlPartidas = "http://localhost:5000/api/partidas";
