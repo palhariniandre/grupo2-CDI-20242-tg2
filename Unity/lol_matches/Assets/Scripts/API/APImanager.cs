@@ -256,7 +256,7 @@ public class ApiManager : MonoBehaviour
 
     #region Inserts()
 
-        IEnumerator PostJogador(Jogador newJogador)
+    public IEnumerator PostJogador(Jogador newJogador)
     {
         if (newJogador == null)
         {
@@ -264,7 +264,7 @@ public class ApiManager : MonoBehaviour
             yield break;
         }
 
-        string jsonData = JsonConvert.SerializeObject(newJogador);
+        string jsonData = JsonConvert.SerializeObject(newJogador, Formatting.Indented);
 
         using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
         {
@@ -275,18 +275,19 @@ public class ApiManager : MonoBehaviour
 
             yield return www.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || 
-                www.result == UnityWebRequest.Result.ProtocolError)
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
+                Debug.LogError("Erro ao enviar jogador: " + www.error);
+                Debug.LogError("Detalhes: " + www.downloadHandler.text);
             }
             else
             {
-                Debug.Log("Jogador criado com sucesso.");
+                Debug.Log($"Jogador criado com sucesso. Resposta: {www.downloadHandler.text}");
             }
         }
     }
-        IEnumerator PostEquipe(Equipe newEquipe)    
+
+    IEnumerator PostEquipe(Equipe newEquipe)    
     {
         if (newEquipe == null)
         {
@@ -321,7 +322,7 @@ public class ApiManager : MonoBehaviour
     #region delete()
 
 
-    IEnumerator DeleteEquipe(int idEquipe)
+    public IEnumerator DeleteEquipe(int idEquipe)
     {
         string urlDeleteEquipe = $"{urlEquipes}/{idEquipe}";
         using UnityWebRequest www = UnityWebRequest.Delete(urlDeleteEquipe);
