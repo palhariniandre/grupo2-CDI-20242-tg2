@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomeText: {fileID: 372488575476703860}
   idText: {fileID: 2613932233287877605}
+  selectButton: {fileID: 7263333098074145382}
 --- !u!114 &7263333098074145382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,19 +442,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6918176799422012475}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1106566646200417587, guid: d4f1b8139a03da04db861ddc6c6e8fff, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1001 &1043312145376922086
 PrefabInstance:
   m_ObjectHideFlags: 0
