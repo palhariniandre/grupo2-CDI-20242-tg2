@@ -151,3 +151,35 @@ def deleteUsuario(idUsuario):
     
         finally:
             cur.close()  # Garantir que o cursor seja fechado
+            
+@app.route('/api/partidausuario/<int:idPartidaUsuario>', methods=['DELETE'])
+def deletePartidaUsuario(idPartidaUsuario):
+    try:
+        cur = mysql.connection.cursor()
+
+        # Excluir registros relacionados na tabela itenspatusuario
+        delete_itens_query = """
+        DELETE FROM itenspatusuario
+        WHERE idPartidaUsuario = %s;
+        """
+        cur.execute(delete_itens_query, (idPartidaUsuario,))
+
+        # Excluir registro da tabela partidausuario
+        delete_partida_usuario_query = """
+        DELETE FROM partidausuario
+        WHERE idPartidaUsuario = %s;
+        """
+        cur.execute(delete_partida_usuario_query, (idPartidaUsuario,))
+
+        # Commit para salvar as alterações
+        mysql.connection.commit()
+
+        return jsonify({"message": f"Registro de partidausuario com ID {idPartidaUsuario} deletado com sucesso!"}), 200
+
+    except Exception as e:
+        # Rollback para desfazer alterações em caso de erro
+        mysql.connection.rollback()
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        cur.close()  # Garantir que o cursor seja fechado

@@ -90,6 +90,7 @@ public class ApiManager : MonoBehaviour
             foreach (var jogador in jogadores)
             {
                 listaJogadores.Add(jogador);
+                
             }
         }
     }
