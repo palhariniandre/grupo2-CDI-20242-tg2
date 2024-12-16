@@ -70,7 +70,7 @@ public class MatchPage : MonoBehaviour
         var partida = apiManager.listaPartidas.Find(p => p.idPartida == idMatch);
         if (partida != null)
         {
-            // Exibe as informações da partida
+            // Exibe as informaï¿½ï¿½es da partida
             redTeamName.text = partida.equipeVermelha;
             blueTeamName.text = partida.equipeAzul;
 
@@ -78,30 +78,26 @@ public class MatchPage : MonoBehaviour
             matchYear.text = partida.data;
             matchPhase.text = partida.etapa;
             matchHour.text = partida.hora;
-            matchDuration.text = partida.duracao; // Corrigido para a variável correta
+            matchDuration.text = partida.duracao; // Corrigido para a variï¿½vel correta
             matchScore.text = partida.placar.ToString();
 
             // Atualiza os jogadores das equipes
-            foreach (var player in apiManager.listaJogadores)
+            foreach (var player in apiManager.ListaJogadoresAzul)
             {
-                if (player.equipe == partida.equipeAzul)
-                {
+               
                     UpdateBlueTeam(player);
-                }
-                else if (player.equipe == partida.equipeVermelha)
-                {
+               
                     UpdateRedTeam(player);
-                }
             }
         }
         else
         {
-            Debug.LogWarning("Partida não encontrada para o ID: " + idMatch);
+            Debug.LogWarning("Partida nï¿½o encontrada para o ID: " + idMatch);
         }
     }
 
     // atualiza o dado de cada player de acordo com a posicao da equipe azul e vermelha PRECISA TIRAR ESSES RANDOM BELEZA?
-    private void UpdateBlueTeam(Jogador player)
+    private void UpdateBlueTeam(JogadorPartida player)
     {
         Random random = new Random();
 
@@ -124,7 +120,7 @@ public class MatchPage : MonoBehaviour
                 break;
         }
     }
-    private void UpdateRedTeam(Jogador player)
+    private void UpdateRedTeam(JogadorPartida player)
     {
         Random random = new Random();
 
