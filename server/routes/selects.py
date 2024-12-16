@@ -66,25 +66,35 @@ def GetPartidas():
 # Rota para obter jogadores (GET)
 @app.route('/api/jogadores', methods=['GET'])
 def getJogadores():
-    cur = mysql.connection.cursor()
-    query = """
-    SELECT 
-        u.idUsuario, 
-        u.nome, 
-        u.ranque, 
-        u.posicao, 
-        e.nome AS equipe 
-    FROM usuario u
-    LEFT JOIN equipe e ON u.idEquipe = e.idEquipe;
-    """
-    cur.execute(query)
-    rows = cur.fetchall()
-    
-    jogadores = []
-    for row in rows:
-        jogadores.append(row)
+    try:
+        cur = mysql.connection.cursor()
+        query = """
+        SELECT 
+            u.idUsuario, 
+            u.nome, 
+            u.ranque, 
+            u.posicao, 
+            e.nome AS equipe,
+            COALESCE(AVG(jp.ouroAdquirido), 0) AS mediaOuroAdquirido,
+            COALESCE(AVG(jp.farm), 0) AS mediaFarm,
+            COALESCE(AVG(jp.kills), 0) AS mediaKills,
+            COALESCE(AVG(jp.deaths), 0) AS mediaDeaths,
+            COALESCE(AVG(jp.assists), 0) AS mediaAssists
+        FROM usuario u
+        LEFT JOIN equipe e ON u.idEquipe = e.idEquipe
+        LEFT JOIN partidausuario jp ON u.idUsuario = jp.idUsuario
+        GROUP BY u.idUsuario, e.nome;
+        """
+        cur.execute(query)
+        rows = cur.fetchall()
+        
+        jogadores = []
+        for row in rows:
+            jogadores.append(row)
 
-    return jsonify(jogadores), 200
+        return jsonify(jogadores), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/equipe', methods=['GET'])
 def GetEquipes():
@@ -293,3 +303,105 @@ def get_view_partida():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
         
+# ============================================================================
+
+@app.route('/api/usuarios/search', methods=['GET'])
+def search_usuarios():
+    try:
+        # Obtendo o parâmetro 'nome' da URL
+        nome = request.args.get('nome', type=str)
+        # Query para buscar pelo nome
+        query = """
+            SELECT idEquipe, idUsuario, nome, posicao, ranque
+            FROM usuario
+            WHERE nome LIKE %s
+        """
+        params = [f"%{nome}%"]
+
+        # Executando a query
+        cur = mysql.connection.cursor()
+        cur.execute(query, params)
+        rows = cur.fetchall()
+
+        # Mapeando resultados para JSON
+        
+        cur.close()
+        return jsonify(rows), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/item/search', methods=['GET'])
+def search_item():
+    try:
+        # Obtendo o parâmetro 'nome' da URL
+        nome = request.args.get('nome', type=str)
+        # Query para buscar pelo nome
+        query = """
+            SELECT *
+            FROM itens
+            WHERE nome LIKE %s
+        """
+        params = [f"%{nome}%"]
+
+        # Executando a query
+        cur = mysql.connection.cursor()
+        cur.execute(query, params)
+        rows = cur.fetchall()
+
+        # Mapeando resultados para JSON
+        
+        cur.close()
+        return jsonify(rows), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/api/equipe/search', methods=['GET'])
+def search_equipe():
+    try:
+        # Obtendo o parâmetro 'nome' da URL
+        nome = request.args.get('nome', type=str)
+        # Query para buscar pelo nome
+        query = """
+            SELECT idEquipe, nome
+            FROM equipe
+            WHERE nome LIKE %s
+        """
+        params = [f"%{nome}%"]
+
+        # Executando a query
+        cur = mysql.connection.cursor()
+        cur.execute(query, params)
+        rows = cur.fetchall()
+
+        # Mapeando resultados para JSON
+        
+        cur.close()
+        return jsonify(rows), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+#campeao
+@app.route('/api/campeao/search', methods=['GET'])
+def search_campeao():
+    try:
+        # Obtendo o parâmetro 'nome' da URL
+        nome = request.args.get('nome', type=str)
+        # Query para buscar pelo nome
+        query = """
+            SELECT idCampeao, nomeCampeao, classeCampeao, vezesSelecionado
+            FROM vw_campeoes
+            WHERE nomeCampeao LIKE %s
+        """
+        params = [f"%{nome}%"]
+
+        # Executando a query
+        cur = mysql.connection.cursor()
+        cur.execute(query, params)
+        rows = cur.fetchall()
+
+        # Mapeando resultados para JSON
+        
+        cur.close()
+        return jsonify(rows), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
