@@ -22,7 +22,7 @@ USE `lol`;
 -- Dumping structure for table lol.campeonato
 CREATE TABLE IF NOT EXISTS `campeonato` (
   `idCampeonato` int(11) NOT NULL AUTO_INCREMENT,
-  `ano` int(11) NOT NULL,
+  `ano` int(11) DEFAULT NULL,
   `idEquipeVencedora` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCampeonato`),
   KEY `idEquipeVencedora` (`idEquipeVencedora`),
@@ -37,12 +37,30 @@ INSERT INTO `campeonato` (`idCampeonato`, `ano`, `idEquipeVencedora`) VALUES
 	(4, 2023, 8),
 	(5, 2024, 5);
 
+-- Dumping structure for procedure lol.DeleteEquipe
+DELIMITER //
+CREATE PROCEDURE `DeleteEquipe`(IN p_idEquipe INT)
+BEGIN
+    -- Excluir jogadores vinculados à equipe
+    DELETE FROM usuario
+    WHERE idEquipe = p_idEquipe;
+
+    -- Excluir partidas onde a equipe está vinculada como equipe vermelha ou azul
+    DELETE FROM partida
+    WHERE idEquipeVermelha = p_idEquipe OR idEquipeAzul = p_idEquipe;
+
+    -- Excluir a equipe
+    DELETE FROM equipe
+    WHERE idEquipe = p_idEquipe;
+END//
+DELIMITER ;
+
 -- Dumping structure for table lol.equipe
 CREATE TABLE IF NOT EXISTS `equipe` (
   `idEquipe` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idEquipe`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Dumping data for table lol.equipe: ~10 rows (approximately)
 INSERT INTO `equipe` (`idEquipe`, `nome`) VALUES
@@ -60,7 +78,7 @@ INSERT INTO `equipe` (`idEquipe`, `nome`) VALUES
 -- Dumping structure for table lol.itens
 CREATE TABLE IF NOT EXISTS `itens` (
   `idItem` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
   `AP` int(11) DEFAULT 0,
   `penetMagica` int(11) DEFAULT 0,
   `regMana` int(11) DEFAULT 0,
@@ -537,14 +555,14 @@ INSERT INTO `itenspatusuario` (`idPartidaUsuario`, `idItem`) VALUES
 -- Dumping structure for table lol.partida
 CREATE TABLE IF NOT EXISTS `partida` (
   `idPartida` int(11) NOT NULL AUTO_INCREMENT,
-  `placar` varchar(50) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
-  `etapa` varchar(50) NOT NULL,
-  `idEquipeAzul` int(11) NOT NULL,
-  `idEquipeVermelha` int(11) NOT NULL,
-  `idCampeonato` int(11) NOT NULL,
-  `duracao` time NOT NULL,
+  `placar` varchar(50) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  `etapa` varchar(50) DEFAULT NULL,
+  `idEquipeAzul` int(11) DEFAULT NULL,
+  `idEquipeVermelha` int(11) DEFAULT NULL,
+  `idCampeonato` int(11) DEFAULT NULL,
+  `duracao` time DEFAULT NULL,
   PRIMARY KEY (`idPartida`),
   KEY `idEquipeAzul` (`idEquipeAzul`),
   KEY `idEquipeVermelha` (`idEquipeVermelha`),
@@ -595,14 +613,14 @@ INSERT INTO `partida` (`idPartida`, `placar`, `data`, `hora`, `etapa`, `idEquipe
 -- Dumping structure for table lol.partidausuario
 CREATE TABLE IF NOT EXISTS `partidausuario` (
   `idPartidaUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL,
-  `idPartida` int(11) NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `idPartida` int(11) DEFAULT NULL,
   `kills` int(11) DEFAULT 0,
   `deaths` int(11) DEFAULT 0,
   `assists` int(11) DEFAULT 0,
-  `idCampeao` int(11) NOT NULL,
-  `nomeCampeao` varchar(255) NOT NULL,
-  `classeCampeao` varchar(255) NOT NULL,
+  `idCampeao` int(11) DEFAULT NULL,
+  `nomeCampeao` varchar(255) DEFAULT NULL,
+  `classeCampeao` varchar(255) DEFAULT NULL,
   `ouroAdquirido` int(11) DEFAULT 0,
   `FARM` int(11) DEFAULT 0,
   PRIMARY KEY (`idPartidaUsuario`),
@@ -658,7 +676,7 @@ INSERT INTO `partidausuario` (`idPartidaUsuario`, `idUsuario`, `idPartida`, `kil
 	(42, 2, 5, 6, 5, 10, 203, 'Kindred', 'Marksman', 11027, 207),
 	(43, 3, 5, 7, 3, 11, 238, 'Zed', 'Assassin', 9180, 245),
 	(44, 4, 5, 0, 7, 20, 117, 'Janna', 'Support', 10061, 234),
-	(45, 5, 5, 10, 2, 9, 51, 'Kayle', 'Fighter', 8271, 267),
+	(45, 5, 5, 10, 2, 9, 51, 'Klad', 'Fighter', 8271, 267),
 	(46, 11, 5, 8, 6, 8, 41, 'Twisted Fate', 'Mage', 9502, 244),
 	(47, 12, 5, 7, 4, 6, 81, 'Ezreal', 'Marksman', 11414, 223),
 	(48, 13, 5, 5, 6, 10, 120, 'Hecarim', 'Fighter', 10442, 265),
@@ -688,14 +706,14 @@ INSERT INTO `partidausuario` (`idPartidaUsuario`, `idUsuario`, `idPartida`, `kil
 -- Dumping structure for table lol.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `ranque` varchar(50) NOT NULL,
-  `posicao` varchar(50) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `ranque` varchar(50) DEFAULT NULL,
+  `posicao` varchar(50) DEFAULT NULL,
   `idEquipe` int(11) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `idEquipe` (`idEquipe`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idEquipe`) REFERENCES `equipe` (`idEquipe`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Dumping data for table lol.usuario: ~50 rows (approximately)
 INSERT INTO `usuario` (`idUsuario`, `nome`, `ranque`, `posicao`, `idEquipe`) VALUES
@@ -749,6 +767,110 @@ INSERT INTO `usuario` (`idUsuario`, `nome`, `ranque`, `posicao`, `idEquipe`) VAL
 	(48, 'Lee Ye-chan', 'Challenger', 'Mid', 10),
 	(49, 'Chen Wei', 'Challenger', 'ADC', 10),
 	(50, 'Luo Siyuan', 'Challenger', 'Support', 10);
+
+-- Dumping structure for view lol.vw_campeoes
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_campeoes` (
+	`idCampeao` INT(11) NULL,
+	`nomeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`classeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`vezesSelecionado` BIGINT(21) NOT NULL,
+	`totalKills` DECIMAL(32,0) NULL,
+	`totalDeaths` DECIMAL(32,0) NULL,
+	`totalAssists` DECIMAL(32,0) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view lol.vw_partida
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_partida` (
+	`idUsuario` INT(11) NOT NULL,
+	`idEquipe` INT(11) NOT NULL,
+	`nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`ranque` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`posicao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`idPartida` INT(11) NULL,
+	`kills` INT(11) NULL,
+	`deaths` INT(11) NULL,
+	`assists` INT(11) NULL,
+	`idCampeao` INT(11) NULL,
+	`nomeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`classeCampeao` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`ouroAdquirido` INT(11) NULL,
+	`farm` INT(11) NULL,
+	`item1id` BIGINT(11) NULL,
+	`item1nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`item2id` BIGINT(11) NULL,
+	`item2nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`item3id` BIGINT(11) NULL,
+	`item3nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`item4id` BIGINT(11) NULL,
+	`item4nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`item5id` BIGINT(11) NULL,
+	`item5nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`item6id` BIGINT(11) NULL,
+	`item6nome` VARCHAR(1) NULL COLLATE 'utf8mb4_uca1400_ai_ci'
+) ENGINE=MyISAM;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_campeoes`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_campeoes` AS SELECT 
+    pu.idCampeao,
+    pu.nomeCampeao,
+    pu.classeCampeao,
+    COUNT(pu.idPartidaUsuario) AS vezesSelecionado,
+    COALESCE(SUM(pu.kills), 0) AS totalKills,
+    COALESCE(SUM(pu.deaths), 0) AS totalDeaths,
+    COALESCE(SUM(pu.assists), 0) AS totalAssists
+FROM partidaUsuario pu
+GROUP BY pu.idCampeao, pu.nomeCampeao, pu.classeCampeao ;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_partida`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_partida` AS SELECT 
+    u.idUsuario,
+    u.idEquipe,
+    u.nome,
+    u.ranque,
+    u.posicao,
+    up.idPartida,
+    up.kills,
+    up.deaths,
+    up.assists,
+    up.idCampeao,
+    up.nomeCampeao,
+    up.classeCampeao,
+    up.ouroAdquirido,
+    up.farm,
+    -- Itens dos jogadores
+    MAX(CASE WHEN ipu.rank = 1 THEN i.idItem END) AS item1id,
+    MAX(CASE WHEN ipu.rank = 1 THEN i.nome END) AS item1nome,
+    MAX(CASE WHEN ipu.rank = 2 THEN i.idItem END) AS item2id,
+    MAX(CASE WHEN ipu.rank = 2 THEN i.nome END) AS item2nome,
+    MAX(CASE WHEN ipu.rank = 3 THEN i.idItem END) AS item3id,
+    MAX(CASE WHEN ipu.rank = 3 THEN i.nome END) AS item3nome,
+    MAX(CASE WHEN ipu.rank = 4 THEN i.idItem END) AS item4id,
+    MAX(CASE WHEN ipu.rank = 4 THEN i.nome END) AS item4nome,
+    MAX(CASE WHEN ipu.rank = 5 THEN i.idItem END) AS item5id,
+    MAX(CASE WHEN ipu.rank = 5 THEN i.nome END) AS item5nome,
+    MAX(CASE WHEN ipu.rank = 6 THEN i.idItem END) AS item6id,
+    MAX(CASE WHEN ipu.rank = 6 THEN i.nome END) AS item6nome
+FROM 
+    usuario u
+JOIN 
+    partidausuario up ON u.idUsuario = up.idUsuario
+LEFT JOIN (
+    SELECT 
+        ipu.idPartidaUsuario, 
+        ipu.idItem, 
+        ROW_NUMBER() OVER (PARTITION BY ipu.idPartidaUsuario ORDER BY ipu.idItem) AS rank
+    FROM 
+        itensPatUsuario ipu
+) ipu ON ipu.idPartidaUsuario = up.idPartidaUsuario
+LEFT JOIN 
+    itens i ON ipu.idItem = i.idItem
+GROUP BY 
+    u.idUsuario, u.idEquipe, u.nome, up.idPartida, up.kills, up.deaths, up.assists,
+    up.idCampeao, up.nomeCampeao, up.classeCampeao, up.ouroAdquirido, up.farm ;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

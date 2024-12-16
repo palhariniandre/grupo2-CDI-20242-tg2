@@ -13,22 +13,85 @@ public class ApiManager : MonoBehaviour
         // Busca dados das respectivas URLs
         StartCoroutine(GetPartidas());
         StartCoroutine(GetCampeonatos());
-        StartCoroutine(ManageJogadores(RequestType.GET));
         StartCoroutine(GetEquipes());
         StartCoroutine(GetItens());
+        StartCoroutine(GetCampeao()); 
     }
-
-    public void EnviarJogador(Jogador jogador)
-    {
-       StartCoroutine(ManageJogadores(RequestType.POST, jogador));
-    }
-
     public void RecebaPartidaId(int partidaId)
     {
         StartCoroutine(GetPartidaId(partidaId));
     }
 
     #region Select()
+    
+     IEnumerator GetEquipes()
+    {
+        using UnityWebRequest www = UnityWebRequest.Get(urlEquipes);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError ||
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao buscar dados da URL Equipes: " + www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+            Equipe[] equipes = JsonConvert.DeserializeObject<Equipe[]>(json);
+
+            listaEquipe.Clear(); // Limpar antes de adicionar novas partidas
+            foreach (var equipe in equipes)
+            {
+                listaEquipe.Add(equipe);
+            }
+        }
+    }
+    IEnumerator GetCampeao()
+    {
+        using UnityWebRequest www = UnityWebRequest.Get(urlCampeao);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError ||
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao buscar dados da URL Partidas: " + www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+            Campeao[] campeoes = JsonConvert.DeserializeObject<Campeao[]>(json);
+
+            listaCampeao.Clear(); // Limpar antes de adicionar novas partidas
+            foreach (var campeao in campeoes)
+            {
+                listaCampeao.Add(campeao);
+                //Debug.Log("GetCampeao - Adicionado Campeao ID: " + campeao.idCampeao); // Verifique as IDs das partidas	
+            }
+            //Debug.Log("GetCampeao - Quantidade de campeoes carregados: " + listaCampeao.Count); 
+        }
+    }
+    IEnumerator GetJogadores()
+    {
+        using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || 
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+            Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
+
+            listaJogadores.Clear(); // Limpar antes de adicionar novos jogadores
+            foreach (var jogador in jogadores)
+            {
+                listaJogadores.Add(jogador);
+            }
+        }
+    }
     IEnumerator GetCampeonatos()
     {
         using UnityWebRequest www = UnityWebRequest.Get(urlCampeonato);
@@ -48,10 +111,7 @@ public class ApiManager : MonoBehaviour
             foreach (var campeonato in campeonatos)
             {
                 listaCampeonato.Add(campeonato);
-               
             }
-
-
         }
     }
 
@@ -79,33 +139,6 @@ public class ApiManager : MonoBehaviour
 
         }
     }
-
-
-    IEnumerator GetEquipes()
-    {
-        using UnityWebRequest www = UnityWebRequest.Get(urlEquipes);
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.ConnectionError ||
-            www.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError("Erro ao buscar dados da URL Equipes: " + www.error);
-        }
-        else
-        {
-            string json = www.downloadHandler.text;
-            Equipe[] equipes = JsonConvert.DeserializeObject<Equipe[]>(json);
-
-            listaEquipe.Clear(); // Limpar antes de adicionar novas partidas
-            foreach (var equipe in equipes)
-            {
-                listaEquipe.Add(equipe);
-            }
-
-           
-        }
-    }
-
     IEnumerator GetItens()
     {
         using UnityWebRequest www = UnityWebRequest.Get(urlItens);
@@ -221,66 +254,91 @@ public class ApiManager : MonoBehaviour
     #endregion
 
     #region Inserts()
-    IEnumerator ManageJogadores(RequestType request, Jogador newJogador = null)
+
+        IEnumerator PostJogador(Jogador newJogador)
+    {
+        if (newJogador == null)
         {
-            if (request == RequestType.GET)
+            Debug.LogError("O objeto Jogador é nulo.");
+            yield break;
+        }
+
+        string jsonData = JsonConvert.SerializeObject(newJogador);
+
+        using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
+        {
+            byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || 
+                www.result == UnityWebRequest.Result.ProtocolError)
             {
-                using UnityWebRequest www = UnityWebRequest.Get(urlJogadores);
-                yield return www.SendWebRequest();
-
-                if (www.result == UnityWebRequest.Result.ConnectionError ||
-                    www.result == UnityWebRequest.Result.ProtocolError)
-                {
-                    Debug.LogError("Erro ao buscar dados da URL Jogadores: " + www.error);
-                }
-                else
-                {
-                    string json = www.downloadHandler.text;
-                    Jogador[] jogadores = JsonConvert.DeserializeObject<Jogador[]>(json);
-
-                    listaJogadores.Clear(); // Limpar antes de adicionar novas partidas
-                    foreach (var jogador in jogadores)
-                    {
-                        listaJogadores.Add(jogador);
-                    
-                    }
-
-                    
-                }
+                Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
             }
-
-            if(request == RequestType.POST)
+            else
             {
-                string jsonData = JsonConvert.SerializeObject(newJogador);
-
-                using (UnityWebRequest www = new UnityWebRequest(urlJogadores, "POST"))
-                {
-                    byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
-                    www.uploadHandler = new UploadHandlerRaw(jsonToSend);
-                    www.downloadHandler = new DownloadHandlerBuffer();
-                    www.SetRequestHeader("Content-Type", "application/json");
-
-                    yield return www.SendWebRequest();
-
-                    if (www.result == UnityWebRequest.Result.ConnectionError || 
-                        www.result == UnityWebRequest.Result.ProtocolError)
-                    {
-                        Debug.LogError("Erro ao enviar jogador para URL Jogadores: " + www.error);
-                    }
-                    else
-                    {
-                        Debug.Log("Jogador criado");
-                    }
-                }
+                Debug.Log("Jogador criado com sucesso.");
             }
         }
-    #endregion
-    
-    enum RequestType
-    {
-       GET = 0,
-       POST = 1
     }
+        IEnumerator PostEquipe(Equipe newEquipe)    
+    {
+        if (newEquipe == null)
+        {
+            Debug.LogError("O objeto Equipe é nulo.");
+            yield break;
+        }
+
+        string jsonData = JsonConvert.SerializeObject(newEquipe);
+
+        using (UnityWebRequest www = new UnityWebRequest(urlEquipes, "POST"))
+        {
+            byte[] jsonToSend = new UTF8Encoding().GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || 
+                www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Erro ao enviar equipe para URL Equipes: " + www.error);
+            }
+            else
+            {
+                Debug.Log("Equipe criada com sucesso.");
+            }
+        }
+    }
+
+    #endregion
+    #region delete()
+
+
+    IEnumerator DeleteEquipe(int idEquipe)
+    {
+        string urlDeleteEquipe = $"{urlEquipes}/{idEquipe}/delete";
+        using UnityWebRequest www = UnityWebRequest.Delete(urlDeleteEquipe);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || 
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Erro ao deletar equipe: " + www.error);
+        }
+        else
+        {
+            Debug.Log("Equipe deletada com sucesso.");
+        }
+    }
+
+    #endregion    
+    
     #region urls
     private string urlPartidas = "http://localhost:5000/api/partidas";
 
@@ -295,6 +353,7 @@ public class ApiManager : MonoBehaviour
     private string urlPartidaId = "http://localhost:5000/api/partidaId/"; 
 
     private string urlViewEquipePartida = "http://localhost:5000/api/vw_partida";
+    private string urlCampeao = "http://localhost:5000/api/campeao";
     #endregion
 
     #region lists
@@ -307,6 +366,7 @@ public class ApiManager : MonoBehaviour
     public List<Equipe> listaEquipe = new List<Equipe>();
 
     public List<Item> listaItem = new List<Item>();
+    public List<Campeao> listaCampeao = new List<Campeao>();
     public List<JogadorPartida> ListaJogadoresAzul = new List<JogadorPartida>();
     public List<JogadorPartida> ListaJogadoresVermelhos = new List<JogadorPartida>();
 
