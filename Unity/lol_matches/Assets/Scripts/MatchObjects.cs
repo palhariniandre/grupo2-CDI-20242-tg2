@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,14 +64,23 @@ public class MatchObjects : MonoBehaviour
         return itemName;
     }
 
-    public Sprite GetChampIcon(int champId)
+    public Sprite GetChampIcon(string champNome)
     {
-        Champions champ = (Champions)champId;
-        string champName = champ.ToString();
+        Champions champ;
 
-        Sprite champSprite = champIcons.First(s => s.name == champName);
+        if (Enum.TryParse(champNome, true, out champ))
+        { 
+            string champName = champ.ToString();
+
+            Sprite champSprite = champIcons.First(s => s.name == champName);
 
         return champSprite;
+        }
+        else
+        {
+            Debug.LogError("MatchObjects.cs - não retorna sprite");
+            return null;
+        }
     }
 
     public Sprite GetItemIcon(int itemId)
