@@ -17,6 +17,8 @@ public class ApiManager : MonoBehaviour
         StartCoroutine(GetItens());
         StartCoroutine(GetCampeao()); 
         StartCoroutine(GetJogadores());
+        Busca("Shyvana", 4); // Busca em Campeões
+        Busca("Infinity", 2); // Busca em Itens
     }
     public void RecebaPartidaId(int partidaId)
     {
@@ -163,7 +165,7 @@ public class ApiManager : MonoBehaviour
                 //Debug.Log("GetItens - Adicionado Item ID: " + item.idItem); // Verifique as IDs das partidas
             }
 
-            Debug.Log("GetItens - Quantidade de item carregados: " + listaItem.Count);
+            //Debug.Log("GetItens - Quantidade de item carregados: " + listaItem.Count);
         }
     }
     #endregion
@@ -340,8 +342,143 @@ public class ApiManager : MonoBehaviour
     }
 
     #endregion    
-    
+    #region search()
+
+    public void Busca(string busca, int categoria)
+{
+    switch (categoria)
+    {
+        case 1:
+            StartCoroutine(SearchUsuario("usuarios/search", busca, listaSearchUsuario));
+            break;
+        case 2:
+            StartCoroutine(SearchItem("item/search", busca, listaSearchItem));
+            break;
+        case 3:
+            StartCoroutine(SearchEquipe("equipe/search", busca, listaSearchEquipe));
+            break;
+        case 4:
+            StartCoroutine(SearchCampeao("campeao/search", busca, listaSearchCampeao));
+            break;
+        default:
+            Debug.LogError("Categoria inválida. Use 1 (Usuário), 2 (Item), 3 (Equipe) ou 4 (Campeão).");
+            break;
+    }
+}
+
+private IEnumerator SearchUsuario(string endpoint, string busca, List<Jogador> lista)
+{
+    string url = $"{baseUrl}/{endpoint}?nome={UnityWebRequest.EscapeURL(busca)}";
+
+    using (UnityWebRequest request = UnityWebRequest.Get(url))
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || 
+            request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro na busca: {request.error}");
+        }
+        else
+        {
+            string jsonResponse = request.downloadHandler.text;
+
+            // Deserializa diretamente para List<Jogador>
+            List<Jogador> resultados = JsonConvert.DeserializeObject<List<Jogador>>(jsonResponse);
+            lista.Clear();
+            lista.AddRange(resultados);
+
+            Debug.Log($"Resultados encontrados para '{busca}' em {endpoint}: {lista.Count}");
+        }
+    }
+}
+
+private IEnumerator SearchItem(string endpoint, string busca, List<Item> lista)
+{
+    string url = $"{baseUrl}/{endpoint}?nome={UnityWebRequest.EscapeURL(busca)}";
+
+    using (UnityWebRequest request = UnityWebRequest.Get(url))
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || 
+            request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro na busca: {request.error}");
+        }
+        else
+        {
+            string jsonResponse = request.downloadHandler.text;
+
+            // Deserializa diretamente para List<Item>
+            List<Item> resultados = JsonConvert.DeserializeObject<List<Item>>(jsonResponse);
+            lista.Clear();
+            lista.AddRange(resultados);
+
+            Debug.Log($"Resultados encontrados para '{busca}' em {endpoint}: {lista.Count}");
+        }
+    }
+}
+
+private IEnumerator SearchEquipe(string endpoint, string busca, List<Equipe> lista)
+{
+    string url = $"{baseUrl}/{endpoint}?nome={UnityWebRequest.EscapeURL(busca)}";
+
+    using (UnityWebRequest request = UnityWebRequest.Get(url))
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || 
+            request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro na busca: {request.error}");
+        }
+        else
+        {
+            string jsonResponse = request.downloadHandler.text;
+
+            // Deserializa diretamente para List<Equipe>
+            List<Equipe> resultados = JsonConvert.DeserializeObject<List<Equipe>>(jsonResponse);
+            lista.Clear();
+            lista.AddRange(resultados);
+
+            Debug.Log($"Resultados encontrados para '{busca}' em {endpoint}: {lista.Count}");
+        }
+    }
+}
+
+private IEnumerator SearchCampeao(string endpoint, string busca, List<Campeao> lista)
+{
+    string url = $"{baseUrl}/{endpoint}?nome={UnityWebRequest.EscapeURL(busca)}";
+
+    using (UnityWebRequest request = UnityWebRequest.Get(url))
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || 
+            request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Erro na busca: {request.error}");
+        }
+        else
+        {
+            string jsonResponse = request.downloadHandler.text;
+
+            // Deserializa diretamente para List<Campeao>
+            List<Campeao> resultados = JsonConvert.DeserializeObject<List<Campeao>>(jsonResponse);
+            lista.Clear();
+            lista.AddRange(resultados);
+
+            Debug.Log($"Resultados encontrados para '{busca}' em {endpoint}: {lista.Count}");
+        }
+    }
+}
+
+
+    #endregion
     #region urls
+    private string baseUrl = "http://localhost:5000/api";
+
     private string urlPartidas = "http://localhost:5000/api/partidas";
 
     private string urlCampeonato = "http://localhost:5000/api/campeonato";
@@ -356,6 +493,7 @@ public class ApiManager : MonoBehaviour
 
     private string urlViewEquipePartida = "http://localhost:5000/api/vw_partida";
     private string urlCampeao = "http://localhost:5000/api/campeao";
+    
     #endregion
 
     #region lists
@@ -371,7 +509,10 @@ public class ApiManager : MonoBehaviour
     public List<Campeao> listaCampeao = new List<Campeao>();
     public List<JogadorPartida> ListaJogadoresAzul = new List<JogadorPartida>();
     public List<JogadorPartida> ListaJogadoresVermelhos = new List<JogadorPartida>();
-
+     public List<Jogador> listaSearchUsuario = new List<Jogador>();
+    public List<Item> listaSearchItem = new List<Item>();
+    public List<Equipe> listaSearchEquipe = new List<Equipe>();
+    public List<Campeao> listaSearchCampeao = new List<Campeao>();
     #endregion
     
     #region objects 
