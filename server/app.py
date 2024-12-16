@@ -20,6 +20,7 @@ def index():
 from routes.selects import *
 from routes.inserts import *
 from routes.deletes import *
+from routes.updates import *
 
 
 
