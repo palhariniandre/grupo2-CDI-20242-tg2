@@ -11,8 +11,8 @@ public class ChampEntity : MonoBehaviour
 
     public void ChampData(Partida partida)
     {
-        champName.text = MatchObjects.Instance.GetChampName(00);
-        champIcon.sprite = MatchObjects.Instance.GetChampIcon(00);
+       // champName.text = MatchObjects.Instance.GetChampName(00);
+        //champIcon.sprite = MatchObjects.Instance.GetChampIcon(00);
     }
 
     public int GetIdChamp()

@@ -16,6 +16,7 @@ public class ApiManager : MonoBehaviour
         StartCoroutine(GetEquipes());
         StartCoroutine(GetItens());
         StartCoroutine(GetCampeao()); 
+        StartCoroutine(GetJogadores());
     }
     public void RecebaPartidaId(int partidaId)
     {
@@ -67,7 +68,7 @@ public class ApiManager : MonoBehaviour
                 listaCampeao.Add(campeao);
                 //Debug.Log("GetCampeao - Adicionado Campeao ID: " + campeao.idCampeao); // Verifique as IDs das partidas	
             }
-            //Debug.Log("GetCampeao - Quantidade de campeoes carregados: " + listaCampeao.Count); 
+            Debug.Log("GetCampeao - Quantidade de campeoes carregados: " + listaCampeao.Count); 
         }
     }
     IEnumerator GetJogadores()
@@ -323,7 +324,7 @@ public class ApiManager : MonoBehaviour
 
     public IEnumerator DeleteEquipe(int idEquipe)
     {
-        string urlDeleteEquipe = $"{urlEquipes}/{idEquipe}/delete";
+        string urlDeleteEquipe = $"{urlEquipes}/{idEquipe}";
         using UnityWebRequest www = UnityWebRequest.Delete(urlDeleteEquipe);
         yield return www.SendWebRequest();
 

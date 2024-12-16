@@ -10,8 +10,7 @@ def Getcampeonatos():
         query = """
         SELECT 
             c.idCampeonato, 
-            c.ano, 
-            c.idEquipeVencedora 
+            c.ano
         FROM campeonato c;
         """
         cur.execute(query)

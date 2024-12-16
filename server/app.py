@@ -15,10 +15,12 @@ mysql = MySQL(app)
 def index():
     return "Servidor Flask está ativo!"
 
+
 # Certifique-se de que apenas um arquivo registra cada rota
 from routes.selects import *
 from routes.inserts import *
 from routes.deletes import *
+
 
 
 if __name__ == '__main__':

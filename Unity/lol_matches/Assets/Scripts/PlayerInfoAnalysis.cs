@@ -63,8 +63,8 @@ public class PlayerInfoAnalysis : MonoBehaviour
             playerName.text = jogador.nome;
             rankName.text = jogador.ranque;
             laneName.text = jogador.posicao;
-            championName.text = MatchObjects.Instance.GetChampName(67);
-            championIcon.sprite = MatchObjects.Instance.GetChampIcon(101);
+            //championName.text = MatchObjects.Instance.GetChampName(67);
+            //championIcon.sprite = MatchObjects.Instance.GetChampIcon(101);
             Debug.LogError("nenhuma referência");
         }
 
@@ -75,13 +75,13 @@ public class PlayerInfoAnalysis : MonoBehaviour
     {
         playerName.text = player.nome;
 
-        //championIcon.sprite = MatchObjects.Instance.GetChampIcon(bluePlayer.idCampeao);
+        championIcon.sprite = MatchObjects.Instance.GetChampIcon(player.nomeCampeao);
         championName.text = player.nomeCampeao;
 
-        //rankIcon.sprite = MatchObjects.Instance.GetRankIcon(bluePlayer.ranque);
+        rankIcon.sprite = MatchObjects.Instance.GetRankIcon(player.ranque);
         rankName.text = player.ranque;
 
-        //laneIcon.sprite = MatchObjects.Instance.GetRankName(bluePlayer.ranque);
+        laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(player.posicao);
         laneName.text = player.posicao;
 
         //itemSlots;
