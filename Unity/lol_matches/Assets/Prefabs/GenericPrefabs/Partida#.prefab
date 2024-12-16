@@ -582,8 +582,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2719507780145149278, guid: 589b1762a20dbd9488094009883c078f, type: 3}
-        m_TargetAssemblyTypeName: MatchManager, Assembly-CSharp
+      - m_Target: {fileID: 5682861067010335342}
+        m_TargetAssemblyTypeName: MatchEntity, Assembly-CSharp
         m_MethodName: SelectMatch
         m_Mode: 1
         m_Arguments:

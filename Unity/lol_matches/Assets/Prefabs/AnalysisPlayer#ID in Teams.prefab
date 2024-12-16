@@ -2386,6 +2386,11 @@ MonoBehaviour:
   rankName: {fileID: 5200119311407526596}
   laneIcon: {fileID: 6468188775412280664}
   laneName: {fileID: 7904215035505987077}
+  itemSlots: []
+  gold: {fileID: 0}
+  kill: {fileID: 0}
+  death: {fileID: 0}
+  assist: {fileID: 0}
   championWindow: {fileID: 0}
   laneWindow: {fileID: 0}
   rankWindow: {fileID: 0}
@@ -2396,6 +2401,7 @@ MonoBehaviour:
   isAnalyzing: 1
   blueTeamIcon: {fileID: 21300000, guid: bccd406b58b2a5541b2861f8f9547b83, type: 3}
   redTeamIcon: {fileID: 21300000, guid: c864c11599a7c4846bc99c7784b7b114, type: 3}
+  apiManager: {fileID: 0}
 --- !u!1 &7978161549533558581
 GameObject:
   m_ObjectHideFlags: 0

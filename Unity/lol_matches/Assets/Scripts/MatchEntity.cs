@@ -1,9 +1,17 @@
 using UnityEngine;
 using TMPro;
 using System.Diagnostics.CodeAnalysis;
+using System;
 
 public class MatchEntity : MonoBehaviour
 {
+    // referencia a entidade
+    public event Action<int> OnMatchSelected;
+    public void SelectMatch()
+    {
+        OnMatchSelected?.Invoke(id);     
+    }
+
     // Referências para os componentes de texto
     public TextMeshProUGUI nomeText;
     public TextMeshProUGUI idText;
@@ -22,8 +30,9 @@ public class MatchEntity : MonoBehaviour
         tempoText.text = partida.hora; // Exemplo de formato: MM:SS
     }
 
+
     // retorna o id da partida para acessar o resto das informacoes
-    public int GetId()
+    public int GetMatchId()
     {
         return id;
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -934,6 +934,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7570020868796139497, guid: 589b1762a20dbd9488094009883c078f, type: 3}
   m_PrefabInstance: {fileID: 1096304710}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &664561638 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2719507780145149278, guid: 589b1762a20dbd9488094009883c078f, type: 3}
+  m_PrefabInstance: {fileID: 1096304710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664561634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c183245ad3ddd4eba54c45fdef8e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1304,31 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 07d47958ca929b54fa82c6c6b13174cb, type: 3}
   - {fileID: 21300000, guid: 8c7c23ccf2c8b65408e5209ee0d26a38, type: 3}
   - {fileID: 21300000, guid: 286413c25f9ee2d418eab06c625d6eeb, type: 3}
-  itemIcons: []
+  itemIcons:
+  - {fileID: 21300000, guid: ec3910fdd9202f94b94d8d44083642a4, type: 3}
+  - {fileID: 21300000, guid: 98dc53bcfeb1746469ab9e98d6a6125f, type: 3}
+  - {fileID: 21300000, guid: ba97e8939e6708440882c8d435ad2301, type: 3}
+  - {fileID: 21300000, guid: bb8434a998abde747a71387cb9145625, type: 3}
+  - {fileID: 21300000, guid: ed29477f1daa6904dbb9ac2ba38f355f, type: 3}
+  - {fileID: 21300000, guid: f7bc2eff792628c4690cf6e657e77f0d, type: 3}
+  - {fileID: 21300000, guid: 653454022a3a4874b90841373925e5c9, type: 3}
+  - {fileID: 21300000, guid: 0802a61dd8006dd43ae5584a8dfeb306, type: 3}
+  - {fileID: 21300000, guid: b958dfd8ff496ce40986a4a80000e345, type: 3}
+  - {fileID: 21300000, guid: 60b7b2d7447b4c341bf8f51dfbeec49c, type: 3}
+  - {fileID: 21300000, guid: 9c8d91f5237cfc2478ce80b48d4fa8b1, type: 3}
+  - {fileID: 21300000, guid: 314139b0209257440928ccb206fb6b1b, type: 3}
+  - {fileID: 21300000, guid: fa73a3095a17eb143be106576be6da4c, type: 3}
+  - {fileID: 21300000, guid: 67a38ca01cd25bf409b1373e84a30240, type: 3}
+  - {fileID: 21300000, guid: 33c13407c60b32b45ae7d7c529cec071, type: 3}
+  - {fileID: 21300000, guid: ff6cd09cc9be92e4b8efce4e29a87e4d, type: 3}
+  - {fileID: 21300000, guid: 80c1cad0aea4c224a9b170645e6a0b23, type: 3}
+  - {fileID: 21300000, guid: 9c93b29898a515f44889b4b69b5423d7, type: 3}
+  - {fileID: 21300000, guid: f52ca47555c7f1f45ba35275add77c15, type: 3}
+  - {fileID: 21300000, guid: 4a417cb21aad7664ca223ece66512f12, type: 3}
+  - {fileID: 21300000, guid: f83802a90a8530f4cb9c34223bf6cd36, type: 3}
+  - {fileID: 21300000, guid: 8fcadb8e7e0510c449242f6b26f61d61, type: 3}
+  - {fileID: 21300000, guid: 3729949256d7b2342943bcb05779a39a, type: 3}
+  - {fileID: 21300000, guid: be01e280050673b40909e2b7dead66c1, type: 3}
   laneIcons:
   - {fileID: 21300000, guid: db94c7d786ebc2c49bc125b60bcea172, type: 3}
   - {fileID: 21300000, guid: 4db88b7b4af958747a7b6a26feb145a8, type: 3}
@@ -3031,6 +3066,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -300
       objectReference: {fileID: 0}
+    - target: {fileID: 8221861940119352415, guid: 29081a423535c0a408c659d98f8f67fb, type: 3}
+      propertyPath: apiManager
+      value: 
+      objectReference: {fileID: 746266404}
+    - target: {fileID: 8221861940119352415, guid: 29081a423535c0a408c659d98f8f67fb, type: 3}
+      propertyPath: matchManager
+      value: 
+      objectReference: {fileID: 664561638}
     - target: {fileID: 8410363325557662019, guid: 29081a423535c0a408c659d98f8f67fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

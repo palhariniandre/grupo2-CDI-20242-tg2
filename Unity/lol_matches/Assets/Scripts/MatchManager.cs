@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MatchManager : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class MatchManager : MonoBehaviour
     private ApiManager apiManager;
 
     public int SelectedMatch { get => selectedMatch; set => selectedMatch = value; }
-
     void Start()
     {
         // Obter a referência do ApiManager
@@ -26,6 +26,11 @@ public class MatchManager : MonoBehaviour
 
         // Iniciar a rotina para carregar as partidas
         StartCoroutine(LoadMatches());
+    }
+
+    public void OnEnable()
+    {
+        SelectedMatch = 0;
     }
 
     // Método para carregar as partidas
@@ -48,10 +53,17 @@ public class MatchManager : MonoBehaviour
             if (matchEntity != null)
             {
                 matchEntity.MatchData(partida);
+
+                Button matchButton = partidaObj.GetComponent<Button>();
+                if (matchButton != null)
+                {
+                    matchButton.onClick.AddListener(() => GetMatchReference(matchEntity));
+                }
             }
 
             // Adiciona a instância na lista para controle
             matchList.Add(partidaObj);
+
         }
 
         // Verifique se o número de partidas foi corretamente carregado
@@ -71,16 +83,14 @@ public class MatchManager : MonoBehaviour
         matchList.Clear();
     }
 
-    public void SelectMatch()
+    public void GetMatchReference(MatchEntity matchEntity)
     {
-        MatchEntity matchEntity = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
-       
-        SelectedMatch = matchEntity.GetId();
-    }
+        SelectedMatch = matchEntity.GetMatchId();
 
-    private void OnDisable()
-    {
-        SelectedMatch = 0;
+        apiManager.GetComponent<ApiManager>().RecebaPartidaId(SelectedMatch);
+
+        // Exibe no log o ID do match selecionado
+        Debug.Log("Match selecionado: " + SelectedMatch);
     }
 
 }
