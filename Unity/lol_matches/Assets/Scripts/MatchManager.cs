@@ -85,7 +85,7 @@ public class MatchManager : MonoBehaviour
 
     public void GetMatchReference(MatchEntity matchEntity)
     {
-        SelectedMatch = matchEntity.GetMatchId();
+        SelectedMatch = matchEntity.GetMatchIdInEntity();
 
         apiManager.GetComponent<ApiManager>().RecebaPartidaId(SelectedMatch);
 

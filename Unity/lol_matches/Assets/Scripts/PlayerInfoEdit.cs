@@ -45,6 +45,15 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private ApiManager apiManager;
 
     // ativa a janela de selecao de item/campeao
+
+    void Awake()
+    {
+        apiManager = FindObjectOfType<ApiManager>();
+        if (apiManager == null)
+        {
+            Debug.LogError("ApiManager não encontrado na cena.");
+        }
+    }
     public void OpenWindow(GameObject window)
     {
         CloseWindows();
@@ -93,13 +102,36 @@ public class PlayerInfo : MonoBehaviour
         saveButton.interactable = true;
     }
 
-    public void UpdateInfo(PlayerMatchInfo player)
-    {
-    }
-
     public void Save()
     {
-        // função generica para salvar as informacoes
-        saveButton.interactable = false;
+        if (string.IsNullOrEmpty(playerName?.text))
+        {
+            Debug.LogError("Nome do jogador não preenchido.");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(rankName?.text))
+        {
+            Debug.LogError("Rank do jogador não preenchido.");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(laneName?.text))
+        {
+            Debug.LogError("Posição do jogador não preenchida.");
+            return;
+        }
+
+        // Cria um novo Jogador a partir dos valores preenchidos no menu
+        Jogador newJogador = new Jogador
+        {
+            idEquipe = 51,
+            nome = playerName.text,
+            ranque = rankName.text,
+            posicao = laneName.text,
+            equipe = "Gremio"
+        };
+
+        StartCoroutine(apiManager.PostJogador(newJogador));
     }
 }

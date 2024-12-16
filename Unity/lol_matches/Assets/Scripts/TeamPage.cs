@@ -31,6 +31,7 @@ public class TeamPage : MonoBehaviour
         deletePlayer.interactable = isPlayerSelected;
         editPlayer.interactable = isPlayerSelected;
         savePlayer.interactable = isPlayerSelected;
+        addPlayer.interactable = isPlayerSelected;
     }
 
     // seta o player selecionado

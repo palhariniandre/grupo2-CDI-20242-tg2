@@ -13,26 +13,25 @@ public class MatchEntity : MonoBehaviour
     }
 
     // Referências para os componentes de texto
-    public TextMeshProUGUI nomeText;
-    public TextMeshProUGUI idText;
-    public TextMeshProUGUI dataText;
-    public TextMeshProUGUI tempoText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI idText;
+    [SerializeField] private TextMeshProUGUI dataText;
+    [SerializeField] private TextMeshProUGUI timeText;
 
     private int id;
 
     // Método para preencher os dados da partida
-    public void MatchData(Partida partida)
+    public void MatchData(Partida match)
     {
-        nomeText.text = partida.equipeVermelha + " vs " + partida.equipeAzul;
-        id = partida.idPartida;
-        idText.text = "ID: " + id.ToString();
-        dataText.text =  partida.data; // Exemplo de formato: DD/MM/AA
-        tempoText.text = partida.hora; // Exemplo de formato: MM:SS
+        nameText.text = match.equipeVermelha + " vs " + match.equipeAzul;
+        id = match.idPartida;
+        idText.text = "#" + id.ToString();
+        dataText.text = match.data; // Exemplo de formato: DD/MM/AA
+        timeText.text = match.hora; // Exemplo de formato: MM:SS
     }
 
-
     // retorna o id da partida para acessar o resto das informacoes
-    public int GetMatchId()
+    public int GetMatchIdInEntity()
     {
         return id;
     }

@@ -2,20 +2,29 @@ using UnityEngine;
 using TMPro;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine.UI;
+using System;
 
 public class ChampEntity : MonoBehaviour
 {
-    public TextMeshProUGUI champName;
-    public Image champIcon;
-    private int id;
-
-    public void ChampData(Partida partida)
+    // referencia a entidade
+    public event Action<int> OnChampSelected;
+    public void SelectChamp()
     {
-       // champName.text = MatchObjects.Instance.GetChampName(00);
-        //champIcon.sprite = MatchObjects.Instance.GetChampIcon(00);
+        OnChampSelected?.Invoke(id);
     }
 
-    public int GetIdChamp()
+    [SerializeField] private TextMeshProUGUI champName;
+    [SerializeField] private Image champIcon;
+    [SerializeField] private int id;
+
+    public void ChampData(Campeao champ)
+    {
+        id = champ.idCampeao;
+       champName.text = MatchObjects.Instance.GetChampName(id);
+       champIcon.sprite = MatchObjects.Instance.GetChampIcon(champName.text);
+    }
+
+    public int GetChampIdInEntity()
     {
         return id;
     }
