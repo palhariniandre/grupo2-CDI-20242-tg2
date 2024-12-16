@@ -2,24 +2,24 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MainMenuManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [Header("Prefabs na Cena")]
     public GameObject[] prefabs;
 
     [Header("Menu Inicial")]
-    public GameObject mainMenu;
-    public GameObject currentScreen;
-   
-    /*private static MainMenuManager _instance;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject currentScreen;
 
-    public static MainMenuManager Instance
+    private static MenuManager _instance;
+
+    public static MenuManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<MainMenuManager>();
+                _instance = FindObjectOfType<MenuManager>();
 
                 if (_instance == null)
                 {
@@ -30,20 +30,9 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else if (_instance != this)
-        {
-           Destroy(gameObject);
-        }
-    } */
     private void Start()
     {
-        // No in�cio, desativa todos os prefabs e inicia o menu principal
+        // No inicio, desativa todos os prefabs e inicia o menu principal
         DeactiveAll();
         mainMenu.SetActive(true);
         currentScreen = mainMenu;
@@ -56,12 +45,19 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    // m�todo para avan�ar/voltar uma tela
+    // metodo para avancar/voltar uma tela
     public void ChangeScreen(GameObject screen)
     {
         currentScreen.SetActive(false);
         screen.SetActive(true);
         currentScreen = screen;
+    }
+
+    public void MainMenuScreen()
+    {
+        currentScreen.SetActive(false);
+        mainMenu.SetActive(true);
+        currentScreen = mainMenu;
     }
 
     public void ExitGame()
@@ -70,8 +66,4 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    internal void SelectPlayer(PlayerInfo player)
-    {
-        throw new NotImplementedException();
-    }
 }

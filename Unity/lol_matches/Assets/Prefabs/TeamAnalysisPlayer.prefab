@@ -945,13 +945,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2492990722406202299, guid: 3585da843026da746b97889abdcad054, type: 3}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerInfo, Assembly-CSharp
         m_MethodName: ChangeScreen
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4179912588601504859, guid: 44fe1fa97255dc147a697f1e4dbe8838, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2298,9 +2298,9 @@ GameObject:
   - component: {fileID: 3007678191085541885}
   - component: {fileID: 5260688098751342406}
   - component: {fileID: 387028122339474151}
-  - component: {fileID: 1242266173062578793}
+  - component: {fileID: 2803322533976991914}
   m_Layer: 5
-  m_Name: AnalysisPlayer#ID in Teams
+  m_Name: TeamAnalysisPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1242266173062578793
+--- !u!114 &2803322533976991914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2375,7 +2375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6619076732570630046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e91c93aaf0a5d447a819307fca112ad, type: 3}
+  m_Script: {fileID: 11500000, guid: f14151b8a86823e499b0580ea5e0c2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   teamIcon: {fileID: 592231028423163532}
@@ -2386,16 +2386,16 @@ MonoBehaviour:
   rankName: {fileID: 5200119311407526596}
   laneIcon: {fileID: 6468188775412280664}
   laneName: {fileID: 7904215035505987077}
-  championWindow: {fileID: 0}
-  laneWindow: {fileID: 0}
-  rankWindow: {fileID: 0}
-  itemWindow: {fileID: 0}
-  saveButton: {fileID: 0}
-  currentWindow: {fileID: 0}
-  currentItemSlot: {fileID: 0}
-  isAnalyzing: 1
+  itemSlots: []
+  gold: {fileID: 5473588661585508682}
+  kill: {fileID: 8842800677220794258}
+  death: {fileID: 6694775325587434603}
+  assist: {fileID: 284190575560735132}
+  idPlayer: -1
   blueTeamIcon: {fileID: 21300000, guid: bccd406b58b2a5541b2861f8f9547b83, type: 3}
   redTeamIcon: {fileID: 21300000, guid: c864c11599a7c4846bc99c7784b7b114, type: 3}
+  apiManager: {fileID: 0}
+  matchPage: {fileID: 0}
 --- !u!1 &7978161549533558581
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,10 +3157,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5016250627274540581, guid: 135dc7d3c4bd8df4c88b332be4db45d5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1242266173062578793}
     - target: {fileID: 5016250627274540581, guid: 135dc7d3c4bd8df4c88b332be4db45d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

@@ -9,6 +9,8 @@ public class TeamManager : MonoBehaviour
     public Transform contentPanel;
     public GameObject teamPrefab;
 
+    [SerializeField] private GameObject analyseScreen;
+
     [Header("Entity")]
     [SerializeField] private GameObject selectedTeam;
 
@@ -66,5 +68,20 @@ public class TeamManager : MonoBehaviour
 
         // Limpa a lista
         teamList.Clear();
+    }
+
+    public void AnalyseTeam()
+    {
+        MenuManager.Instance.ChangeScreen(analyseScreen);
+    }
+
+    public void AddTeam()
+    {
+
+    }
+
+    public void DeleteTeam()
+    {
+
     }
 }

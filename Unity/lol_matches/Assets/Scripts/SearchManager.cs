@@ -268,19 +268,10 @@ public class SearchManager : MonoBehaviour
 
     }
 
-
-    public void BackMenu(GameObject screen)
-    {
-        //MainMenuManager.Instance.ChangeScreen(screen);
-        Debug.Log("volta");
-    }
-
-
     private void OnDisable()
     {
         SelectedEntity = -1;
         selectedEntity = null;
     }
-
 }
 

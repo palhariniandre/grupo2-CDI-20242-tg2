@@ -17,6 +17,10 @@ public class MatchManager : MonoBehaviour
     private List<GameObject> matchList = new List<GameObject>();
     private ApiManager apiManager;
 
+    [SerializeField] private MatchPage analyseScreen;
+    [SerializeField] private MatchPage addScreen;
+    [SerializeField] private GameObject deleteScreen;
+
     public int SelectedMatch { get => selectedMatch; set => selectedMatch = value; }
 
     void Start()
@@ -76,6 +80,27 @@ public class MatchManager : MonoBehaviour
         MatchEntity matchEntity = EventSystem.current.currentSelectedGameObject.GetComponent<MatchEntity>();
        
         SelectedMatch = matchEntity.GetIdMatch();
+    }
+
+    public void AnalyseMatch()
+    {
+        MenuManager.Instance.ChangeScreen(analyseScreen.gameObject);
+        analyseScreen.UpdateMatchInfo(selectedMatch);
+    }
+
+    public void AddMatch()
+    {
+        MenuManager.Instance.ChangeScreen(addScreen.gameObject);
+    }
+
+    public void DeleteMatch()
+    {
+        MenuManager.Instance.ChangeScreen(deleteScreen);
+    }
+
+    public void Return()
+    {
+        MenuManager.Instance.MainMenuScreen();
     }
 
     private void OnDisable()

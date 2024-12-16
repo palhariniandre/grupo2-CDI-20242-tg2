@@ -359,7 +359,8 @@ GameObject:
   - component: {fileID: 803594778450526333}
   - component: {fileID: 3131672607672305574}
   - component: {fileID: 4030506869924736519}
-  - component: {fileID: 2492990722406202299}
+  - component: {fileID: 4051929533313932768}
+  - component: {fileID: 3488832509374638126}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -374,7 +375,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4258474095807388371}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -426,7 +427,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2492990722406202299
+--- !u!114 &4051929533313932768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,9 +439,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7152c95ae692e4eaa4b5349b7eaaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs: []
-  mainMenu: {fileID: 0}
-  currentScreen: {fileID: 0}
+  prefabs:
+  - {fileID: 4258474095807388371}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  mainMenu: {fileID: 4258474095807388371}
+  previousScreen: {fileID: 0}
+  currentScreen: {fileID: 4258474095807388371}
+--- !u!95 &3488832509374638126
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258474095807388371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bec312a73874c134f8eec6f6c410274a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6291500762655174240
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,31 +815,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2492990722406202299}
+      objectReference: {fileID: 4051929533313932768}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AtivarPrefab3
+      value: ChangeScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3966811865344995064, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_Name
       value: "Bot\xE3o Menu Principal (3)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402858045719090361, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_text
+      value: BUSCAR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -933,31 +976,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2492990722406202299}
+      objectReference: {fileID: 4051929533313932768}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AtivarPrefab1
+      value: ChangeScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3966811865344995064, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_Name
       value: "Bot\xE3o Menu Principal (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402858045719090361, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_text
+      value: EQUIPES
       objectReference: {fileID: 0}
     - target: {fileID: 4402858045719090361, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_margin.x
@@ -1094,31 +1145,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2492990722406202299}
+      objectReference: {fileID: 4051929533313932768}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AtivarPrefab2
+      value: ChangeScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3581573360220324231, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3966811865344995064, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
       propertyPath: m_Name
       value: "Bot\xE3o Menu Principal (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402858045719090361, guid: 0098cedf92753e543bf6af57bbf23681, type: 3}
+      propertyPath: m_text
+      value: PARTIDAS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1164,7 +1223,7 @@ PrefabInstance:
     - target: {fileID: 1943387794176450281, guid: 5b9045a254441894db1cfb27e12558d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2492990722406202299}
+      objectReference: {fileID: 4051929533313932768}
     - target: {fileID: 1943387794176450281, guid: 5b9045a254441894db1cfb27e12558d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1175,7 +1234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943387794176450281, guid: 5b9045a254441894db1cfb27e12558d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1943387794176450281, guid: 5b9045a254441894db1cfb27e12558d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

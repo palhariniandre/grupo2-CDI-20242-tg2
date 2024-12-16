@@ -44,6 +44,8 @@ public class PlayerInfo : MonoBehaviour
     [Header("References")]
     [SerializeField] private ApiManager apiManager;
 
+    [SerializeField] private GameObject previousScreen;
+
     // ativa a janela de selecao de item/campeao
     public void OpenWindow(GameObject window)
     {
@@ -96,10 +98,14 @@ public class PlayerInfo : MonoBehaviour
     public void UpdateInfo(PlayerMatchInfo player)
     {
     }
-
     public void Save()
     {
         // função generica para salvar as informacoes
         saveButton.interactable = false;
+    }
+
+    public void Return()
+    {
+        MenuManager.Instance.ChangeScreen(previousScreen);
     }
 }

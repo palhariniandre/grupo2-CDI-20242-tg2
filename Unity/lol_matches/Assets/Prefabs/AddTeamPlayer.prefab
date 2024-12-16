@@ -905,10 +905,10 @@ RectTransform:
   - {fileID: 7153857480796335085}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 205, y: -35}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7435441511922240087
 CanvasRenderer:
@@ -1766,10 +1766,10 @@ RectTransform:
   - {fileID: 7184330929940023794}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 205, y: -115}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2321988940681561283
 CanvasRenderer:
@@ -2279,7 +2279,7 @@ GameObject:
   - component: {fileID: 735359018572889815}
   - component: {fileID: 7108348031634220417}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Fundo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4539,13 +4539,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2492990722406202299, guid: 3585da843026da746b97889abdcad054, type: 3}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerInfo, Assembly-CSharp
         m_MethodName: ChangeScreen
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8922054551110245311, guid: b1837154162ffdf46936009dea827f2f, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6549,7 +6549,7 @@ GameObject:
   - component: {fileID: 4471077081362194637}
   - component: {fileID: 1916231123040505214}
   m_Layer: 5
-  m_Name: Swain
+  m_Name: Thresh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8647,10 +8647,10 @@ RectTransform:
   - {fileID: 7563536521930803419}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45, y: -115}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6977306022578937166
 CanvasRenderer:
@@ -11339,10 +11339,10 @@ RectTransform:
   - {fileID: 8298997007470964842}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -35}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6665198694604185320
 CanvasRenderer:
@@ -12230,12 +12230,12 @@ GameObject:
   - component: {fileID: 387028122339474151}
   - component: {fileID: 1242266173062578793}
   m_Layer: 5
-  m_Name: AddPlayer#IDMatch
+  m_Name: AddTeamPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3007678191085541885
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12320,6 +12320,11 @@ MonoBehaviour:
   rankName: {fileID: 5200119311407526596}
   laneIcon: {fileID: 6468188775412280664}
   laneName: {fileID: 7904215035505987077}
+  itemSlots: []
+  gold: {fileID: 0}
+  kill: {fileID: 0}
+  death: {fileID: 0}
+  assist: {fileID: 0}
   championWindow: {fileID: 7357429866300921996}
   laneWindow: {fileID: 8223771379294983264}
   rankWindow: {fileID: 8038994905561647397}
@@ -12330,6 +12335,8 @@ MonoBehaviour:
   isAnalyzing: 0
   blueTeamIcon: {fileID: 21300000, guid: bccd406b58b2a5541b2861f8f9547b83, type: 3}
   redTeamIcon: {fileID: 21300000, guid: c864c11599a7c4846bc99c7784b7b114, type: 3}
+  apiManager: {fileID: 0}
+  previousScreen: {fileID: 0}
 --- !u!1 &6647706592530903687
 GameObject:
   m_ObjectHideFlags: 0
@@ -17017,7 +17024,6 @@ GameObject:
   - component: {fileID: 8619600399561208032}
   - component: {fileID: 1869267113599778052}
   - component: {fileID: 6146256064917076045}
-  - component: {fileID: 5004128773537423372}
   - component: {fileID: 8437320343950732503}
   m_Layer: 5
   m_Name: Slot 1
@@ -17041,10 +17047,10 @@ RectTransform:
   - {fileID: 3796108267858462559}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45, y: -35}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8619600399561208032
 CanvasRenderer:
@@ -17140,20 +17146,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5004128773537423372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8564157861915881996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8e9c261c7c02c4da0f06dfd7f4b140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Name
-  elementIcon: {fileID: 0}
 --- !u!114 &8437320343950732503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17296,9 +17288,9 @@ RectTransform:
   - {fileID: 6410169575899145579}
   m_Father: {fileID: 3690829733832867422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1600, y: -325}
   m_SizeDelta: {x: 375, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5325067261672012997
@@ -17535,9 +17527,9 @@ RectTransform:
   - {fileID: 4781155283986730646}
   m_Father: {fileID: 3690829733832867422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -325}
   m_SizeDelta: {x: 375, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8723849407542377021
@@ -18431,10 +18423,10 @@ RectTransform:
   - {fileID: 6316184033378972850}
   m_Father: {fileID: 4781155283986730646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -115}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2429597245348545745
 CanvasRenderer:
@@ -18576,7 +18568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_AnchorMin.x
@@ -18584,7 +18576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_SizeDelta.x
@@ -18620,11 +18612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -325
       objectReference: {fileID: 0}
     - target: {fileID: 3755685145490217621, guid: 1e8e0fe7582a2094991ccc1a535c53ae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -14,11 +14,6 @@ public class TeamPage : MonoBehaviour
     [SerializeField] private Button savePlayer;
     [SerializeField] private Button addPlayer;
 
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -48,8 +43,22 @@ public class TeamPage : MonoBehaviour
     }
 
     // deleta os dados do player selecionado
+       public void SavePlayer()
+    {
+
+    }
+    
     public void DeletePlayer()
     {
         CleanSelection();
+    }
+
+    public void EditPlayer()
+    {
+
+    }
+    public void AddPlayer()
+    {
+
     }
 }
