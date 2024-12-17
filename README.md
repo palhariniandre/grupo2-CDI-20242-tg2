@@ -24,4 +24,6 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
 
 ### TERMINAR TRABALHO?
 - [ ] Terminado
+
+      
 **Nota**: Este trabalho deve ser estruturado para demonstrar a aplicabilidade prática dos conceitos aprendidos, promovendo uma integração sólida entre banco de dados e desenvolvimento de aplicações.
