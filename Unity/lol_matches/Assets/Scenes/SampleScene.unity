@@ -1984,7 +1984,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fd440d5a73183d343b61cead0a0f07cc, type: 3}
   - {fileID: 21300000, guid: 8ae1587d8b621fe429f903e984579a64, type: 3}
   - {fileID: 21300000, guid: a9735dd56e77df142a51e3b65b1e09da, type: 3}
-  rankIcons: []
+  rankIcons:
+  - {fileID: 21300000, guid: c10bb07d5d777da4697c36b10b9e10f6, type: 3}
+  - {fileID: 21300000, guid: 8cf43bfe29b41d54aa9a57b85cc7f645, type: 3}
+  - {fileID: 21300000, guid: 426d16561ffd2dd43a2ea25573b5e2fa, type: 3}
+  - {fileID: 21300000, guid: 7a4fd8c719e94594ea078dfbc2dbe5c7, type: 3}
+  - {fileID: 21300000, guid: d6c79b86ce0112d49909ace8c8087b07, type: 3}
+  - {fileID: 21300000, guid: 50f028a5dd1e4ed458b3365a0df0a970, type: 3}
+  - {fileID: 21300000, guid: e606af8898068014f9c95354448ca069, type: 3}
+  - {fileID: 21300000, guid: aeef095a4a1ff354fb869f91a6b50381, type: 3}
+  - {fileID: 21300000, guid: 829eb8e8aa3ed0940a437478ef96f058, type: 3}
+  - {fileID: 21300000, guid: ea42a91ea23a7c94ba23569ae70a5c18, type: 3}
 --- !u!1001 &855485480
 PrefabInstance:
   m_ObjectHideFlags: 0
