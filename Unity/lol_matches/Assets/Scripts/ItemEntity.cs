@@ -1,20 +1,29 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemEntity : MonoBehaviour
 {
-    public TextMeshProUGUI itemName;
-    public Image itemIcon;
-    private int id;
-
-    public void ItemData(string name, Sprite icon)
+    // referencia a entidade
+    public event Action<int> OnItemSelected;
+    public void SelectItem()
     {
-        itemName.text = name;
-        itemIcon.sprite = icon;
+        OnItemSelected?.Invoke(id);
     }
 
-    public int GetIdItem()
+    [SerializeField] private TextMeshProUGUI itemName;
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private int id;
+
+    public void ItemData(Item item)
+    {
+        id = item.idItem;
+        itemName.text = item.nome;
+        itemIcon.sprite = MatchObjects.Instance.GetItemIcon(id);
+    }
+
+    public int GetItemIdInEntity()
     {
         return id;
     }

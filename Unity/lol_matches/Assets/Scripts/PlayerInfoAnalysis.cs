@@ -40,8 +40,7 @@ public class PlayerInfoAnalysis : MonoBehaviour
 
     public void UpdatePlayerAnalysisInfo(PlayerMatchInfo player)
     {
-        //apiManager = FindObjectOfType<ApiManager>();
-        idPlayer = player.GetPlayerId();
+        idPlayer = player.GetPlayerIdInMatch();
 
         bool isRed = apiManager.ListaJogadoresVermelhos.Any(info => info.idUsuario == idPlayer);
         bool isBlue = apiManager.ListaJogadoresAzul.Any(info => info.idUsuario == idPlayer);
@@ -56,41 +55,29 @@ public class PlayerInfoAnalysis : MonoBehaviour
             teamIcon.sprite = blueTeamIcon;
             infoPlayer = apiManager.ListaJogadoresAzul.Find(info => info.idUsuario == idPlayer);
         }
-        else
-        {
-            Jogador jogador = apiManager.listaJogadores.Find(info => info.idUsuario == idPlayer);
 
-            playerName.text = jogador.nome;
-            rankName.text = jogador.ranque;
-            laneName.text = jogador.posicao;
-            //championName.text = MatchObjects.Instance.GetChampName(67);
-            //championIcon.sprite = MatchObjects.Instance.GetChampIcon(101);
-            Debug.LogError("nenhuma referência");
+        playerName.text = infoPlayer.nome;
+
+        championIcon.sprite = MatchObjects.Instance.GetChampIcon(infoPlayer.nomeCampeao);
+        championName.text = infoPlayer.nomeCampeao;
+
+        //rankIcon.sprite = MatchObjects.Instance.GetRankIcon(player.ranque);
+        rankName.text = infoPlayer.ranque;
+
+        laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(infoPlayer.posicao);
+        laneName.text = infoPlayer.posicao;
+
+        // items
+        for (int i = 0; i < 6; i++)
+        {
+            Debug.Log(i);
+            itemSlots[i].sprite = MatchObjects.Instance.GetItemIcon(player.GetPlayerItemInMatchId(i));
         }
 
-        UpdateInterface(infoPlayer);
+        gold.text = infoPlayer.ouroAdquirido.ToString();
+        kill.text = infoPlayer.kills.ToString();
+        death.text = infoPlayer.deaths.ToString();
+        assist.text = infoPlayer.assists.ToString();
 
-    }
-    private void UpdateInterface(JogadorPartida player)
-    {
-        playerName.text = player.nome;
-
-        championIcon.sprite = MatchObjects.Instance.GetChampIcon(player.nomeCampeao);
-        championName.text = player.nomeCampeao;
-
-        rankIcon.sprite = MatchObjects.Instance.GetRankIcon(player.ranque);
-        rankName.text = player.ranque;
-
-        laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(player.posicao);
-        laneName.text = player.posicao;
-
-        //itemSlots;
-
-        gold.text = player.ouroAdquirido.ToString();
-        kill.text = player.kills.ToString();
-        death.text = player.deaths.ToString();
-        assist.text = player.assists.ToString();
-
-        Debug.Log("oiiiii");
     }
 }

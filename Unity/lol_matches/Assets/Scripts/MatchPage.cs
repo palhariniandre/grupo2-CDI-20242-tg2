@@ -42,30 +42,48 @@ public class MatchPage : MonoBehaviour
     [Header("References")]
     [SerializeField] private ApiManager apiManager;
     [SerializeField] private MatchManager matchManager;
-    [SerializeField] private MainMenuManager mainMenu;
+    [SerializeField] private List<PlayerMatchInfo> playerMatchInfos = new List<PlayerMatchInfo>();
+
     public PlayerMatchInfo SelectedPlayer { get => selectedPlayer; set => selectedPlayer = value; }
 
     // atualiza todas as referencia de acordo com o id da partida selecionada no feed
 
-    private void OnDisable()
+    void Start()
     {
-        isPlayerSelected = false;
-        analyse.interactable = false;
+        apiManager = FindObjectOfType<ApiManager>();
+
+        // Procura todos os objetos do tipo PlayerMatchInfo na cena
+        playerMatchInfos.AddRange(FindObjectsOfType<PlayerMatchInfo>());
+
+        // Adiciona um listener para o evento de seleção em cada PlayerMatchInfo
+        foreach (var playerInfo in playerMatchInfos)
+        {
+            Button button = playerInfo.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => GetPlayerInMatchReference(playerInfo));
+            }
+        }
     }
 
     void OnEnable()
     {
         SelectedPlayer = null;
+        isPlayerSelected = false;
+        analyse.interactable = false;
 
-        apiManager = FindObjectOfType<ApiManager>();
+        if (matchManager != null)
+        {
+            UpdateMatchInfo(matchManager.SelectedMatch);
+            Debug.Log("atualiza pagina" + matchManager.SelectedMatch);
+        }
 
-        UpdateMatchInfo(matchManager.SelectedMatch);
     }
 
     // atualiza as informacoes da partida conforme a partida selecionada
     public void UpdateMatchInfo(int idMatch)
     {
-        apiManager.RecebaPartidaId(matchManager.SelectedMatch);
+        //apiManager.RecebaPartidaId(matchManager.SelectedMatch);
         // Encontre a partida com o id correspondente
         var partida = apiManager.listaPartidas.Find(p => p.idPartida == idMatch);
         if (partida != null)
@@ -74,7 +92,7 @@ public class MatchPage : MonoBehaviour
             redTeamName.text = partida.equipeVermelha;
             blueTeamName.text = partida.equipeAzul;
 
-            matchId.text = "ID: " + partida.idPartida.ToString();
+            matchId.text = "#" + partida.idPartida.ToString();
             matchYear.text = partida.data;
             matchPhase.text = partida.etapa;
             matchHour.text = partida.hora;
@@ -84,10 +102,12 @@ public class MatchPage : MonoBehaviour
             // Atualiza os jogadores das equipes
             foreach (var player in apiManager.ListaJogadoresAzul)
             {
-               
-                    UpdateBlueTeam(player);
-               
-                    UpdateRedTeam(player);
+                UpdateBlueTeam(player);
+            }
+
+            foreach (var player in apiManager.ListaJogadoresVermelhos)
+            {
+                UpdateRedTeam(player);
             }
         }
         else
@@ -104,19 +124,19 @@ public class MatchPage : MonoBehaviour
         switch (player.posicao)
         {
             case "Top":
-                topBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                topBlue.UpdateMatchData(player);
                 break;
             case "Jungle":
-                jgBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                jgBlue.UpdateMatchData(player);
                 break;
             case "Mid":
-                midBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                midBlue.UpdateMatchData(player);
                 break;
             case "ADC":
-                adcBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                adcBlue.UpdateMatchData(player);
                 break;
             case "Support":
-                supBlue.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                supBlue.UpdateMatchData(player);
                 break;
         }
     }
@@ -127,24 +147,24 @@ public class MatchPage : MonoBehaviour
         switch (player.posicao)
         {
             case "Top":
-                topRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                topRed.UpdateMatchData(player);
                 break;
             case "Jungle":
-                jgRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                jgRed.UpdateMatchData(player);
                 break;
             case "Mid":
-                midRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                midRed.UpdateMatchData(player);
                 break;
             case "ADC":
-                adcRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                adcRed.UpdateMatchData(player);
                 break;
             case "Support":
-                supRed.UpdateData(player.posicao, player.nome, random.Next(0, 20), random.Next(0, 20), random.Next(0, 20), random.Next(0, 300), player.idUsuario);
+                supRed.UpdateMatchData(player);
                 break;
         }
     }
 
-    public void SelectPlayer(PlayerMatchInfo player)
+    public void GetPlayerInMatchReference(PlayerMatchInfo player)
     {
         analyse.interactable = true;
         SelectedPlayer = player;

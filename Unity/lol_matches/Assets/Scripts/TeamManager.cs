@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TeamManager : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class TeamManager : MonoBehaviour
 
     [Header("Entity")]
     [SerializeField] private GameObject selectedTeam;
+    [SerializeField] private int entityId;
 
     [Header("Control Variables")]
     private List<GameObject> teamList = new List<GameObject>();
     private List<int> excludedTeamIds = new List<int>(); // Lista para armazenar os IDs das equipes excluídas
     private ApiManager apiManager;
+
+    public int EntityId { get => entityId; set => entityId = value; }
 
     void Start()
     {
@@ -53,17 +57,30 @@ public class TeamManager : MonoBehaviour
             if (teamEntity != null)
             {
                 teamEntity.DataTeam(team);
+
+                Button teamButton = teamObj.GetComponent<Button>();
+                if (teamButton != null)
+                {
+                    teamButton.onClick.AddListener(() => GetEntityId(teamEntity));
+                }
+
+            }
+
                 teamList.Add(teamObj);
             }
 
             // Adiciona a instância na lista para controle
-        }
+       // }
 
         // Verifique se o número de equipes foi corretamente carregado
         Debug.Log("Número de equipes carregadas no menu: " + teamList.Count);
     }
 
-
+    private void GetEntityId(TeamEntity team)
+    {
+        EntityId = team.GetTeamIdInEntity();
+        selectedTeam = team.gameObject;
+    }
     // Método para limpar as instâncias de partidas
     private void CleanTeams()
     {
@@ -80,28 +97,29 @@ public class TeamManager : MonoBehaviour
     public void DeleteSelectedTeam()
     {
         if (selectedTeam != null)
-        {
-            // Obtém o componente TeamEntity associado ao objeto selecionado
-            TeamEntity teamEntity = selectedTeam.GetComponent<TeamEntity>();
+        //{
+        // Obtém o componente TeamEntity associado ao objeto selecionado
+        //TeamEntity teamEntity = selectedTeam.GetComponent<TeamEntity>();
 
-            if (teamEntity != null)
-            {
-                int teamId = teamEntity.TeamId; // Obtém o ID da equipe
-                Debug.Log($"Deletando equipe com ID: {teamId}");
+        // if (teamEntity != null)
+        //{
+                //int teamId = team.GetTeamIdInEntity(); //teamEntity.GetTeamIdInEntity(); // Obtém o ID da equipe
+                Debug.Log($"Deletando equipe com ID: {EntityId}");
 
                 // Verifica se a API Manager está disponível antes de chamar o método
                 if (apiManager != null)
                 {
-                    StartCoroutine(DeleteAndReloadTeams(teamId));
+                    StartCoroutine(DeleteAndReloadTeams(EntityId));
                 }
                 else
+                {
                     Debug.LogError("ApiManager não está disponível.");
-            }
-            else
-                Debug.LogError("O GameObject selecionado não contém o componente TeamEntity.");
-        }
-        else
-            Debug.LogError("Nenhuma equipe selecionada para deletar.");
+                }
+            //else
+                //Debug.LogError("O GameObject selecionado não contém o componente TeamEntity.");
+        //}
+        //else
+            //Debug.LogError("Nenhuma equipe selecionada para deletar.");
     }
 
     private IEnumerator DeleteAndReloadTeams(int teamId)
@@ -132,9 +150,6 @@ public class TeamManager : MonoBehaviour
         yield return StartCoroutine(LoadTeams());
     }
 
-
-
-
     // Método para selecionar uma equipe (usado quando um botão é clicado)
     public void SelectTeam(GameObject team)
     {
@@ -149,7 +164,7 @@ public class TeamManager : MonoBehaviour
             if (teamEntity != null)
             {
                 // Acessa o ID da equipe através da propriedade TeamId
-                int teamId = teamEntity.TeamId;
+                int teamId = teamEntity.GetTeamIdInEntity();
                 Debug.Log($"Equipe selecionada com ID: {teamId}");
             }
             else

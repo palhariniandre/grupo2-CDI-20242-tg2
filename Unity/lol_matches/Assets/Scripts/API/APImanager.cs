@@ -223,6 +223,7 @@ public class ApiManager : MonoBehaviour
                 ListaJogadoresAzul.Clear();
                 ListaJogadoresAzul = jogadoresAzul; // Popula a lista de jogadores da equipe azul
                 Debug.Log($"Jogadores da equipe azul carregados: {ListaJogadoresAzul.Count}");
+
             }
             catch (System.Exception e)
             {
@@ -244,7 +245,8 @@ public class ApiManager : MonoBehaviour
             {
                 var jogadoresVermelhos = JsonConvert.DeserializeObject<List<JogadorPartida>>(wwwVermelho.downloadHandler.text);
                 ListaJogadoresVermelhos.Clear();
-                ListaJogadoresVermelhos = jogadoresVermelhos; 
+                ListaJogadoresVermelhos = jogadoresVermelhos;
+
                 Debug.Log($"Jogadores da equipe vermelha carregados: {ListaJogadoresVermelhos.Count}");
             }
             catch (System.Exception e)
