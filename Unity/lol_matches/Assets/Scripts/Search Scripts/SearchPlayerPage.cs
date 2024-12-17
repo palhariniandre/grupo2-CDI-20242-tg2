@@ -28,7 +28,14 @@ public class SearchPlayerPage : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdatePlayerInfo(searchManager.EntityId);
+        if(searchManager.EntityId != 0)
+        {
+            UpdatePlayerInfo(searchManager.EntityId);
+        }
+        else
+        {
+            Debug.Log("nada selecionado");
+        }
     }
 
     public void UpdatePlayerInfo(int id)
@@ -36,11 +43,11 @@ public class SearchPlayerPage : MonoBehaviour
         var player = apiManager.listaJogadores.Find(p => p.idUsuario == id);
 
         playerName.text = player.nome;
-        
-        //kill.text = player.
-        //death.text = player.
-        //assist.text = player.
-        //gold.text = player.
+
+        kill.text = player.mediaKills.ToString();
+        death.text = player.mediaDeaths.ToString();
+        assist.text = player.mediaAssists.ToString();
+        gold.text = player.mediaOuroAdquirido.ToString();
 
         laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(player.posicao);
         laneText.text = player.posicao;

@@ -6,12 +6,11 @@ using UnityEngine.UI;
 public class SearchManager : MonoBehaviour
 {
     [Header("Analysis Screens")]
-    [SerializeField] private Button analysisButton;
-    [SerializeField] private GameObject itemAnalysis;
-    [SerializeField] private GameObject champAnalysis;
-    [SerializeField] private GameObject playerAnalysis;
-    [SerializeField] private GameObject teamAnalysis;
-    [SerializeField] private GameObject matchAnalysis;
+    [SerializeField] private Button itemButton;
+    [SerializeField] private Button champButton;
+    [SerializeField] private Button playerButton;
+    [SerializeField] private Button teamButton;
+    [SerializeField] private Button matchButton;
 
     [Header("Objects")]
     [SerializeField] private Transform contentPanel;
@@ -41,6 +40,7 @@ public class SearchManager : MonoBehaviour
     {
         SelectedEntity = null;
         CleanEntities();
+        DeactivateButtons();
     }
 
     private void CleanEntities()
@@ -77,6 +77,7 @@ public class SearchManager : MonoBehaviour
                 Button matchButton = obj.GetComponent<Button>();
                 if (matchButton != null)
                 {
+                    matchButton.onClick.RemoveAllListeners();
                     matchButton.onClick.AddListener(() => GetReferenceInEntity(matchEntity.gameObject));
                 }
             }
@@ -110,6 +111,7 @@ public class SearchManager : MonoBehaviour
                 Button itemButton = obj.GetComponent<Button>();
                 if (itemButton != null)
                 {
+                    itemButton.onClick.RemoveAllListeners();
                     itemButton.onClick.AddListener(() => GetReferenceInEntity(itemEntity.gameObject));
                 }
 
@@ -147,6 +149,7 @@ public class SearchManager : MonoBehaviour
             Button playerButton = obj.GetComponent<Button>();
             if (playerButton != null)
             {
+                playerButton.onClick.RemoveAllListeners();
                 playerButton.onClick.AddListener(() => GetReferenceInEntity(playerEntity.gameObject));
             }
 
@@ -178,6 +181,7 @@ public class SearchManager : MonoBehaviour
                 Button champButton = obj.GetComponent<Button>();
                 if (champButton != null)
                 {
+                    champButton.onClick.RemoveAllListeners();
                     champButton.onClick.AddListener(() => GetReferenceInEntity(champEntity.gameObject));
                 }
 
@@ -215,6 +219,7 @@ public class SearchManager : MonoBehaviour
                 Button teamButton = obj.GetComponent<Button>();
                 if (teamButton != null)
                 {
+                    teamButton.onClick.RemoveAllListeners();
                     teamButton.onClick.AddListener(() => GetReferenceInEntity(teamEntity.gameObject));
                 }
 
@@ -231,23 +236,28 @@ public class SearchManager : MonoBehaviour
         {
             case "Item":
                 EntityId = entity.GetComponent<ItemEntity>().GetItemIdInEntity();
-                ChangeAnalysisScreen(itemAnalysis);
+                DeactivateButtons();
+                itemButton.interactable = true;
                 break;
             case "Champ":
                 EntityId = entity.GetComponent<ChampEntity>().GetChampIdInEntity();
-                ChangeAnalysisScreen(champAnalysis);
+                DeactivateButtons();
+                champButton.interactable = true;
                 break;
             case "Player":
                 EntityId = entity.GetComponent<PlayerEntity>().GetPlayerIdInEntity();
-                ChangeAnalysisScreen(playerAnalysis);
+                DeactivateButtons();
+                playerButton.interactable = true;
                 break;
             case "Team":
                 EntityId = entity.GetComponent<TeamEntity>().GetTeamIdInEntity();
-                ChangeAnalysisScreen(teamAnalysis);
+                DeactivateButtons();
+                teamButton.interactable = true;
                 break;
             case "Match":
                 EntityId = entity.GetComponent<MatchEntity>().GetMatchIdInEntity();
-                ChangeAnalysisScreen(matchAnalysis);
+                DeactivateButtons();
+                matchButton.interactable = true;
                 break;
         }
 
@@ -255,10 +265,13 @@ public class SearchManager : MonoBehaviour
 
     }
 
-    private void ChangeAnalysisScreen(GameObject screen)
+    private void DeactivateButtons()
     {
-        analysisButton.onClick.RemoveAllListeners();
-        analysisButton.onClick.AddListener(() => mainMenu.ChangeScreen(screen));
+        itemButton.interactable = false;
+        champButton.interactable = false;
+        playerButton.interactable = false;
+        teamButton.interactable = false;
+        matchButton.interactable = false;
     }
 
     private void OnDisable()

@@ -16,7 +16,7 @@ public class TeamEntity : MonoBehaviour
     [SerializeField] private TextMeshProUGUI idText;
     [SerializeField] private int id;
 
-    // Método para preencher os dados da partida
+    // Método para preencher os dados da equipe
     public void DataTeam(Equipe team)
     {
         id = team.idEquipe;

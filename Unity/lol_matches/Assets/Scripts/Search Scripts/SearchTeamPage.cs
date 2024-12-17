@@ -50,15 +50,30 @@ public class SearchTeamInfo
     [SerializeField] private Image rankIcon;
     [SerializeField] private TextMeshProUGUI rankText;
 
+    [SerializeField] private Image laneIcon;
+    [SerializeField] private TextMeshProUGUI laneText;
+    
     public void UpdatePlayerInfo(Jogador player)
     {
-       // nickPlayer.text = player;
-        //killMedia;
-        //deathMedia;
-       // assistMedia;
-        //goldMedia;
+        Debug.Log(player.nome);
+
+        nickPlayer.text = player.nome;
+        killMedia.text = player.mediaKills.ToString();
+        deathMedia.text = player.mediaDeaths.ToString();
+        assistMedia.text = player.mediaAssists.ToString();
+        goldMedia.text = player.mediaOuroAdquirido.ToString();
 
         rankIcon.sprite = MatchObjects.Instance.GetRankIcon(player.ranque);
         rankText.text = player.ranque;
     }
+
+    public void UpdateLaneInfo(Jogador player)
+    {
+       if(laneIcon != null || laneText != null)
+        {
+            laneIcon.sprite = MatchObjects.Instance.GetLaneIcon(player.posicao);
+            laneText.text = player.posicao;
+        }
+    }
+
 }
