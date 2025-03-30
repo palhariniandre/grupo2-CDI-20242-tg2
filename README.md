@@ -21,9 +21,5 @@ Este repositório foi criado com o objetivo de colaborar no desenvolvimento do t
   - [X] **RQ6**: Criar pelo menos duas visões (views) que consolidem informações úteis e frequentemente consultadas.
   - [X] **RQ7**: Possuir interface gráfica (livre escolha entre desktop, web ou mobile).
   - [X] **RQ8**: Não utilizar ORM (Object Relational Mapping).
-
-### TERMINAR TRABALHO?
-- [ ] Terminado
-
       
 **Nota**: Este trabalho deve ser estruturado para demonstrar a aplicabilidade prática dos conceitos aprendidos, promovendo uma integração sólida entre banco de dados e desenvolvimento de aplicações.
