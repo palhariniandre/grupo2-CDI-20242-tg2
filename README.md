@@ -1,25 +1,42 @@
-# Trabalho de Ciência de Dados
+# 🎮 LOL Matches
 
-Este repositório foi criado com o objetivo de colaborar no desenvolvimento do trabalho final da disciplina de Ciência de Dados.
+> Repositório criado como parte do trabalho final da disciplina **Ciência de Dados (UFSM00279)** – UFSM.
 
-## To-Do List
+## 🧠 Sobre o projeto
 
-### Banco de Dados
-- [X] Criar o banco de dados no SGBD MariaDB a partir dos diagramas ER.
+**LOL Matches** é um programa feito pra analisar dados de partidas do *League of Legends*.  
+A ideia surgiu pensando em como o jogo tem MUITA informação — stats, personagens, itens, objetivos... tudo isso pode ser usado pra entender melhor o que rolou numa partida.
 
-### Layout e Front-End
-- [X] Desenvolver o layout da aplicação em Figma.
-- [X] Implementar o layout em ~HTML, CSS e JavaScript~ Unity.
+Com o LOL Matches, dá pra:
 
-### Back-End e Integração
-  - Desenvolver a aplicação para integração entre banco de dados, front-end e back-end, seguindo os requisitos:
-  - [X] **RQ1**: Inserir, atualizar e deletar dados de todas as entidades.
-  - [X] **RQ2**: Listar dados de todas as entidades.
-  - [X] **RQ3**: Realizar operações de soma, contagem, média, máximo e mínimo para todas as entidades.
-  - [X] **RQ4**: Implementar consultas SQL utilizando junções para combinar dados de pelo menos duas tabelas relacionadas.
-  - [X] **RQ5**: Implementar consultas que combinem funções de agregação com a cláusula `GROUP BY`.
-  - [X] **RQ6**: Criar pelo menos duas visões (views) que consolidem informações úteis e frequentemente consultadas.
-  - [X] **RQ7**: Possuir interface gráfica (livre escolha entre desktop, web ou mobile).
-  - [X] **RQ8**: Não utilizar ORM (Object Relational Mapping).
-      
-**Nota**: Este trabalho deve ser estruturado para demonstrar a aplicabilidade prática dos conceitos aprendidos, promovendo uma integração sólida entre banco de dados e desenvolvimento de aplicações.
+- Criar e editar **equipes** e **jogadores**;
+- Analisar dados detalhados de cada partida;
+- Navegar por **personagens**, **itens**, e outros elementos do jogo.
+
+Tudo isso com uma interface visual e interativa, direto na Unity, que conversa com o banco de dados em tempo real.
+
+---
+
+## 🔍 O que dá pra fazer
+
+- Visualizar detalhes das partidas (tempo, ID, objetivos, etc);
+- Cadastrar e editar jogadores (nickname, ranque, atributos...);
+- Buscar qualquer informação pelo ID do item/jogador/equipe;
+- Ver informações sobre os campeões e os itens do LoL;
+- Interface feita na Unity com integração total ao banco de dados;
+- Gráficos e imagens inspirados diretamente no estilo do jogo.
+
+---
+
+## 🛠️ Tecnologias usadas
+
+- **C#** – pra lógica do programa e integração na Unity  
+- **Unity** – onde toda a mágica visual acontece  
+- **MySQL** – banco de dados local com todas as infos  
+- **API local** – faz a ponte entre a Unity e o banco de dados
+
+---
+
+## 🙌 Créditos
+
+Desenvolvido por [Alex Mortari](https://github.com/mortarialex), [Andre Palharini](https://github.com/palhariniandre), [João Pedro Souto](https://github.com/JP-Souto) e [Gabriel Schuster](https://github.com/gfschuster) para a disciplina de Ciência de Dados da UFSM. Personagens, itens e imagens são inspirados no universo do **League of Legends** (Riot Games).
